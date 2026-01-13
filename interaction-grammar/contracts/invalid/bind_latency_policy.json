@@ -1,0 +1,25 @@
+{
+    "node": "bind",
+    "items": [
+        {
+            "node": "act",
+            "prim": "σ",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "prompt"
+        },
+        {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "reply"
+        }
+    ],
+    "latency": "≤2s",
+    "policy": {
+        "name": "k_sync",
+        "k": 2,
+        "delta": "≤300ms"
+    }
+}

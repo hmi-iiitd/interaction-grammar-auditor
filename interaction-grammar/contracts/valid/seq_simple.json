@@ -1,0 +1,18 @@
+{
+    "node": "seq",
+    "latency": "≤2s",
+    "left": {
+        "node": "act",
+        "prim": "σ",
+        "agent": "robot_1",
+        "channel": "gaze",
+        "object": "target_object"
+    },
+    "right": {
+        "node": "act",
+        "prim": "ρ",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "acknowledge"
+    }
+}

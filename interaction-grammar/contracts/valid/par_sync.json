@@ -1,0 +1,21 @@
+{
+    "node": "par",
+    "sync": {
+        "start": "≤300ms",
+        "end": "≤800ms"
+    },
+    "left": {
+        "node": "act",
+        "prim": "τ",
+        "agent": "robot_1",
+        "channel": "manipulation",
+        "object": "reach"
+    },
+    "right": {
+        "node": "act",
+        "prim": "σ",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "offering"
+    }
+}

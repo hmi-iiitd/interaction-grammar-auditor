@@ -1,0 +1,52 @@
+?start: expr
+
+?expr: act
+     | "(" expr ")"
+     | expr "→" expr ["@Lat" "(" "≤" delta ")"] -> sequence
+     | expr "∥" expr ["@Sync" "(" sync_args ")"] -> parallel
+     | "¬" expr [":" disrupt] -> negation
+     | "repair" "(" "site" "(" selector ")" "," expr ")" ["@Retry" "(" retry_args ")"] -> repair
+     | "bind" "(" bind_list ")" ["@Lat" "(" "≤" delta ")" | "@Policy" "(" policy_args ")"] -> bind
+
+// Primitives
+act: PRIM "(" agent_group "," channel ["," object] ")"
+PRIM: "σ" | "ρ" | "τ" | "α"
+
+// Agents
+agent_group: agent | "[" agent ("," agent)+ "]"
+agent: AGENT_TYPE "_" INDEX
+AGENT_TYPE: "human" | "robot" | "system" | "env"
+
+// Arguments & Metadata
+sync_args: sync_arg ("," sync_arg)*
+sync_arg: "start" "=" delta_like -> sync_start
+        | "end" "=" delta_like -> sync_end
+retry_args: "N≤" INT ["," "μ≤" NUMBER]
+bind_list: expr ("," expr)*
+policy_args: policy_type ["," policy_params]
+policy_type: "type" "=" QUOTED_STRING
+policy_params: policy_param ("," policy_param)*
+policy_param: "k" "=" INT -> policy_k
+            | "delta" "=" delta -> policy_delta
+            | "epsilon" "=" delta -> policy_epsilon
+            | "leader" "=" agent -> policy_leader
+disrupt: "ϵ" | "Φ" | "Δ" "(" IDENT ["," NUMBER] ")"
+
+// Parameters
+// Note: delta is used for both latency budgets (in @Lat) and synchrony tolerances (in @Sync and @Policy)
+// In the paper, we distinguish: Δ for latency, δ for synchrony
+delta: NUMBER [UNIT] | "Δ" "(" IDENT "," IDENT ")"
+delta_like: (NUMBER [UNIT]) | "δ" "(" IDENT "," IDENT ")"
+selector: IDENT | QUOTED_STRING
+channel: IDENT | QUOTED_STRING
+object: IDENT | QUOTED_STRING
+UNIT: "ms" | "s" | "m"
+
+// Lexical tokens
+IDENT: /[A-Za-z_][A-Za-z0-9_]*/
+INDEX: /[0-9]+/
+QUOTED_STRING: /"[^"]*"|'[^']*'/
+%import common.NUMBER
+%import common.INT
+%import common.WS
+%ignore WS

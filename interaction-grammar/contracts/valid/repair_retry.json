@@ -1,0 +1,26 @@
+{
+    "node": "repair",
+    "site": "reach",
+    "retry": {
+        "N_leq": 2,
+        "mu_leq": 0.2
+    },
+    "expr": {
+        "node": "seq",
+        "latency": "≤3s",
+        "left": {
+            "node": "act",
+            "prim": "σ",
+            "agent": "robot_1",
+            "channel": "gesture",
+            "object": "offer"
+        },
+        "right": {
+            "node": "act",
+            "prim": "τ",
+            "agent": "human_1",
+            "channel": "manipulation",
+            "object": "reach"
+        }
+    }
+}

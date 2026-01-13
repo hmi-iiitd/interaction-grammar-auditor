@@ -1,0 +1,6 @@
+{
+    "node": "act",
+    "agent": "robot_1",
+    "channel": "gaze",
+    "object": "target_object"
+}

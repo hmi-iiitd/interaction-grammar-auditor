@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Interaction Grammar v1.0 AST",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/Act" },
+    { "$ref": "#/$defs/Seq" },
+    { "$ref": "#/$defs/Par" },
+    { "$ref": "#/$defs/Neg" },
+    { "$ref": "#/$defs/Repair" },
+    { "$ref": "#/$defs/Bind" }
+  ],
+  "$defs": {
+    "Act": {
+      "type": "object",
+      "required": ["node", "prim", "agent", "channel"],
+      "properties": {
+        "node": { "const": "act" },
+        "prim": { "enum": ["σ", "ρ", "τ", "α"] },
+        "agent": { "type": ["string", "array"] },
+        "channel": { "type": "string" },
+        "object": { "type": "string" }
+      }
+    },
+    "Seq": {
+      "type": "object",
+      "required": ["node", "left", "right"],
+      "properties": {
+        "node": { "const": "seq" },
+        "left": { "$ref": "#" },
+        "right": { "$ref": "#" },
+        "latency": { "type": "string" }
+      }
+    },
+    "Par": {
+      "type": "object",
+      "required": ["node", "left", "right"],
+      "properties": {
+        "node": { "const": "par" },
+        "left": { "$ref": "#" },
+        "right": { "$ref": "#" },
+        "sync": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string" },
+            "end": { "type": "string" }
+          }
+        }
+      }
+    },
+    "Neg": {
+      "type": "object",
+      "required": ["node", "expr"],
+      "properties": {
+        "node": { "const": "neg" },
+        "expr": { "$ref": "#" }
+      }
+    },
+    "Repair": {
+      "type": "object",
+      "required": ["node", "site", "expr"],
+      "properties": {
+        "node": { "const": "repair" },
+        "site": { "type": "string" },
+        "expr": { "$ref": "#" },
+        "retry": {
+          "type": "object",
+          "properties": {
+            "N_leq": { "type": "integer" },
+            "mu_leq": { "type": "number" }
+          }
+        }
+      }
+    },
+    "Bind": {
+      "type": "object",
+      "required": ["node", "items"],
+      "properties": {
+        "node": { "const": "bind" },
+        "items": { "type": "array", "items": { "$ref": "#" }, "minItems": 2 },
+        "latency": { "type": "string" },
+        "policy": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "enum": ["k_sync", "leader_skew"] },
+            "k": { "type": "integer" },
+            "delta": { "type": "string" },
+            "leader": { "type": "string" },
+            "epsilon": { "type": "string" }
+          }
+        }
+      },
+      "not": {
+        "required": ["latency", "policy"]
+      },
+      "additionalProperties": false
+    }
+  }
+}
