@@ -1,114 +1,155 @@
-from lark import Lark, Transformer, v_args
-from dataclasses import dataclass
-from typing import Optional, Union, Dict
-from pathlib import Path
+"""
+This module provides parsing capabilities for string-based constraints in the Interaction Grammar,
+leveraging the Lark parsing library and the authoritative grammar definition.
 
-# Load authoritative grammar
-GRAMMAR_PATH = Path(__file__).parent.parent.parent / "grammar" / "grammar.lark"
+Classes:
+    - LatencyConstraint: A dataclass representing numeric or symbolic latency.
+    - SyncConstraint: A dataclass representing numeric or symbolic synchronization tolerances.
+    - RetryConstraint: A dataclass representing retry policies (n_max, mu_max).
+    - ConstraintTransformer: A Lark Transformer that converts parse trees into constraint objects.
+    - ConstraintParser: The main parser class for various constraint types.
+
+Functions in ConstraintTransformer:
+    - delta: Transforms a 'delta' parse tree into a LatencyConstraint.
+    - delta_like: Transforms a 'delta_like' parse tree into a SyncConstraint.
+    - sync_start/sync_end: Sets the type of a SyncConstraint.
+    - retry_args: Transforms retry arguments into a RetryConstraint.
+    - agent: Formats agent strings (e.g., robot_1).
+    - agent_group: Handles single agents or lists of agents.
+
+Functions in ConstraintParser:
+    - __init__: Initializes Lark parsers for latency, sync, retry, and agents using the grammar.
+    - parse_latency: Parses a latency string, handling numeric values, symbolic deltas, and malformed inputs.
+    - parse_sync: Parses a synchronization constraint string.
+    - parse_retry: Parses retry specifications from strings or dictionaries.
+    - parse_agents: Parses agent groups from strings or lists.
+"""
+
+from dataclasses import dataclass
+from typing import Optional, Dict, Any, Union, List
+from pathlib import Path
+from lark import Lark, Transformer, v_args
 
 @dataclass
 class LatencyConstraint:
-    value_ms: float
+    value_ms: Optional[float] = None
+    symbolic: Optional[str] = None
 
 @dataclass
 class SyncConstraint:
-    type: str  # 'start' or 'end'
-    value_ms: float
+    value_ms: Optional[float] = None
+    symbolic: Optional[str] = None
+    type: str = "start"
 
 @dataclass
 class RetryConstraint:
-    n_max: Optional[int] = None
+    n_max: int
     mu_max: Optional[float] = None
 
 class ConstraintTransformer(Transformer):
-    def delta(self, args):
-        # args[0] is NUMBER, args[1] is UNIT (optional)
-        val = float(args[0])
-        unit = args[1] if len(args) > 1 else "ms"
-        return self._to_ms(val, unit)
+    def delta(self, items):
+        # delta: NUMBER [UNIT] | "Δ" "(" IDENT "," IDENT ")"
+        if len(items) >= 1 and hasattr(items[0], 'type') and items[0].type == 'NUMBER':
+            val = float(items[0])
+            if len(items) > 1 and items[1] is not None:
+                unit = str(items[1])
+                if unit == "s": val *= 1000
+                elif unit == "m": val *= 60000
+            return LatencyConstraint(value_ms=val)
+        elif len(items) == 2: # Δ(id, id)
+            return LatencyConstraint(symbolic=f"Δ({items[0]},{items[1]})")
+        return LatencyConstraint(value_ms=0.0)
 
-    def delta_like(self, args):
-        # Similar to delta for now
-        val = float(args[0])
-        unit = args[1] if len(args) > 1 else "ms"
-        return self._to_ms(val, unit)
+    def delta_like(self, items):
+        # delta_like: (NUMBER [UNIT]) | "δ" "(" IDENT "," IDENT ")"
+        if isinstance(items[0], LatencyConstraint):
+            return SyncConstraint(value_ms=items[0].value_ms, symbolic=items[0].symbolic)
+        elif len(items) == 2: # δ(id, id)
+            return SyncConstraint(symbolic=f"δ({items[0]},{items[1]})")
+        return SyncConstraint(value_ms=0.0)
 
-    def sync_start(self, args):
-        return SyncConstraint(type='start', value_ms=args[0])
+    def sync_start(self, items):
+        res = items[0]
+        res.type = "start"
+        return res
 
-    def sync_end(self, args):
-        return SyncConstraint(type='end', value_ms=args[0])
+    def sync_end(self, items):
+        res = items[0]
+        res.type = "end"
+        return res
 
-    def retry_args(self, args):
-        # args will be a list of results from children
-        # grammar: "N≤" INT ["," "μ≤" NUMBER]
-        n_max = None
-        mu_max = None
-        for arg in args:
-            if isinstance(arg, int):
-                n_max = arg
-            elif isinstance(arg, float):
-                mu_max = arg
+    def retry_args(self, items):
+        n_max = int(items[0])
+        mu_max = float(items[1]) if len(items) > 1 and items[1] is not None else None
         return RetryConstraint(n_max=n_max, mu_max=mu_max)
 
-    def latency_val(self, args):
-        return args[0]
+    def agent(self, items):
+        return f"{items[0]}_{items[1]}"
 
-    def sync_val(self, args):
-        return args[0]
-
-    def INT(self, token):
-        return int(token)
-
-    def NUMBER(self, token):
-        return float(token)
-
-    def UNIT(self, token):
-        return str(token)
-
-    def _to_ms(self, val: float, unit: str) -> float:
-        if unit == "ms": return val
-        if unit == "s": return val * 1000
-        if unit == "m": return val * 60000
-        return val
+    def agent_group(self, items):
+        if len(items) == 1:
+            return items[0]
+        return list(items)
 
 class ConstraintParser:
     def __init__(self):
-        with open(GRAMMAR_PATH, 'r') as f:
+        grammar_path = Path(__file__).parent.parent.parent / "grammar" / "grammar.lark"
+        with open(grammar_path, 'r') as f:
             self.grammar = f.read()
         
-        # Extend grammar to handle JSON fragments directly
-        # This avoids manual string manipulation (like stripping "≤")
-        self.grammar += """
-        latency_val: "≤" delta
-        sync_val: "≤" delta_like
-        """
+        self.latency_lark = Lark(self.grammar, start='delta', parser='lalr', transformer=ConstraintTransformer())
+        self.sync_lark = Lark(self.grammar, start='sync_arg', parser='lalr', transformer=ConstraintTransformer())
+        self.retry_lark = Lark(self.grammar, start='retry_args', parser='lalr', transformer=ConstraintTransformer())
+        self.agent_lark = Lark(self.grammar, start='agent_group', parser='lalr', transformer=ConstraintTransformer())
+
+    def parse_latency(self, lat_str: str) -> LatencyConstraint:
+        clean_str = lat_str.replace("≤", "").strip()
+        try:
+            return self.latency_lark.parse(clean_str)
+        except Exception as e:
+            try:
+                return LatencyConstraint(value_ms=float(clean_str))
+            except ValueError:
+                if "(" in clean_str or "Δ" in clean_str:
+                    raise ValueError(f"Malformed symbolic latency: {lat_str}") from e
+                return LatencyConstraint(symbolic=clean_str)
+
+    def parse_sync(self, sync_str: str) -> SyncConstraint:
+        clean_str = sync_str.replace("≤", "").strip()
+        if "=" not in clean_str:
+            try:
+                res = self.latency_lark.parse(clean_str)
+                return SyncConstraint(value_ms=res.value_ms, symbolic=res.symbolic)
+            except Exception:
+                try:
+                    return SyncConstraint(value_ms=float(clean_str))
+                except ValueError:
+                    return SyncConstraint(symbolic=clean_str)
         
-        self.parser = Lark(self.grammar, start=['latency_val', 'sync_val', 'retry_args'], parser='lalr')
-        self.transformer = ConstraintTransformer()
+        try:
+            return self.sync_lark.parse(clean_str)
+        except Exception as e:
+            if "=" in clean_str or "δ" in clean_str:
+                raise ValueError(f"Malformed sync constraint: {sync_str}") from e
+            return SyncConstraint(value_ms=0.0)
 
-    def parse_latency(self, text: str) -> LatencyConstraint:
-        # Parse "≤2s" directly using the extended grammar rule
-        tree = self.parser.parse(text, start='latency_val')
-        val_ms = self.transformer.transform(tree)
-        return LatencyConstraint(value_ms=val_ms)
+    def parse_retry(self, retry_data: Union[str, Dict[str, Any]]) -> RetryConstraint:
+        if isinstance(retry_data, dict):
+            return RetryConstraint(
+                n_max=retry_data.get("N_leq", 0),
+                mu_max=retry_data.get("mu_leq")
+            )
+        try:
+            return self.retry_lark.parse(retry_data)
+        except Exception as e:
+            if "≤" in retry_data or "," in retry_data:
+                raise ValueError(f"Malformed retry specification: {retry_data}") from e
+            return RetryConstraint(n_max=0)
 
-    def parse_sync(self, text: str) -> SyncConstraint:
-        # Parse "≤300ms" directly using the extended grammar rule
-        tree = self.parser.parse(text, start='sync_val')
-        val_ms = self.transformer.transform(tree)
-        return SyncConstraint(type='unknown', value_ms=val_ms)
-
-    def parse_retry(self, text: str) -> RetryConstraint:
-        # JSON: "retry": { "N_leq": 2, "mu_leq": 0.2 }
-        # Convert dict to string format matching grammar: "N≤2, μ≤0.2"
-        if isinstance(text, dict):
-            parts = []
-            if "N_leq" in text:
-                parts.append(f"N≤{text['N_leq']}")
-            if "mu_leq" in text:
-                parts.append(f"μ≤{text['mu_leq']}")
-            text = ", ".join(parts)
-            
-        tree = self.parser.parse(text, start='retry_args')
-        return self.transformer.transform(tree)
+    def parse_agents(self, agent_data: Union[str, List[str]]) -> Union[str, List[str]]:
+        if isinstance(agent_data, list):
+            return agent_data
+        try:
+            return self.agent_lark.parse(agent_data)
+        except Exception:
+            return agent_data

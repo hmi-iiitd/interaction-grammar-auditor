@@ -1,0 +1,25 @@
+{
+    "node": "repair",
+    "site": "complex_interaction",
+    "retry": "N≤3,μ≤0.5",
+    "expr": {
+        "node": "neg",
+        "expr": {
+            "node": "seq",
+            "left": {
+                "node": "act",
+                "prim": "σ",
+                "agent": "robot_1",
+                "channel": "gaze"
+            },
+            "right": {
+                "node": "act",
+                "prim": "ρ",
+                "agent": "human_1",
+                "channel": "speech"
+            },
+            "latency": "Δ(t1,t2)"
+        },
+        "disrupt": "ϵ"
+    }
+}

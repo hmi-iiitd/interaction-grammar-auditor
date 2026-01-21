@@ -1,8 +1,16 @@
+"""
+This module serves as the Command Line Interface (CLI) for the Interaction Contract Compiler.
+It orchestrates the validation and compilation process for a given JSON contract file.
+
+Functions:
+    - main: The main entry point for the CLI. It handles argument parsing, file loading, schema validation, AST compilation, and semantic validation.
+"""
+
 import argparse
 import json
 import sys
 from pathlib import Path
-from src.compiler.validator import SchemaValidator
+from src.compiler.validator import SchemaValidator, SemanticValidator
 from src.compiler.parser import ContractParser
 
 def main():
@@ -37,24 +45,18 @@ def main():
     try:
         ast = parser.parse(data)
         print("AST Compilation Passed")
-        print(f"AST: {ast}")
     except Exception as e:
         print(f"AST Compilation Failed: {e}", file=sys.stderr)
         sys.exit(1)
 
-    # 3. Z3 Verification
-    from src.compiler.verifier import ContractVerifier
-    verifier = ContractVerifier()
+    # 3. Semantic Validation
+    semantic_validator = SemanticValidator()
     try:
-    try:
-        success, reason = verifier.verify(ast)
-        if success:
-            print(f"Z3 Verification Passed: {reason}")
-        else:
-            print(f"Z3 Verification Failed: {reason}", file=sys.stderr)
-            sys.exit(1)
+        semantic_validator.validate(ast)
+        print("Semantic Validation Passed")
+        print(f"Final AST: {ast}")
     except Exception as e:
-        print(f"Z3 Verification Error: {e}", file=sys.stderr)
+        print(f"Semantic Validation Failed: {e}", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":

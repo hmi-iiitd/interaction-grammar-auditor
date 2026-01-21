@@ -7,7 +7,6 @@ requires-python = ">=3.10"
 dependencies = [
     "lark>=1.1.9",
     "jsonschema>=4.21.1",
-    "z3-solver>=4.12.0",
 ]
 
 [project.scripts]

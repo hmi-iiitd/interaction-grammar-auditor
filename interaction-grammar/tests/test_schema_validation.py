@@ -1,3 +1,13 @@
+"""
+This module contains unit tests for the SchemaValidator, ensuring that interaction contracts
+conform to the defined JSON schema.
+
+Functions:
+    - validator: A pytest fixture that provides an instance of SchemaValidator initialized with the project schema.
+    - test_valid_contracts: Iterates through all JSON files in the 'contracts/valid' directory and verifies that they pass schema validation.
+    - test_invalid_contracts: Iterates through all JSON files in the 'contracts/invalid' directory and verifies that they fail schema validation as expected.
+"""
+
 import pytest
 import json
 from pathlib import Path
