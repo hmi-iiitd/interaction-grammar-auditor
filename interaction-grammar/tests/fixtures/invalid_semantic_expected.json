@@ -1,0 +1,30 @@
+{
+  "01_latency_unparseable.json": {
+    "code": "E_LATENCY_PARSE",
+    "message_contains": ["latency", "parse"]
+  },
+  "02_agent_empty_list.json": {
+    "code": "E_AGENT_EMPTY",
+    "message_contains": ["agent", "empty"]
+  },
+  "03_sync_inconsistent.json": {
+    "code": "E_SYNC_INCONSISTENT",
+    "message_contains": ["sync", "start", "end"]
+  },
+  "04_repair_site_not_found.json": {
+    "code": "E_REPAIR_SITE_NOT_FOUND",
+    "message_contains": ["repair", "site", "reach"]
+  },
+  "05_retry_negative.json": {
+    "code": "E_RETRY_INVALID",
+    "message_contains": ["retry", "non-negative"]
+  },
+  "06_policy_params_missing.json": {
+    "code": "E_POLICY_PARAMS_MISSING",
+    "message_contains": ["policy", "k_sync", "k", "delta"]
+  },
+  "07_bind_no_constraint.json": {
+    "code": "E_BIND_NO_CONSTRAINT",
+    "message_contains": ["bind", "latency", "policy"]
+  }
+}

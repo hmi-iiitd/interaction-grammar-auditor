@@ -16,7 +16,8 @@ Functions:
 import pytest
 import json
 from pathlib import Path
-from src.compiler.parser import ContractParser
+from src.compiler.parser import ContractParser, ParserError
+from src.compiler.constraint_parser import ConstraintError
 from src.compiler.ast import Act, Seq, Par, Repair, Bind, Neg
 
 VALID_CONTRACTS_DIR = Path(__file__).parent.parent / "contracts" / "valid"
@@ -30,7 +31,7 @@ def test_parse_seq_simple(parser):
         data = json.load(f)
     ast = parser.parse(data)
     assert isinstance(ast, Seq)
-    assert ast.latency.value_ms == 2000.0  # ≤2s -> 2000ms
+    assert ast.latency.value_ms == 2000.0
     assert isinstance(ast.left, Act)
     assert ast.left.prim == "σ"
     assert isinstance(ast.right, Act)
@@ -108,3 +109,22 @@ def test_parse_agent_group_string(parser):
     assert isinstance(ast.agent, list)
     assert "robot_1" in ast.agent
     assert "human_1" in ast.agent
+
+def test_parse_missing_node_type(parser):
+    data = {
+        "prim": "σ",
+        "agent": "robot_1",
+        "channel": "speech"
+    }
+    with pytest.raises(ParserError) as e:
+        parser.parse(data)
+    assert e.value.code == "E_NODE_TYPE_MISSING"
+
+def test_parse_unknown_node_type(parser):
+    data = {
+        "node": "unknown_type",
+        "agent": "robot_1"
+    }
+    with pytest.raises(ParserError) as e:
+        parser.parse(data)
+    assert e.value.code == "E_UNKNOWN_NODE_TYPE"

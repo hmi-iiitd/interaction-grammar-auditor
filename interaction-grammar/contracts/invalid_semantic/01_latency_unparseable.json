@@ -1,0 +1,16 @@
+{
+  "node": "seq",
+  "latency": "two seconds please",
+  "left": {
+    "node": "act",
+    "prim": "σ",
+    "agent": "robot_1",
+    "channel": "gaze"
+  },
+  "right": {
+    "node": "act",
+    "prim": "ρ",
+    "agent": "human_1",
+    "channel": "speech"
+  }
+}

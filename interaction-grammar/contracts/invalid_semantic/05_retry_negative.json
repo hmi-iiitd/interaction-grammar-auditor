@@ -1,0 +1,15 @@
+{
+  "node": "repair",
+  "site": "reach",
+  "retry": {
+    "N_leq": -1,
+    "mu_leq": -0.5
+  },
+  "expr": {
+    "node": "act",
+    "prim": "τ",
+    "agent": "human_1",
+    "channel": "manipulation",
+    "object": "reach"
+  }
+}

@@ -10,8 +10,9 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from src.compiler.validator import SchemaValidator, SemanticValidator
-from src.compiler.parser import ContractParser
+from src.compiler.validator import SchemaValidator, SemanticValidator, ValidationError
+from src.compiler.parser import ContractParser, ParserError
+from src.compiler.constraint_parser import ConstraintError
 
 def main():
     parser = argparse.ArgumentParser(description="Interaction Contract Compiler")
@@ -36,15 +37,21 @@ def main():
     try:
         validator.validate(data)
         print("Schema Validation Passed")
+    except ValidationError as e:
+        print(f"Schema Validation Failed: [{e.code}] {e.message}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
         print(f"Schema Validation Failed: {e}", file=sys.stderr)
         sys.exit(1)
 
     # 2. Parse to AST
-    parser = ContractParser()
+    contract_parser = ContractParser()
     try:
-        ast = parser.parse(data)
+        ast = contract_parser.parse(data)
         print("AST Compilation Passed")
+    except (ParserError, ConstraintError) as e:
+        print(f"AST Compilation Failed: [{e.code}] {e.message}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
         print(f"AST Compilation Failed: {e}", file=sys.stderr)
         sys.exit(1)
@@ -55,6 +62,9 @@ def main():
         semantic_validator.validate(ast)
         print("Semantic Validation Passed")
         print(f"Final AST: {ast}")
+    except ValidationError as e:
+        print(f"Semantic Validation Failed: [{e.code}] {e.message}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
         print(f"Semantic Validation Failed: {e}", file=sys.stderr)
         sys.exit(1)

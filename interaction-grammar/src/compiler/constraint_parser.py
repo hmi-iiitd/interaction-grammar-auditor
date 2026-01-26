@@ -3,6 +3,7 @@ This module provides parsing capabilities for string-based constraints in the In
 leveraging the Lark parsing library and the authoritative grammar definition.
 
 Classes:
+    - ConstraintError: Custom exception for constraint parsing errors with error codes.
     - LatencyConstraint: A dataclass representing numeric or symbolic latency.
     - SyncConstraint: A dataclass representing numeric or symbolic synchronization tolerances.
     - RetryConstraint: A dataclass representing retry policies (n_max, mu_max).
@@ -29,6 +30,13 @@ from dataclasses import dataclass
 from typing import Optional, Dict, Any, Union, List
 from pathlib import Path
 from lark import Lark, Transformer, v_args
+
+class ConstraintError(Exception):
+    """Custom exception for constraint parsing errors with error codes."""
+    def __init__(self, code: str, message: str):
+        self.code = code
+        self.message = message
+        super().__init__(f"[{code}] {message}")
 
 @dataclass
 class LatencyConstraint:
@@ -111,8 +119,10 @@ class ConstraintParser:
                 return LatencyConstraint(value_ms=float(clean_str))
             except ValueError:
                 if "(" in clean_str or "Δ" in clean_str:
-                    raise ValueError(f"Malformed symbolic latency: {lat_str}") from e
-                return LatencyConstraint(symbolic=clean_str)
+                    raise ConstraintError("E_LATENCY_MALFORMED", 
+                        f"Malformed symbolic latency: {lat_str}") from e
+                raise ConstraintError("E_LATENCY_PARSE", 
+                    f"Cannot parse latency string: {lat_str}") from e
 
     def parse_sync(self, sync_str: str) -> SyncConstraint:
         clean_str = sync_str.replace("≤", "").strip()
@@ -124,13 +134,15 @@ class ConstraintParser:
                 try:
                     return SyncConstraint(value_ms=float(clean_str))
                 except ValueError:
-                    return SyncConstraint(symbolic=clean_str)
+                    raise ConstraintError("E_SYNC_PARSE", 
+                        f"Cannot parse sync constraint: {sync_str}")
         
         try:
             return self.sync_lark.parse(clean_str)
         except Exception as e:
             if "=" in clean_str or "δ" in clean_str:
-                raise ValueError(f"Malformed sync constraint: {sync_str}") from e
+                raise ConstraintError("E_SYNC_MALFORMED", 
+                    f"Malformed sync constraint: {sync_str}") from e
             return SyncConstraint(value_ms=0.0)
 
     def parse_retry(self, retry_data: Union[str, Dict[str, Any]]) -> RetryConstraint:
@@ -143,13 +155,16 @@ class ConstraintParser:
             return self.retry_lark.parse(retry_data)
         except Exception as e:
             if "≤" in retry_data or "," in retry_data:
-                raise ValueError(f"Malformed retry specification: {retry_data}") from e
-            return RetryConstraint(n_max=0)
+                raise ConstraintError("E_RETRY_MALFORMED", 
+                    f"Malformed retry specification: {retry_data}") from e
+            raise ConstraintError("E_RETRY_PARSE", 
+                f"Cannot parse retry specification: {retry_data}") from e
 
     def parse_agents(self, agent_data: Union[str, List[str]]) -> Union[str, List[str]]:
         if isinstance(agent_data, list):
             return agent_data
         try:
             return self.agent_lark.parse(agent_data)
-        except Exception:
-            return agent_data
+        except Exception as e:
+            raise ConstraintError("E_AGENT_PARSE", 
+                f"Cannot parse agent specification: {agent_data}") from e

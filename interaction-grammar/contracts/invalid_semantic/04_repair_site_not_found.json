@@ -1,0 +1,11 @@
+{
+  "node": "repair",
+  "site": "reach",
+  "expr": {
+    "node": "act",
+    "prim": "τ",
+    "agent": "human_1",
+    "channel": "manipulation",
+    "object": "grasp"
+  }
+}

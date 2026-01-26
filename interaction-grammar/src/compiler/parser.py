@@ -3,6 +3,7 @@ This module contains the ContractParser class, which is responsible for converti
 JSON-based interaction contracts into a typed Abstract Syntax Tree (AST).
 
 Classes:
+    - ParserError: Custom exception for parsing errors with error codes.
     - ContractParser: The main parser class that orchestrates the conversion process.
 
 Functions in ContractParser:
@@ -20,6 +21,13 @@ from typing import Dict, Any
 from .ast import ASTNode, Act, Seq, Par, Repair, Bind, Neg
 from .constraint_parser import ConstraintParser
 
+class ParserError(Exception):
+    """Custom exception for parsing errors with error codes."""
+    def __init__(self, code: str, message: str):
+        self.code = code
+        self.message = message
+        super().__init__(f"[{code}] {message}")
+
 class ContractParser:
     def __init__(self):
         self.constraint_parser = ConstraintParser()
@@ -27,13 +35,22 @@ class ContractParser:
     def parse(self, data: Dict[str, Any]) -> ASTNode:
         node_type = data.get("node")
         if not node_type:
-            raise ValueError("Node type missing in data")
+            raise ParserError("E_NODE_TYPE_MISSING", "Node type missing in data")
         
         method_name = f"_parse_{node_type}"
         if hasattr(self, method_name):
-            return getattr(self, method_name)(data)
+            try:
+                return getattr(self, method_name)(data)
+            except KeyError as e:
+                raise ParserError("E_REQUIRED_FIELD_MISSING", 
+                    f"Required field missing in '{node_type}' node: {e}")
+            except Exception as e:
+                if isinstance(e, ParserError):
+                    raise
+                raise ParserError("E_PARSE_FAILED", 
+                    f"Failed to parse '{node_type}' node: {str(e)}")
         else:
-            raise ValueError(f"Unknown node type: {node_type}")
+            raise ParserError("E_UNKNOWN_NODE_TYPE", f"Unknown node type: {node_type}")
 
     def _parse_act(self, data: Dict[str, Any]) -> Act:
         return Act(

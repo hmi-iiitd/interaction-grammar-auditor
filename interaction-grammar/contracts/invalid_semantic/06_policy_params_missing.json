@@ -1,0 +1,21 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "act",
+      "prim": "σ",
+      "agent": "robot_1",
+      "channel": "speech"
+    },
+    {
+      "node": "act",
+      "prim": "ρ",
+      "agent": "human_1",
+      "channel": "speech"
+    }
+  ],
+  "policy": {
+    "name": "k_sync",
+    "k": 2
+  }
+}
