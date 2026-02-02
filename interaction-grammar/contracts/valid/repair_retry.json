@@ -7,7 +7,7 @@
     },
     "expr": {
         "node": "seq",
-        "latency": "≤3s",
+        "latency": "3 seconds",
         "left": {
             "node": "act",
             "prim": "σ",

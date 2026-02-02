@@ -41,9 +41,6 @@ class SchemaValidator:
             self.schema = json.load(f)
 
     def validate(self, instance: Dict[str, Any]) -> None:
-        # First do semantic checks on raw JSON before schema validation
-        self._validate_latency_strings(instance)
-        
         node_type = instance.get("node")
         if node_type:
             # Dynamically discover mapping from $defs by looking for 'const' in 'node' property
@@ -70,9 +67,20 @@ class SchemaValidator:
                 return
 
         jsonschema.validate(instance=instance, schema=self.schema)
+
+
+class SemanticValidator:
+    def __init__(self):
+        self.repair_sites = set()
+    
+    def validate(self, node: ASTNode) -> None:
+        method_name = f"_validate_{node.__class__.__name__.lower()}"
+        if hasattr(self, method_name):
+            getattr(self, method_name)(node)
+    
     
     def _validate_latency_strings(self, instance: Dict[str, Any]) -> None:
-        """Validate latency strings are parseable before schema validation."""
+        """Validate latency strings are parseable."""
         node_type = instance.get("node")
         
         # Check latency in seq and bind nodes
@@ -117,15 +125,6 @@ class SchemaValidator:
             return True
         
         return False
-
-class SemanticValidator:
-    def __init__(self):
-        self.repair_sites = set()
-    
-    def validate(self, node: ASTNode) -> None:
-        method_name = f"_validate_{node.__class__.__name__.lower()}"
-        if hasattr(self, method_name):
-            getattr(self, method_name)(node)
 
     def _collect_sites(self, node: ASTNode, site_name: Optional[str] = None) -> None:
         """Collect all site names from object fields in Act nodes."""
