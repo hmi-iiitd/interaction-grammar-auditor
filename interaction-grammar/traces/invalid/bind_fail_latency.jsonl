@@ -1,0 +1,2 @@
+{"t": 0.0, "prim": "σ", "agent": "robot_1", "channel": "speech", "object": "greeting"}
+{"t": 2.5, "prim": "τ", "agent": "robot_1", "channel": "gesture", "object": "wave"}

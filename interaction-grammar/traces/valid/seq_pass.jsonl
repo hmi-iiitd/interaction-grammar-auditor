@@ -1,0 +1,2 @@
+{"t": 0.0, "prim": "σ", "agent": "robot_1", "channel": "gaze", "object": "target_object"}
+{"t": 1.2, "prim": "ρ", "agent": "human_1", "channel": "speech", "object": "acknowledge"}

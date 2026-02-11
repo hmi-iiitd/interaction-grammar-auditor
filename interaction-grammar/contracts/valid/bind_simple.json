@@ -1,0 +1,20 @@
+{
+    "node": "bind",
+    "items": [
+        {
+            "node": "act",
+            "prim": "σ",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "greeting"
+        },
+        {
+            "node": "act",
+            "prim": "τ",
+            "agent": "robot_1",
+            "channel": "gesture",
+            "object": "wave"
+        }
+    ],
+    "latency": "≤1s"
+}

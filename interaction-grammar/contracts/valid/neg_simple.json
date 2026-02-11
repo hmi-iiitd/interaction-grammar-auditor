@@ -1,0 +1,10 @@
+{
+    "node": "neg",
+    "expr": {
+        "node": "act",
+        "prim": "σ",
+        "agent": "robot_1",
+        "channel": "forbidden",
+        "object": "secret"
+    }
+}
