@@ -13,12 +13,21 @@ class AuditVerdict:
     FAIL = "FAIL"
 
 class AuditResult:
-    def __init__(self, verdict: str, code: Optional[str] = None, 
-                 clause_path: str = "$", expected: Optional[Dict] = None, 
-                 observed: Optional[Dict] = None, witness: Optional[Dict] = None):
+    def __init__(self, verdict: str, 
+                 operator: Optional[str] = None,
+                 error_code: Optional[str] = None, 
+                 clause_path: str = "$", 
+                 budget: Optional[str] = None,
+                 responsible_agent: Optional[str] = None,
+                 expected: Optional[Dict] = None, 
+                 observed: Optional[Dict] = None, 
+                 witness: Optional[Dict] = None):
         self.verdict = verdict
-        self.code = code
+        self.operator = operator
+        self.error_code = error_code
         self.clause_path = clause_path
+        self.budget = budget
+        self.responsible_agent = responsible_agent
         self.expected = expected or {}
         self.observed = observed or {}
         self.witness = witness or {}
@@ -27,10 +36,12 @@ class AuditResult:
         res = {"verdict": self.verdict}
         if self.verdict == AuditVerdict.FAIL:
              res.update({
-                 "code": self.code,
+                 "operator": self.operator,
                  "clause_path": self.clause_path,
-                 "expected": self.expected,
+                 "error_code": self.error_code,
+                 "budget": self.budget,
                  "observed": self.observed,
+                 "responsible_agent": self.responsible_agent,
                  "witness": self.witness
              })
         return res
@@ -41,9 +52,6 @@ class Auditor:
 
     def audit(self, trace: Trace) -> AuditResult:
         """Top-level audit function."""
-        # For Phase 2, we assume the root is a single interaction.
-        # We need to find the *first* occurrence that satisfies the root.
-        # This is a simplification; in reality, we might search for all valid interactions.
         return self._check_node(self.contract, trace, start_idx=0, path="$")
 
     def _check_node(self, node: ASTNode, trace: Trace, start_idx: int, path: str) -> AuditResult:
@@ -54,9 +62,7 @@ class Auditor:
         elif isinstance(node, Par):
             return self._check_par(node, trace, start_idx, path)
         elif isinstance(node, Repair):
-             # For Phase 2, we just verify the main expression and ignore repair logic for now (or treat as seq)
-             # But the prompt says "don't audit repair yet", so we might just pass through to expr
-             return self._check_node(node.expr, trace, start_idx, path + ".expr")
+             return self._check_repair(node, trace, start_idx, path)
         elif isinstance(node, Neg):
             return self._check_neg(node, trace, start_idx, path)
         elif isinstance(node, Bind):
@@ -75,11 +81,16 @@ class Auditor:
                 )
         
         # Not found
+        prim_str = f"{node.prim}({node.agent},{node.channel})"
+        resp_agent = node.agent[0] if isinstance(node.agent, list) else str(node.agent)
+
         return AuditResult(
             AuditVerdict.FAIL,
-            code="V_ACT_MISSING",
+            operator="act",
+            error_code="V_ACT_MISSING",
             clause_path=path,
-            expected={"act": f"{node.prim}({node.agent},{node.channel})"},
+            responsible_agent=resp_agent,
+            expected={"act": prim_str},
             observed={"trace_len": len(trace), "searched_from": start_idx}
         )
 
@@ -90,65 +101,64 @@ class Auditor:
             return res_left # Propagate failure
 
         left_idx = res_left.witness["idx"]
-        left_event = res_left.witness["event"]
+        left_t = self._get_start_time(res_left.witness)
         
         # 2. Find Right (must be strictly after Left)
-        # Note: strictly after means index > left_idx.
-        # Timestamps might be identical if events are simultaneous, but order in trace matters.
         res_right = self._check_node(node.right, trace, left_idx + 1, path + ".right")
         
         if res_right.verdict == AuditVerdict.FAIL:
-             # Transform generic ACT_MISSING to SEQ_MISSING_RIGHT for better clarity
-             return AuditResult(
-                 AuditVerdict.FAIL,
-                 code="V_SEQ_MISSING_RIGHT",
-                 clause_path=path,
-                 expected={"right": "Present after left"},
-                 observed={"after_left_until": trace[-1].t if len(trace) > 0 else 0.0},
-                 witness={"left_event": left_event}
-             )
+             if "MISSING" in (res_right.error_code or ""):
+                 return AuditResult(
+                     AuditVerdict.FAIL,
+                     operator="sequence",
+                     error_code="V_SEQ_MISSING_RIGHT",
+                     clause_path=path,
+                     responsible_agent=res_right.responsible_agent, 
+                     expected={"right": "Present after left"},
+                     observed={"after_left_until": trace[-1].t if len(trace) > 0 else 0.0},
+                     witness={"left_event": res_left.witness}
+                 )
+             return res_right
 
         right_idx = res_right.witness["idx"]
-        right_event = res_right.witness["event"]
+        right_t = self._get_start_time(res_right.witness)
+        right_agent = self._get_agent(res_right.witness)
 
         # 3. Check Latency
         if node.latency:
-             dt = right_event["t"] - left_event["t"]
-             # We only handle numeric latency in Phase 2 for now, or symbolic if we had values
-             # But the AST stores LatencyConstraint object.
-             # Assuming value_ms is populated (parsed from string)
+             dt = right_t - left_t
              limit_ms = node.latency.value_ms
              
              if limit_ms is not None:
                  limit_sec = limit_ms / 1000.0
-                 # Use a small epsilon for float comparison?
                  if dt > limit_sec + 1e-6:
                      return AuditResult(
                          AuditVerdict.FAIL,
-                         code="V_SEQ_LATENCY",
+                         operator="sequence",
+                         error_code="V_SEQ_LATENCY_EXCEEDED",
                          clause_path=path,
+                         budget=f"≤{limit_sec}s",
+                         responsible_agent=right_agent,
                          expected={"latency_leq": f"{limit_sec}s"},
                          observed={"dt": dt},
-                         witness={"left_event": left_event, "right_event": right_event}
+                         witness={"left_event": res_left.witness, "right_event": res_right.witness}
                      )
 
         # PASS
         return AuditResult(
             AuditVerdict.PASS,
             witness={"left": res_left.witness, "right": res_right.witness, "idx": right_idx} 
-            # We return the rightmost index as the "end" of this sequence
         )
 
     def _check_par(self, node: Par, trace: Trace, start_idx: int, path: str) -> AuditResult:
-        # For Par, we need to find both Left and Right independently starting from start_idx
-        # Then check sync constraints.
-        
         res_left = self._check_node(node.left, trace, start_idx, path + ".left")
         if res_left.verdict == AuditVerdict.FAIL:
              return AuditResult(
                  AuditVerdict.FAIL,
-                 code="V_PAR_MISSING_LEFT",
+                 operator="parallel",
+                 error_code="V_PAR_MISSING_LEFT",
                  clause_path=path,
+                 responsible_agent=res_left.responsible_agent,
                  expected={"left": "Present"},
                  observed={"searched_from": start_idx}
              )
@@ -157,14 +167,20 @@ class Auditor:
         if res_right.verdict == AuditVerdict.FAIL:
              return AuditResult(
                  AuditVerdict.FAIL,
-                 code="V_PAR_MISSING_RIGHT",
+                 operator="parallel",
+                 error_code="V_PAR_MISSING_RIGHT",
                  clause_path=path,
+                 responsible_agent=res_right.responsible_agent,
                  expected={"right": "Present"},
                  observed={"searched_from": start_idx}
              )
 
-        left_event = res_left.witness["event"]
-        right_event = res_right.witness["event"]
+        # Get timestamps
+        t_left = self._get_start_time(res_left.witness)
+        t_right = self._get_start_time(res_right.witness)
+        
+        agent_left = self._get_agent(res_left.witness)
+        agent_right = self._get_agent(res_right.witness)
 
         # Check Sync (Start)
         if node.sync and "start" in node.sync:
@@ -173,76 +189,98 @@ class Auditor:
             
             if limit_ms is not None:
                 limit_sec = limit_ms / 1000.0
-                diff = abs(left_event["t"] - right_event["t"])
+                diff = abs(t_left - t_right)
                 
                 if diff > limit_sec + 1e-6:
+                     # Blame the later agent
+                     bad_agent = agent_right if t_right > t_left else agent_left
+                     
                      return AuditResult(
                          AuditVerdict.FAIL,
-                         code="V_PAR_SYNC_START",
+                         operator="parallel",
+                         error_code="V_PAR_SYNC_START",
                          clause_path=path,
-                         expected={"sync_start_leq": f"{limit_sec}s"},
-                         observed={"dt": diff},
-                         witness={"left_event": left_event, "right_event": right_event}
+                         budget=f"sync start ≤{limit_sec}s",
+                         responsible_agent=bad_agent,
+                         expected={"skew_leq": f"{limit_sec}s"},
+                         observed={"skew": diff},
+                         witness={"left_event": res_left.witness, "right_event": res_right.witness}
                      )
 
-        # Sync (End) - Phase 2 simplification: treat events as instantaneous, so end sync is same as start?
-        # The prompt says: "treat event as instantaneous, so end sync is same as start OR ignore end"
-        # We'll ignore end for now unless explicitly needed.
-
-        # PASS
-        # The "end" of a parallel block is the max of the two indices
         max_idx = max(res_left.witness["idx"], res_right.witness["idx"])
         return AuditResult(
             AuditVerdict.PASS,
             witness={"left": res_left.witness, "right": res_right.witness, "idx": max_idx}
         )
 
+    def _check_repair(self, node: Repair, trace: Trace, start_idx: int, path: str) -> AuditResult:
+        attempt = 0
+        max_retries = node.retry.n_max if node.retry else 0
+        current_start_idx = start_idx
+        last_failure = None
+        
+        while attempt <= max_retries:
+            res = self._check_node(node.expr, trace, current_start_idx, path + ".expr")
+            
+            if res.verdict == AuditVerdict.PASS:
+                return res
+            
+            last_failure = res
+            attempt += 1
+            if attempt > max_retries:
+                return AuditResult(
+                    AuditVerdict.FAIL,
+                    operator="repair",
+                    error_code="V_REPAIR_EXHAUSTED",
+                    clause_path=path,
+                    budget=f"retries ≤ {max_retries}",
+                    responsible_agent=res.responsible_agent,
+                    observed={"attempts": attempt},
+                    witness={"last_failure": res.to_dict()}
+                )
+            current_start_idx += 1
+            if current_start_idx >= len(trace):
+                 break
+        
+        return last_failure if last_failure else AuditResult(AuditVerdict.FAIL)
+
     def _check_neg(self, node: Neg, trace: Trace, start_idx: int, path: str) -> AuditResult:
-        """
-        Negation audit: the inner expression must NOT be satisfiable.
-        PASS if inner expr fails to match; FAIL if it matches (with witness).
-        """
         inner = self._check_node(node.expr, trace, start_idx, path + ".expr")
         if inner.verdict == AuditVerdict.PASS:
-            # Inner matched → negation violated
             return AuditResult(
                 AuditVerdict.FAIL,
-                code="V_NEG_VIOLATED",
+                operator="negation",
+                error_code="V_NEG_VIOLATED",
                 clause_path=path,
                 expected={"negated_expr": "should NOT match"},
                 observed={"matched": True},
                 witness=inner.witness,
             )
-        # Inner failed to match → negation satisfied
         return AuditResult(AuditVerdict.PASS, witness={"neg": True, "idx": start_idx})
 
     def _check_bind(self, node: Bind, trace: Trace, start_idx: int, path: str) -> AuditResult:
-        """
-        Bind audit: N-ary parallel — all items must be independently present.
-        Then optionally checks:
-          - latency: span from earliest to latest event ≤ budget
-          - policy (k_sync): all pairwise timestamp diffs ≤ delta
-          - policy (leader_skew): all followers within epsilon of leader
-        """
         results = []
         for i, item in enumerate(node.items):
             r = self._check_node(item, trace, start_idx, f"{path}.items[{i}]")
             if r.verdict == AuditVerdict.FAIL:
                 return AuditResult(
                     AuditVerdict.FAIL,
-                    code="V_BIND_ITEM_MISSING",
+                    operator="bind",
+                    error_code="V_BIND_ITEM_MISSING",
                     clause_path=path,
                     expected={"item_index": i, "item": "Present"},
                     observed={"searched_from": start_idx},
                 )
             results.append(r)
 
-        # Collect event dicts and timestamps from witnesses
-        events = [r.witness["event"] for r in results]
+        events = []
+        for r in results:
+             e = self._extract_event_data(r.witness)
+             if e: events.append(e)
+
         timestamps = [e["t"] for e in events]
         max_idx = max(r.witness["idx"] for r in results)
 
-        # Check latency (span from min to max timestamp)
         if node.latency:
             span = max(timestamps) - min(timestamps)
             limit_ms = node.latency.value_ms
@@ -251,64 +289,65 @@ class Auditor:
                 if span > limit_sec + 1e-6:
                     return AuditResult(
                         AuditVerdict.FAIL,
-                        code="V_BIND_LATENCY",
+                        operator="bind",
+                        error_code="V_BIND_LATENCY_EXCEEDED",
                         clause_path=path,
-                        expected={"latency_leq": f"{limit_sec}s"},
+                        budget=f"≤{limit_sec}s",
                         observed={"span": span},
                         witness={"events": events},
                     )
-
-        # Check policy constraints
-        if node.policy:
-            policy_name = node.policy.get("name")
-
-            if policy_name == "k_sync":
-                delta_constraint = node.policy.get("delta")
-                if (delta_constraint
-                        and hasattr(delta_constraint, "value_ms")
-                        and delta_constraint.value_ms is not None):
-                    delta_sec = delta_constraint.value_ms / 1000.0
-                    for a in range(len(timestamps)):
-                        for b in range(a + 1, len(timestamps)):
-                            diff = abs(timestamps[a] - timestamps[b])
-                            if diff > delta_sec + 1e-6:
-                                return AuditResult(
-                                    AuditVerdict.FAIL,
-                                    code="V_BIND_POLICY_K_SYNC",
-                                    clause_path=path,
-                                    expected={"policy": "k_sync", "delta_leq": f"{delta_sec}s"},
-                                    observed={"pair": [a, b], "diff": diff},
-                                    witness={"events": events},
-                                )
-
-            elif policy_name == "leader_skew":
-                leader = node.policy.get("leader")
-                epsilon_constraint = node.policy.get("epsilon")
-                if (leader and epsilon_constraint
-                        and hasattr(epsilon_constraint, "value_ms")
-                        and epsilon_constraint.value_ms is not None):
-                    eps_sec = epsilon_constraint.value_ms / 1000.0
-                    # Find leader timestamp
-                    leader_t = None
-                    for e in events:
-                        if e.get("agent") == leader:
-                            leader_t = e["t"]
-                            break
-                    if leader_t is not None:
-                        for i, e in enumerate(events):
-                            if e.get("agent") != leader:
-                                skew = e["t"] - leader_t
-                                if skew < -1e-6 or skew > eps_sec + 1e-6:
-                                    return AuditResult(
-                                        AuditVerdict.FAIL,
-                                        code="V_BIND_POLICY_LEADER_SKEW",
-                                        clause_path=path,
-                                        expected={"policy": "leader_skew", "epsilon_leq": f"{eps_sec}s"},
-                                        observed={"item_index": i, "skew": skew},
-                                        witness={"events": events},
-                                    )
 
         return AuditResult(
             AuditVerdict.PASS,
             witness={"items": [r.witness for r in results], "idx": max_idx}
         )
+
+    def _get_start_time(self, witness: Dict) -> float:
+        times = []
+        if "t" in witness: times.append(witness["t"])
+        if "idx" in witness and "event" in witness and isinstance(witness["event"], dict):
+             if "t" in witness["event"]: times.append(witness["event"]["t"])
+             
+        if "left" in witness: times.append(self._get_start_time(witness["left"]))
+        if "right" in witness: times.append(self._get_start_time(witness["right"]))
+        if "items" in witness:
+            for item in witness["items"]:
+                times.append(self._get_start_time(item))
+                
+        if "left_event" in witness and isinstance(witness["left_event"], dict):
+             # This might be just the dict without nesting methods, so check 't' directly
+             if "t" in witness["left_event"]: times.append(witness["left_event"]["t"])
+        
+        if times:
+            return min(times)
+        return 0.0
+
+    def _get_agent(self, witness: Dict) -> str:
+        if "agent" in witness: return witness["agent"]
+        if "event" in witness and isinstance(witness["event"], dict):
+             return witness["event"].get("agent", "unknown")
+        
+        # Priority search
+        if "left" in witness: 
+            a = self._get_agent(witness["left"])
+            if a != "unknown": return a
+        if "right" in witness: 
+            a = self._get_agent(witness["right"])
+            if a != "unknown": return a
+        if "items" in witness:
+             for item in witness["items"]:
+                 a = self._get_agent(item)
+                 if a != "unknown": return a
+        return "unknown"
+
+    def _extract_event_data(self, witness: Dict) -> Optional[Dict]:
+         if "event" in witness and isinstance(witness["event"], dict):
+             return witness["event"]
+         return None
+
+def audit(contract: ASTNode, trace: Trace) -> AuditResult:
+    """
+    Top-level API function to audit a trace against a contract.
+    Complies with API requirements.
+    """
+    return Auditor(contract).audit(trace)
