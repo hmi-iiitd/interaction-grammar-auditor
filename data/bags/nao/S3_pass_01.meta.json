@@ -1,0 +1,12 @@
+{
+    "scenario": "S3_nao_turn_taking",
+    "robot": "nao",
+    "run_id": "S3_pass_01",
+    "mode": "pass",
+    "human_script": "Yes, I’m ready.",
+    "expected": {
+        "C3.1": "PASS",
+        "C3.2": "PASS",
+        "C3.3": "PASS"
+    }
+}

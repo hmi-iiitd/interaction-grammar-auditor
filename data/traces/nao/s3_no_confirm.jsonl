@@ -1,0 +1,4 @@
+{"t": 1778335896.7732341, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "prompt"}
+{"t": 1778335898.1055102, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1778335900.0282357, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1778335900.5472083, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "ack"}

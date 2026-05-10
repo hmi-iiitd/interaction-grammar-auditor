@@ -1,0 +1,7 @@
+{"t": 1777748183.546706, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1777748185.424774, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1777748240.395132, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "prompt"}
+{"t": 1777748244.4309237, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1777748246.7358453, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1777748247.3061044, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "ack"}
+{"t": 1777748247.5072627, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "confirm"}

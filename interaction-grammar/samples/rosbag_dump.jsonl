@@ -1,0 +1,13 @@
+{"t_abs": 1708243200.000, "topic": "/robot/speech/tts_status", "msg_type": "std_msgs/String", "data": "greeting: Hello, can I help you today?"}
+{"t_abs": 1708243200.800, "topic": "/robot/gaze/target", "msg_type": "geometry_msgs/PointStamped", "data": "frame=base_link x=0.5 y=1.0 z=1.6"}
+{"t_abs": 1708243201.200, "topic": "/human/speech/asr_result", "msg_type": "std_msgs/String", "data": "yes please, I need the red box from the shelf"}
+{"t_abs": 1708243201.500, "topic": "/robot/gaze/target", "msg_type": "geometry_msgs/PointStamped", "data": "frame=base_link x=1.2 y=0.3 z=0.8"}
+{"t_abs": 1708243202.000, "topic": "/robot/gesture/command", "msg_type": "std_msgs/String", "data": "pointing_at: red_box, shelf_2"}
+{"t_abs": 1708243202.100, "topic": "/robot/speech/tts_status", "msg_type": "std_msgs/String", "data": "confirm: You mean this red box?"}
+{"t_abs": 1708243202.900, "topic": "/human/speech/asr_result", "msg_type": "std_msgs/String", "data": "yes that one"}
+{"t_abs": 1708243203.500, "topic": "/task/manipulation/status", "msg_type": "std_msgs/String", "data": "action=reach target=red_box status=started"}
+{"t_abs": 1708243204.200, "topic": "/task/manipulation/status", "msg_type": "std_msgs/String", "data": "action=grasp target=red_box status=success"}
+{"t_abs": 1708243205.000, "topic": "/task/manipulation/status", "msg_type": "std_msgs/String", "data": "action=handover target=red_box status=offering"}
+{"t_abs": 1708243205.500, "topic": "/human/hand/grasp_sensor", "msg_type": "std_msgs/Bool", "data": "true"}
+{"t_abs": 1708243205.800, "topic": "/human/speech/asr_result", "msg_type": "std_msgs/String", "data": "thank you very much"}
+{"t_abs": 1708243206.200, "topic": "/robot/speech/tts_status", "msg_type": "std_msgs/String", "data": "closing: You are welcome! Need anything else?"}

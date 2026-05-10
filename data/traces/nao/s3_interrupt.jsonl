@@ -1,0 +1,5 @@
+{"t": 1778334891.4606318, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "prompt"}
+{"t": 1778334892.47984, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1778334892.981543, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "interrupt"}
+{"t": 1778334894.5274212, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1778334895.1632893, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "ack"}

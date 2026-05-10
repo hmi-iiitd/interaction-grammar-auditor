@@ -263,14 +263,7 @@ class Auditor:
         for i, item in enumerate(node.items):
             r = self._check_node(item, trace, start_idx, f"{path}.items[{i}]")
             if r.verdict == AuditVerdict.FAIL:
-                return AuditResult(
-                    AuditVerdict.FAIL,
-                    operator="bind",
-                    error_code="V_BIND_ITEM_MISSING",
-                    clause_path=path,
-                    expected={"item_index": i, "item": "Present"},
-                    observed={"searched_from": start_idx},
-                )
+                return r
             results.append(r)
 
         events = []
