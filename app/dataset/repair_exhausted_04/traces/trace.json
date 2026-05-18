@@ -1,0 +1,70 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "prompt",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "prompt",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 9.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 10.0,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 11.0,
+      "agent": "robot_1",
+      "event_type": "retry",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "retry",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 20.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e006",
+      "timestamp": 21.0,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

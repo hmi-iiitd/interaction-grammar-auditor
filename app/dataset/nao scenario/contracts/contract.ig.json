@@ -1,0 +1,70 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "\u03b1",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "prompt"
+      },
+      "right": {
+        "node": "act",
+        "prim": "\u03b1",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "ack"
+      },
+      "latency": "8s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "\u03b1",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "ack"
+      },
+      "right": {
+        "node": "act",
+        "prim": "\u03b1",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "confirm"
+      },
+      "latency": "1s"
+    },
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03c3",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "interrupt"
+          },
+          "right": {
+            "node": "act",
+            "prim": "\u03c1",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    }
+  ],
+  "latency": "\u226430s"
+}

@@ -1,0 +1,11 @@
+{
+  "scenario_id": "long_trace_01",
+  "contract_id": "scenario3_combined_v1",
+  "verdict": "SAT",
+  "num_events": 14,
+  "num_violations": 0,
+  "violations": [],
+  "raw_auditor_output": {
+    "verdict": "PASS"
+  }
+}

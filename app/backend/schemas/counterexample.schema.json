@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Counterexample v1.0",
+  "type": "object",
+  "required": ["scenario_id", "violation_id", "violated_obligation", "trigger", "expected", "observed", "falsification"],
+  "properties": {
+    "scenario_id": {
+      "type": "string"
+    },
+    "violation_id": {
+      "type": "string",
+      "pattern": "^v[0-9]{3,}$"
+    },
+    "violated_obligation": {
+      "type": "string",
+      "description": "Human-readable description of the obligation that was violated"
+    },
+    "trigger": {
+      "type": "object",
+      "required": ["event_id", "time", "description"],
+      "properties": {
+        "event_id": { "type": "string" },
+        "time": { "type": "number", "minimum": 0 },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "expected": {
+      "type": "object",
+      "required": ["event", "time_window"],
+      "properties": {
+        "event": { "type": "string" },
+        "time_window": {
+          "type": "string",
+          "description": "e.g. (12.30s, 14.30s]"
+        }
+      },
+      "additionalProperties": false
+    },
+    "observed": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "event": { "type": ["string", "null"] },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "falsification": {
+      "type": "object",
+      "required": ["time", "description"],
+      "properties": {
+        "time": { "type": "number", "minimum": 0 },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "attribution": {
+      "type": "string",
+      "description": "Agent attributed with the failure"
+    },
+    "site": {
+      "type": ["string", "null"],
+      "description": "Failure site"
+    },
+    "evidence_window": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "number", "minimum": 0 },
+        "end": { "type": "number", "minimum": 0 },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["event_id", "timestamp", "event_type"],
+            "properties": {
+              "event_id": { "type": "string" },
+              "timestamp": { "type": "number" },
+              "event_type": { "type": "string" },
+              "agent": { "type": "string" },
+              "details": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

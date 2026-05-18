@@ -1,0 +1,46 @@
+{
+  "scenario_id": "missing_ack_12",
+  "contract_id": "scenario3_combined_v1",
+  "verdict": "UNSAT",
+  "num_events": 5,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "acknowledgment",
+      "agent_attribution": "human_1",
+      "site": "closure",
+      "trigger_event_id": "e001",
+      "expected_event": "expected_response",
+      "observed_event": null,
+      "deadline_seconds": null,
+      "trigger_time": 0.0,
+      "falsification_time": 12.0,
+      "error_code": "V_SEQ_MISSING_RIGHT",
+      "clause_path": "$.items[0]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "sequence",
+    "clause_path": "$.items[0]",
+    "error_code": "V_SEQ_MISSING_RIGHT",
+    "budget": null,
+    "observed": {
+      "after_left_until": 1778340012.0
+    },
+    "responsible_agent": "human_1",
+    "witness": {
+      "left_event": {
+        "idx": 0,
+        "event": {
+          "t": 1778340000.0,
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "prompt"
+        }
+      }
+    }
+  }
+}

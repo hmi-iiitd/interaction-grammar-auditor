@@ -1,0 +1,6 @@
+scenario_id: interruption_02
+interaction_type: Turn-taking / acknowledgment
+robot_platform: NAO
+source_bag: s3_interrupt.zip
+contract_name: scenario3_combined_v1
+version: '1.0'

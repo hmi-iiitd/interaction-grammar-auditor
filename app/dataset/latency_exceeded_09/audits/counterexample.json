@@ -1,0 +1,51 @@
+{
+  "scenario_id": "latency_exceeded_09",
+  "violation_id": "v001",
+  "violated_obligation": "After e001, system must observe human_1_ack within 8.0s",
+  "trigger": {
+    "event_id": "e001",
+    "time": 0,
+    "description": "latency at 0s"
+  },
+  "expected": {
+    "event": "human_1_ack",
+    "time_window": "(0s, 8.0s]"
+  },
+  "observed": {
+    "event": "human_1_ack",
+    "description": "human_1_ack observed"
+  },
+  "falsification": {
+    "time": 8.0,
+    "description": "Violation detected at 8.0s — human_1_ack not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "timing",
+  "evidence_window": {
+    "start": 0,
+    "end": 9.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "prompt",
+        "agent": "robot_1",
+        "details": "prompt"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 5.0,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 7.0,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      }
+    ]
+  }
+}

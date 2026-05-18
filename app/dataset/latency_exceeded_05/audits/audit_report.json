@@ -1,0 +1,56 @@
+{
+  "scenario_id": "latency_exceeded_05",
+  "contract_id": "scenario3_combined_v1",
+  "verdict": "UNSAT",
+  "num_events": 5,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "latency",
+      "agent_attribution": "robot_1",
+      "site": "timing",
+      "trigger_event_id": "e004",
+      "expected_event": "robot_1_confirm",
+      "observed_event": "robot_1_confirm",
+      "deadline_seconds": 1.0,
+      "trigger_time": 3.5,
+      "falsification_time": 4.5,
+      "error_code": "V_SEQ_LATENCY_EXCEEDED",
+      "clause_path": "$.items[1]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "sequence",
+    "clause_path": "$.items[1]",
+    "error_code": "V_SEQ_LATENCY_EXCEEDED",
+    "budget": "≤1.0s",
+    "observed": {
+      "dt": 2.5
+    },
+    "responsible_agent": "robot_1",
+    "witness": {
+      "left_event": {
+        "idx": 3,
+        "event": {
+          "t": 1778340003.5,
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "ack"
+        }
+      },
+      "right_event": {
+        "idx": 4,
+        "event": {
+          "t": 1778340006.0,
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "confirm"
+        }
+      }
+    }
+  }
+}
