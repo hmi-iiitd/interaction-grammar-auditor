@@ -1,0 +1,59 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "prompt",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "prompt",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 5.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 7.0,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 12.0,
+      "agent": "human_1",
+      "event_type": "ack",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "ack",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 12.5,
+      "agent": "robot_1",
+      "event_type": "confirm",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "confirm",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    }
+  ]
+}

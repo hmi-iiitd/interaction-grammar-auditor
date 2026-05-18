@@ -202,3 +202,7 @@ To add a new interaction primitive or compositional node:
 5. **Validator**: Add a `_validate_<nodename>` method to `SemanticValidator`.
 6. **Auditor**: Add a `_check_<nodename>` method to `Auditor`.
 
+### Future Work
+- **Live Auditing**: Currently, the auditor operates on static trace files post-execution. Modifying `Trace` to accept streaming events via ROS 2 callbacks would enable real-time compliance monitoring.
+- **Symbolic Resolution**: Implement solvers to resolve symbolic constraints (e.g., `Δ(t1, t2)`) using external knowledge bases or dynamic context.
+- **Enhanced Diagnostics**: Expand the `responsible_agent` logic to handle cascading failures in deeply nested parallel constructs.

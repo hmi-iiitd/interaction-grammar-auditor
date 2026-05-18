@@ -1,0 +1,68 @@
+{
+  "scenario_id": "interruption_08",
+  "contract_id": "scenario3_combined_v1",
+  "verdict": "UNSAT",
+  "num_events": 8,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "interruption",
+      "agent_attribution": "human_1",
+      "site": "interruption_guard",
+      "trigger_event_id": "e002",
+      "expected_event": "no_interruption",
+      "observed_event": "interruption_detected",
+      "deadline_seconds": null,
+      "trigger_time": 1.5,
+      "falsification_time": 2.5,
+      "error_code": "V_NEG_VIOLATED",
+      "clause_path": "$.items[2]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "negation",
+    "clause_path": "$.items[2]",
+    "error_code": "V_NEG_VIOLATED",
+    "budget": null,
+    "observed": {
+      "matched": true
+    },
+    "responsible_agent": null,
+    "witness": {
+      "left": {
+        "idx": 1,
+        "event": {
+          "t": 1778340001.5,
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        }
+      },
+      "right": {
+        "left": {
+          "idx": 2,
+          "event": {
+            "t": 1778340002.0,
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "interrupt"
+          }
+        },
+        "right": {
+          "idx": 3,
+          "event": {
+            "t": 1778340002.5,
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        },
+        "idx": 3
+      },
+      "idx": 3
+    }
+  }
+}

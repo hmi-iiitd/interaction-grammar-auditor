@@ -1,0 +1,81 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "\u03c3",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 1.88,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "\u03c1",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 56.85,
+      "agent": "robot_1",
+      "event_type": "prompt",
+      "primitive": "\u03b1",
+      "modality": "speech",
+      "object": "prompt",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 60.88,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "\u03c3",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 63.19,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "\u03c1",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e006",
+      "timestamp": 63.76,
+      "agent": "human_1",
+      "event_type": "ack",
+      "primitive": "\u03b1",
+      "modality": "speech",
+      "object": "ack",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e007",
+      "timestamp": 63.96,
+      "agent": "robot_1",
+      "event_type": "confirm",
+      "primitive": "\u03b1",
+      "modality": "speech",
+      "object": "confirm",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    }
+  ]
+}

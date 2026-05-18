@@ -266,15 +266,13 @@ class Auditor:
                 return r
             results.append(r)
 
-        events = []
+        timestamps = []
         for r in results:
-             e = self._extract_event_data(r.witness)
-             if e: events.append(e)
+             timestamps.extend(self._get_all_times(r.witness))
 
-        timestamps = [e["t"] for e in events]
-        max_idx = max(r.witness["idx"] for r in results)
+        max_idx = max((r.witness.get("idx", -1) for r in results), default=-1)
 
-        if node.latency:
+        if node.latency and timestamps:
             span = max(timestamps) - min(timestamps)
             limit_ms = node.latency.value_ms
             if limit_ms is not None:
@@ -287,7 +285,7 @@ class Auditor:
                         clause_path=path,
                         budget=f"≤{limit_sec}s",
                         observed={"span": span},
-                        witness={"events": events},
+                        witness={"items": [r.witness for r in results]},
                     )
 
         return AuditResult(
@@ -332,6 +330,25 @@ class Auditor:
                  a = self._get_agent(item)
                  if a != "unknown": return a
         return "unknown"
+
+    def _get_all_times(self, witness: Dict) -> List[float]:
+        times = []
+        if "t" in witness: times.append(witness["t"])
+        if "idx" in witness and "event" in witness and isinstance(witness["event"], dict):
+             if "t" in witness["event"]: times.append(witness["event"]["t"])
+             
+        if "left" in witness: times.extend(self._get_all_times(witness["left"]))
+        if "right" in witness: times.extend(self._get_all_times(witness["right"]))
+        if "items" in witness:
+            for item in witness["items"]:
+                times.extend(self._get_all_times(item))
+                
+        if "left_event" in witness and isinstance(witness["left_event"], dict):
+             if "t" in witness["left_event"]: times.append(witness["left_event"]["t"])
+        if "right_event" in witness and isinstance(witness["right_event"], dict):
+             if "t" in witness["right_event"]: times.append(witness["right_event"]["t"])
+             
+        return times
 
     def _extract_event_data(self, witness: Dict) -> Optional[Dict]:
          if "event" in witness and isinstance(witness["event"], dict):

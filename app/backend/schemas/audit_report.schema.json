@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audit Report v1.0",
+  "type": "object",
+  "required": ["scenario_id", "contract_id", "verdict"],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "description": "Unique scenario identifier"
+    },
+    "contract_id": {
+      "type": "string",
+      "description": "Contract identifier used for auditing"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["SAT", "UNSAT"],
+      "description": "Audit verdict"
+    },
+    "num_events": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of events in the trace"
+    },
+    "num_violations": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of violations found"
+    },
+    "violations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Violation" },
+      "description": "List of violations (empty for SAT)"
+    },
+    "raw_auditor_output": {
+      "type": ["object", "null"],
+      "description": "Original AuditResult.to_dict() output preserved for reference"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Violation": {
+      "type": "object",
+      "required": ["violation_id", "violated_operator", "agent_attribution"],
+      "properties": {
+        "violation_id": {
+          "type": "string",
+          "pattern": "^v[0-9]{3,}$",
+          "description": "Unique violation identifier, e.g. v001"
+        },
+        "violated_operator": {
+          "type": "string",
+          "description": "The contract operator that was violated, e.g. acknowledgment, latency, interruption"
+        },
+        "site": {
+          "type": ["string", "null"],
+          "description": "Failure site in the contract"
+        },
+        "trigger_event_id": {
+          "type": ["string", "null"],
+          "description": "Event ID that triggered the obligation"
+        },
+        "expected_event": {
+          "type": ["string", "null"],
+          "description": "What event was expected"
+        },
+        "observed_event": {
+          "type": ["string", "null"],
+          "description": "What was actually observed (null if missing)"
+        },
+        "deadline_seconds": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Deadline in seconds from trigger"
+        },
+        "trigger_time": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Relative time of trigger event"
+        },
+        "falsification_time": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Time at which the violation became decidable"
+        },
+        "agent_attribution": {
+          "type": "string",
+          "description": "Agent attributed with the failure"
+        },
+        "error_code": {
+          "type": ["string", "null"],
+          "description": "Original auditor error code"
+        },
+        "clause_path": {
+          "type": ["string", "null"],
+          "description": "JSON path to violated clause in contract"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

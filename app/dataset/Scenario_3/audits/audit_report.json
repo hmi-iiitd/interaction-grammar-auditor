@@ -1,0 +1,11 @@
+{
+  "scenario_id": "Scenario_3",
+  "contract_id": "scenario3_combined.json",
+  "verdict": "SAT",
+  "num_events": 7,
+  "num_violations": 0,
+  "violations": [],
+  "raw_auditor_output": {
+    "verdict": "PASS"
+  }
+}

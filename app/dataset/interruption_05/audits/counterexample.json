@@ -1,0 +1,58 @@
+{
+  "scenario_id": "interruption_05",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'interruption' must be satisfied",
+  "trigger": {
+    "event_id": "e002",
+    "time": 1.0,
+    "description": "interruption at 1.0s"
+  },
+  "expected": {
+    "event": "no_interruption",
+    "time_window": ""
+  },
+  "observed": {
+    "event": "interruption_detected",
+    "description": "interruption_detected observed"
+  },
+  "falsification": {
+    "time": 3.0,
+    "description": "Violation detected at 3.0s — no_interruption not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "interruption_guard",
+  "evidence_window": {
+    "start": 0.5,
+    "end": 4.0,
+    "events": [
+      {
+        "event_id": "e002",
+        "timestamp": 1.0,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 1.8,
+        "event_type": "interrupt",
+        "agent": "robot_1",
+        "details": "interrupt"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 3.0,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e005",
+        "timestamp": 4.0,
+        "event_type": "ack",
+        "agent": "human_1",
+        "details": "ack"
+      }
+    ]
+  }
+}

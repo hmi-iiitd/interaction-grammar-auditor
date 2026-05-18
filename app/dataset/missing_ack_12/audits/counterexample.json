@@ -1,0 +1,65 @@
+{
+  "scenario_id": "missing_ack_12",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'acknowledgment' must be satisfied",
+  "trigger": {
+    "event_id": "e001",
+    "time": 0,
+    "description": "acknowledgment at 0s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 12.0,
+    "description": "Violation detected at 12.0s — expected_response not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 0,
+    "end": 13.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "prompt",
+        "agent": "robot_1",
+        "details": "prompt"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 3.0,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 4.0,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 9.0,
+        "event_type": "retry_prompt",
+        "agent": "robot_1",
+        "details": "retry_prompt"
+      },
+      {
+        "event_id": "e005",
+        "timestamp": 12.0,
+        "event_type": "give_up",
+        "agent": "robot_1",
+        "details": "give_up"
+      }
+    ]
+  }
+}

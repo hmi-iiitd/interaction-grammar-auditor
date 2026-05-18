@@ -1,0 +1,44 @@
+{
+  "scenario_id": "latency_exceeded_05",
+  "violation_id": "v001",
+  "violated_obligation": "After e004, system must observe robot_1_confirm within 1.0s",
+  "trigger": {
+    "event_id": "e004",
+    "time": 3.5,
+    "description": "latency at 3.5s"
+  },
+  "expected": {
+    "event": "robot_1_confirm",
+    "time_window": "(3.5s, 4.5s]"
+  },
+  "observed": {
+    "event": "robot_1_confirm",
+    "description": "robot_1_confirm observed"
+  },
+  "falsification": {
+    "time": 4.5,
+    "description": "Violation detected at 4.5s — robot_1_confirm not satisfied"
+  },
+  "attribution": "robot_1",
+  "site": "timing",
+  "evidence_window": {
+    "start": 3.0,
+    "end": 5.5,
+    "events": [
+      {
+        "event_id": "e003",
+        "timestamp": 3.0,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 3.5,
+        "event_type": "ack",
+        "agent": "human_1",
+        "details": "ack"
+      }
+    ]
+  }
+}
