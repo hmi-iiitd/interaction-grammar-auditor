@@ -796,3 +796,403 @@ a:hover { text-decoration: underline; }
   .meta-grid { grid-template-columns: 1fr; }
   .chat-suggestions { grid-template-columns: 1fr; }
 }
+
+
+/* ===================================================================
+   Phase 6: Authoring Pipeline Components
+   =================================================================== */
+
+/* --- Authoring Stepper --- */
+.authoring-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  gap: 0;
+}
+
+.authoring-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authoring-step-node {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  background: var(--bg-white);
+  color: var(--text-muted);
+  transition: all 0.25s ease;
+}
+
+.authoring-step.active .authoring-step-node {
+  border-color: var(--accent);
+  background: var(--bg-white);
+  color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.authoring-step.completed .authoring-step-node {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.authoring-step-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.authoring-step.active .authoring-step-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.authoring-step.completed .authoring-step-label {
+  color: var(--text-primary);
+}
+
+.authoring-step-connector {
+  width: 32px; height: 2px;
+  background: var(--border);
+  margin: 0 8px;
+  transition: background 0.3s;
+}
+
+.authoring-step-connector.completed {
+  background: var(--accent);
+}
+
+/* --- Authoring Form Elements --- */
+.auth-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-label);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.auth-textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 14px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.auth-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+.auth-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.auth-example-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.auth-example-btn:hover {
+  text-decoration: underline;
+}
+
+.auth-optional-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.auth-event-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* --- Question Card --- */
+.question-card {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Auth Option Buttons --- */
+.auth-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.auth-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.auth-option-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.auth-option-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.auth-option-check {
+  font-size: 14px;
+  color: var(--border);
+  flex-shrink: 0;
+}
+
+.auth-option-btn.selected .auth-option-check {
+  color: var(--accent);
+}
+
+/* --- Progress Bar --- */
+.auth-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.auth-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* --- Tab Panel --- */
+.tab-header {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.tab-btn.tab-active {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--bg-white);
+  border-bottom: 2px solid var(--bg-white);
+}
+
+.tab-content {
+  padding: 4px 0;
+}
+
+/* --- Provenance Rows --- */
+.provenance-row {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  background: var(--bg-white);
+  transition: box-shadow 0.15s;
+}
+
+.provenance-row:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.provenance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.provenance-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--bg-code);
+  padding: 2px 8px;
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+
+.provenance-source {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.provenance-type {
+  font-weight: 600;
+  color: var(--text-label);
+  text-transform: capitalize;
+  margin-right: 8px;
+}
+
+.provenance-text {
+  color: var(--text-secondary);
+}
+
+/* --- Validation Cards --- */
+.validation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.validation-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.validation-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* --- Lock Screen --- */
+.lock-summary {
+  text-align: center;
+}
+
+.lock-success-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-sat);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.lock-success-icon {
+  font-size: 36px;
+}
+
+.lock-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+
+.lock-field {
+  padding: 10px 14px;
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.lock-field-full {
+  grid-column: 1 / -1;
+}
+
+.lock-field-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.lock-field-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.lock-field-value.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.lock-field-value.warn {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+/* --- Responsive for authoring --- */
+@media (max-width: 768px) {
+  .auth-optional-grid { grid-template-columns: 1fr; }
+  .auth-options-grid { grid-template-columns: 1fr; }
+  .validation-grid { grid-template-columns: 1fr; }
+  .lock-meta-grid { grid-template-columns: 1fr; }
+  .authoring-step-label { display: none; }
+  .authoring-step-connector { width: 16px; }
+}

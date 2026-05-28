@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Sidebar() {
   const links = [
+    { to: '/author', label: '✦ Author Contract' },
     { to: '/upload', label: '+ New Audit' },
     { to: '/', label: 'Dataset' },
     { to: '/settings', label: 'Settings' },

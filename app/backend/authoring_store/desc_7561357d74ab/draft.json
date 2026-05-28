@@ -1,0 +1,156 @@
+{
+  "description_id": "desc_7561357d74ab",
+  "plain_language": "1. After the robot greets the participant and asks them to confirm the task, the participant must confirm by saying \"yes\" within 2 seconds.\n2. After the robot greets the participant and asks them to confirm the task, the participant must confirm by nodding within 2 seconds.\n3. If the participant does not respond, the robot must ask again. This may occur at most 2 times.\n4. While the robot is speaking, if the participant interrupts, the robot must stop and acknowledge the interruption within 0.5 seconds.\n5. After the robot stops and acknowledges the interruption, the robot must continue within 0.5 seconds.",
+  "ig_syntax": "robot_greets_and_asks_confirmation \u2192 participant_confirms_by_saying_yes @within(2s)\nrobot_greets_and_asks_confirmation \u2192 participant_confirms_by_nodding @within(2s)\nrepair(site=greeting, max_retries=2) if participant_does_not_respond \u2192 robot_asks_again\nparticipant_interrupts during robot_speech \u2192 robot_stops_and_acknowledges_interruption @within(0.5s)\nrobot_stops_and_acknowledges_interruption \u2192 robot_continues @within(0.5s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_greets_and_asks_confirmation"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "participant_confirms_by_saying_yes"
+        },
+        "latency": "2.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_greets_and_asks_confirmation"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "participant_confirms_by_nodding"
+        },
+        "latency": "2.0s"
+      },
+      {
+        "node": "repair",
+        "site": "greeting",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_greets_and_asks_confirmation"
+          },
+          "right": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "participant_confirms_by_saying_yes"
+          },
+          "latency": "2.0s"
+        },
+        "retry": {
+          "N_leq": 2
+        }
+      },
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03c3",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "\u03b1",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "participant_interrupts"
+            },
+            "right": {
+              "node": "act",
+              "prim": "\u03c1",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_stops_and_acknowledges_interruption"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_continues"
+        },
+        "latency": "0.5s"
+      }
+    ],
+    "latency": "\u226430s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_8843eb5a6591",
+      "source_type": "user_clarification",
+      "source_text": "The robot greets the participant and asks them to confirm the task. \u2192 User clarified: 2.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-05-27T23:27:42.124755Z"
+    },
+    {
+      "obligation_id": "obl_1a68779808e2",
+      "source_type": "user_clarification",
+      "source_text": "The participant can confirm by saying yes or by nodding. \u2192 User clarified: 2.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-05-27T23:27:42.124764Z"
+    },
+    {
+      "obligation_id": "obl_ead591c78eae",
+      "source_type": "scenario_sentence",
+      "source_text": "If the participant does not respond, the robot should ask again, but only twice.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-05-27T23:27:42.081331Z"
+    },
+    {
+      "obligation_id": "obl_adb755aca83a",
+      "source_type": "user_clarification",
+      "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing. \u2192 User clarified: 0.5 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-05-27T23:27:42.124769Z"
+    },
+    {
+      "obligation_id": "obl_9b2cedfab981",
+      "source_type": "user_clarification",
+      "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing. \u2192 User clarified: 0.5 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-05-27T23:27:42.124775Z"
+    }
+  ],
+  "generated_at": "2026-05-27T23:28:24.626050Z"
+}

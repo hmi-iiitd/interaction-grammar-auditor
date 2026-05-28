@@ -20,10 +20,12 @@ try:
         llm_max_tokens: int = 2048
         dataset_root: str = "./dataset"
         backend_port: int = 8000
+        frontend_port: int = 5173
 
         class Config:
             env_file = str(Path(__file__).parent.parent / ".env")
             env_file_encoding = "utf-8"
+            extra = "ignore"
 
 except ImportError:
     import os

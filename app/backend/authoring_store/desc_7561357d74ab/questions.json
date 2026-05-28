@@ -1,0 +1,102 @@
+[
+  {
+    "question_id": "q_e90057f6e17c",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_greets_and_asks_confirmation \u2192 participant_confirms_by_saying_yes",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_8843eb5a6591",
+    "required": true
+  },
+  {
+    "question_id": "q_c764273c7c37",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_greets_and_asks_confirmation \u2192 participant_confirms_by_nodding",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_1a68779808e2",
+    "required": true
+  },
+  {
+    "question_id": "q_96ac8e9fd14f",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: participant_interrupts \u2192 robot_stops_and_acknowledges_interruption",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_adb755aca83a",
+    "required": true
+  },
+  {
+    "question_id": "q_4171d1c6911c",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_stops_and_acknowledges_interruption \u2192 robot_continues",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_9b2cedfab981",
+    "required": true
+  },
+  {
+    "question_id": "q_5e240bcb734a",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'greeting' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e754acaf7eab",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'only twice' could mean the robot asks again at most two times total, or two additional times after the first ask.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_12f678f5c311",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The condition 'while the robot is speaking' is ambiguous regarding whether the robot must be actively uttering or just holding the floor.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d8002787de24",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear if nodding is a valid confirmation only after the robot's initial ask or also after a re-ask.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_8c7b430cffc4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The scenario does not specify if the participant can confirm by other means (e.g., saying 'okay') or if only 'yes' and nodding are accepted.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

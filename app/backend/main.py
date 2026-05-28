@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # Ensure modules are importable
 sys.path.insert(0, str(Path(__file__).parent))
 
-from routers import scenarios, audit, qa, reports
+from routers import scenarios, audit, qa, reports, authoring
 from config import get_settings
 
 app = FastAPI(
@@ -32,6 +32,7 @@ app.include_router(scenarios.router, prefix="/api/scenarios", tags=["Scenarios"]
 app.include_router(audit.router, prefix="/api/audit", tags=["Audit"])
 app.include_router(qa.router, prefix="/api/qa", tags=["Q&A"])
 app.include_router(reports.router, prefix="/api/reports", tags=["Reports"])
+app.include_router(authoring.router, prefix="/api/authoring", tags=["Authoring"])
 
 
 @app.get("/api/health")

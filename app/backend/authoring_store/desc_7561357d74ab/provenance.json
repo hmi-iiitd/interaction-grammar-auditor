@@ -1,0 +1,37 @@
+[
+  {
+    "obligation_id": "obl_8843eb5a6591",
+    "source_type": "user_clarification",
+    "source_text": "The robot greets the participant and asks them to confirm the task. \u2192 User clarified: 2.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-05-27T23:27:42.124755Z"
+  },
+  {
+    "obligation_id": "obl_1a68779808e2",
+    "source_type": "user_clarification",
+    "source_text": "The participant can confirm by saying yes or by nodding. \u2192 User clarified: 2.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-05-27T23:27:42.124764Z"
+  },
+  {
+    "obligation_id": "obl_ead591c78eae",
+    "source_type": "scenario_sentence",
+    "source_text": "If the participant does not respond, the robot should ask again, but only twice.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-05-27T23:27:42.081331Z"
+  },
+  {
+    "obligation_id": "obl_adb755aca83a",
+    "source_type": "user_clarification",
+    "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing. \u2192 User clarified: 0.5 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-05-27T23:27:42.124769Z"
+  },
+  {
+    "obligation_id": "obl_9b2cedfab981",
+    "source_type": "user_clarification",
+    "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing. \u2192 User clarified: 0.5 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-05-27T23:27:42.124775Z"
+  }
+]

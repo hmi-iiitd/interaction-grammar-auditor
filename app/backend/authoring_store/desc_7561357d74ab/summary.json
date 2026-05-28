@@ -1,0 +1,112 @@
+{
+  "description_id": "desc_7561357d74ab",
+  "structured_summary": "The robot greets the participant and asks them to confirm the task. The participant can confirm by saying yes or by nodding. If the participant does not respond, the robot should ask again, but only twice. If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing.",
+  "actors": [
+    "robot",
+    "participant"
+  ],
+  "events": [
+    "robot_greets_and_asks_confirmation",
+    "participant_confirms_by_saying_yes",
+    "participant_confirms_by_nodding",
+    "participant_does_not_respond",
+    "robot_asks_again",
+    "participant_interrupts",
+    "robot_stops_and_acknowledges_interruption",
+    "robot_continues",
+    "speech",
+    "gesture"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_8843eb5a6591",
+      "obligation_type": "sequence",
+      "trigger": "robot_greets_and_asks_confirmation",
+      "expected": "participant_confirms_by_saying_yes",
+      "deadline_seconds": 2.0,
+      "site": "greeting",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot greets the participant and asks them to confirm the task."
+    },
+    {
+      "obligation_id": "obl_1a68779808e2",
+      "obligation_type": "sequence",
+      "trigger": "robot_greets_and_asks_confirmation",
+      "expected": "participant_confirms_by_nodding",
+      "deadline_seconds": 2.0,
+      "site": "greeting",
+      "modalities": [
+        "gesture"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The participant can confirm by saying yes or by nodding."
+    },
+    {
+      "obligation_id": "obl_ead591c78eae",
+      "obligation_type": "repair",
+      "trigger": "participant_does_not_respond",
+      "expected": "robot_asks_again",
+      "deadline_seconds": null,
+      "site": "greeting",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "robot_asks_again",
+      "max_retries": 2,
+      "condition": "",
+      "source_sentence": "If the participant does not respond, the robot should ask again, but only twice."
+    },
+    {
+      "obligation_id": "obl_adb755aca83a",
+      "obligation_type": "conditional_sequence",
+      "trigger": "participant_interrupts",
+      "expected": "robot_stops_and_acknowledges_interruption",
+      "deadline_seconds": 0.5,
+      "site": "during_robot_speech",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "while robot is speaking",
+      "source_sentence": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing."
+    },
+    {
+      "obligation_id": "obl_9b2cedfab981",
+      "obligation_type": "sequence",
+      "trigger": "robot_stops_and_acknowledges_interruption",
+      "expected": "robot_continues",
+      "deadline_seconds": 0.5,
+      "site": "during_robot_speech",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing."
+    }
+  ],
+  "missing_details": [
+    "Deadline for participant response after robot's initial greeting",
+    "What constitutes a 'response' (e.g., any verbal or non-verbal action besides confirmation)",
+    "What happens after two failed attempts (e.g., abort task, escalate)",
+    "How the robot detects nodding (e.g., vision, specific sensor)",
+    "How the robot detects interruption (e.g., speech overlap, specific keyword)",
+    "What 'acknowledge the interruption' entails (e.g., verbal apology, pause, specific phrase)",
+    "Whether the robot resumes from where it left off or restarts"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'only twice' could mean the robot asks again at most two times total, or two additional times after the first ask.",
+    "The condition 'while the robot is speaking' is ambiguous regarding whether the robot must be actively uttering or just holding the floor.",
+    "It is unclear if nodding is a valid confirmation only after the robot's initial ask or also after a re-ask.",
+    "The scenario does not specify if the participant can confirm by other means (e.g., saying 'okay') or if only 'yes' and nodding are accepted."
+  ]
+}
