@@ -8,6 +8,7 @@ import sys
 import json
 from pathlib import Path
 from src.compiler.parser import ContractParser
+from src.compiler.validator import prepare_contract_for_validation
 from src.audit.trace import Trace, TraceError
 from src.audit.auditor import Auditor, AuditVerdict
 
@@ -30,8 +31,9 @@ def main():
 
     # 1. Load Contract
     try:
-        with open(contract_path, 'r') as f:
+        with open(contract_path, 'r', encoding='utf-8-sig') as f:
             contract_data = json.load(f)
+        prepare_contract_for_validation(contract_data)
         contract_parser = ContractParser()
         ast = contract_parser.parse(contract_data)
     except Exception as e:

@@ -1,0 +1,169 @@
+{
+  "description_id": "desc_4828238a0870",
+  "plain_language": "1. When the robot arrives at the delivery location, it must announce the delivery within 1 second.\n2. After the robot announces the delivery, the recipient must acknowledge the delivery within 10 seconds.\n3. If the recipient does not acknowledge within 10 seconds, the robot may repeat the request once.\n4. If the recipient still does not respond after the retry, the delivery interaction fails.\n5. After the recipient acknowledges, the robot must confirm the successful delivery within 2 seconds.\n6. The robot must not interrupt the recipient while the recipient is speaking.\n7. The complete delivery interaction (from the initial announcement) must finish within 30 seconds, provided that the recipient acknowledges and the robot confirms the delivery.",
+  "ig_syntax": "```\nrobot_arrives → robot_announces_delivery @within(1s)\n\nrobot_announces_delivery → recipient_acknowledges @within(10s)\nrepair(site=recipient_acknowledges, max_retries=1) := robot_repeats_request\n\nrecipient_acknowledges → robot_confirms_delivery @within(2s)\n\nrobot_announces_delivery → delivery_interaction_succeeds @within(30s)\ncondition: recipient_acknowledges AND robot_confirms_delivery\n\nfailure(site=robot_interrupts_recipient) if robot_interrupts_recipient\n\nno_acknowledgement_timeout → robot_repeats_request\nrepair(site=recipient_acknowledges, max_retries=1)\n\nfailure(site=no_response_after_retry) if repair_exhausted\n```",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_arrives"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "latency": "1.0s"
+      },
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "σ",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "α",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "robot_announces_delivery"
+            },
+            "right": {
+              "node": "act",
+              "prim": "ρ",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "2s"
+      },
+      {
+        "node": "repair",
+        "site": "no_acknowledgement_timeout",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "no_acknowledgement_timeout"
+          },
+          "right": {
+            "node": "act",
+            "prim": "α",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "robot_repeats_request"
+          }
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "delivery_interaction_succeeds"
+        },
+        "latency": "30s"
+      }
+    ],
+    "latency": "≤120s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_7980f1663b45",
+      "source_type": "user_clarification",
+      "source_text": "When the robot arrives at the delivery location, it announces that a package has arrived and asks the recipient to confirm receipt. → User clarified: 1.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:58:50.750434Z"
+    },
+    {
+      "obligation_id": "obl_27fcbaa8f2da",
+      "source_type": "scenario_sentence",
+      "source_text": "The recipient should acknowledge the delivery within 10 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102301Z"
+    },
+    {
+      "obligation_id": "obl_197839c2d008",
+      "source_type": "scenario_sentence",
+      "source_text": "After receiving the acknowledgement, the robot must confirm the successful delivery within 2 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102320Z"
+    },
+    {
+      "obligation_id": "obl_e10d4a533191",
+      "source_type": "scenario_sentence",
+      "source_text": "The robot must not interrupt the recipient while the recipient is speaking.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102332Z"
+    },
+    {
+      "obligation_id": "obl_a87520d834dd",
+      "source_type": "scenario_sentence",
+      "source_text": "If no acknowledgement is received within 10 seconds, the robot may repeat the delivery request once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102345Z"
+    },
+    {
+      "obligation_id": "obl_dbe673d8f4af",
+      "source_type": "scenario_sentence",
+      "source_text": "If the recipient still does not respond after the retry, the delivery interaction fails.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102356Z"
+    },
+    {
+      "obligation_id": "obl_a40ed73f1791",
+      "source_type": "scenario_sentence",
+      "source_text": "The complete interaction must finish within 30 seconds from the initial delivery announcement.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-03T06:49:12.102367Z"
+    }
+  ],
+  "generated_at": "2026-06-03T07:01:05.954120Z"
+}

@@ -156,17 +156,56 @@ def _build_seq_node(obl: Obligation) -> Optional[dict]:
     return node
 
 
+def _collect_act_objects(node: dict) -> set:
+    """Collect Act object names from a contract JSON subtree."""
+    objects = set()
+    if not isinstance(node, dict):
+        return objects
+    if node.get("node") == "act" and node.get("object"):
+        objects.add(node["object"])
+    for key in ("left", "right", "expr"):
+        child = node.get(key)
+        if isinstance(child, dict):
+            objects.update(_collect_act_objects(child))
+    for item in node.get("items") or []:
+        if isinstance(item, dict):
+            objects.update(_collect_act_objects(item))
+    return objects
+
+
+def _resolve_repair_site(obl: Obligation, inner: dict) -> str:
+    """
+    Semantic validation requires repair.site to match an Act object in expr.
+    Prefer repair/trigger/expected event names over scenario site labels.
+    """
+    objects = _collect_act_objects(inner)
+    for candidate in (obl.repair_event, obl.trigger, obl.expected):
+        if candidate and candidate in objects:
+            return candidate
+    if objects:
+        return sorted(objects)[0]
+    return obl.site or "default"
+
+
+def _find_sequence_for_repair(
+    obl: Obligation, all_obligations: List[Obligation]
+) -> Optional[Obligation]:
+    """Find the sequence obligation that best matches this repair."""
+    for o in all_obligations:
+        if o.obligation_type != "sequence":
+            continue
+        if obl.trigger and (o.trigger == obl.trigger or o.expected == obl.trigger):
+            return o
+        if obl.expected and (o.trigger == obl.expected or o.expected == obl.expected):
+            return o
+    return None
+
+
 def _build_repair_node(obl: Obligation, all_obligations: List[Obligation]) -> Optional[dict]:
     """Build a Repair AST node from a repair obligation."""
-    # Find the sequence obligation at the same site
-    site_seq = None
-    for o in all_obligations:
-        if o.obligation_type == "sequence" and o.site == obl.site:
-            site_seq = o
-            break
+    site_seq = _find_sequence_for_repair(obl, all_obligations)
 
     if site_seq is None:
-        # Build a simple seq from the repair's own info
         inner = {
             "node": "seq",
             "left": _build_act("α", "robot_1", "speech", obl.repair_event or obl.trigger),
@@ -179,7 +218,7 @@ def _build_repair_node(obl: Obligation, all_obligations: List[Obligation]) -> Op
 
     node = {
         "node": "repair",
-        "site": obl.site or "default",
+        "site": _resolve_repair_site(obl, inner),
         "expr": inner,
     }
 

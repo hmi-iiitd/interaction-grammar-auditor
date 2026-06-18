@@ -1,0 +1,37 @@
+{
+  "scenario_id": "rr4",
+  "violation_id": "v001",
+  "violated_obligation": "After e001, system must observe human_1_robot_greets_and_prompts within 10.0s",
+  "trigger": {
+    "event_id": "e001",
+    "time": 0,
+    "description": "latency at 0s"
+  },
+  "expected": {
+    "event": "human_1_robot_greets_and_prompts",
+    "time_window": "(0s, 10.0s]"
+  },
+  "observed": {
+    "event": "human_1_robot_greets_and_prompts",
+    "description": "human_1_robot_greets_and_prompts observed"
+  },
+  "falsification": {
+    "time": 10.0,
+    "description": "Violation detected at 10.0s — human_1_robot_greets_and_prompts not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "timing",
+  "evidence_window": {
+    "start": 0,
+    "end": 11.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "medication_schedule_triggers_reminder",
+        "agent": "robot_1",
+        "details": "medication_schedule_triggers_reminder"
+      }
+    ]
+  }
+}

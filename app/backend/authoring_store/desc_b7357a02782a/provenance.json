@@ -1,0 +1,44 @@
+[
+  {
+    "obligation_id": "obl_03f4f3e9e817",
+    "source_type": "scenario_sentence",
+    "source_text": "the robot has to hand a delivery package at home first it should greet",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236512Z"
+  },
+  {
+    "obligation_id": "obl_2609834651d4",
+    "source_type": "scenario_sentence",
+    "source_text": "then it should give package after response",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236550Z"
+  },
+  {
+    "obligation_id": "obl_927a7833c17d",
+    "source_type": "scenario_sentence",
+    "source_text": "then it should give package after response",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236561Z"
+  },
+  {
+    "obligation_id": "obl_d176471a15af",
+    "source_type": "scenario_sentence",
+    "source_text": "then leave package after grasped by human",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236570Z"
+  },
+  {
+    "obligation_id": "obl_0ccde3d110ed",
+    "source_type": "scenario_sentence",
+    "source_text": "then it should acknowledge and leave",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236579Z"
+  },
+  {
+    "obligation_id": "obl_4ba8c7eb12ce",
+    "source_type": "scenario_sentence",
+    "source_text": "then it should acknowledge and leave",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-01T13:59:05.236588Z"
+  }
+]

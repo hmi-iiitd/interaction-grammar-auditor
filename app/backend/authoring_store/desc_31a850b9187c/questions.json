@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_7301446a07b9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the 8‑second window starts at the beginning or end of the announcement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_69973b38bbbd",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: what specific actions constitute an acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_220b752f9f94",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: what specific actions constitute a confirmation",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_f60af0fc9552",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the robot should repeat the announcement if no acknowledgment is received",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

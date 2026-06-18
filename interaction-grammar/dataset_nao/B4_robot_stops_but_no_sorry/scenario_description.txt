@@ -1,0 +1,1 @@
+The robot starts speaking. If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.

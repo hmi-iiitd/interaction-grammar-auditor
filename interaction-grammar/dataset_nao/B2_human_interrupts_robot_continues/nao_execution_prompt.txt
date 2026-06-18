@@ -1,0 +1,1 @@
+Robot starts speaking; participant interrupts; robot continues speaking beyond the 1 second stop deadline.

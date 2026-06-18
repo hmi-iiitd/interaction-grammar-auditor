@@ -1,0 +1,64 @@
+{
+  "description_id": "desc_a0ff13cb336c",
+  "plain_language": "1. After the robot announces a delivery, the recipient must acknowledge the delivery within 8 seconds.\n2. After the recipient acknowledges, the robot must confirm the delivery within 1 second.",
+  "ig_syntax": "robot_announces_delivery → recipient_acknowledges @within(8s)\nrecipient_acknowledges → robot_confirms_delivery @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "≤32s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_99312c528366",
+      "source_type": "scenario_sentence",
+      "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:36:10.293764Z"
+    },
+    {
+      "obligation_id": "obl_d4920c12f434",
+      "source_type": "scenario_sentence",
+      "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:36:10.293786Z"
+    }
+  ],
+  "generated_at": "2026-06-18T06:37:49.042769Z"
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "scenario_id": "A1_delivery_success",
+    "interaction_family": "Delivery and Acknowledgment",
+    "participant_role": "recipient",
+    "expected_verdict": "SAT",
+    "expected_failure_type": "none",
+    "description_file": "A1_delivery_success/scenario_description.txt",
+    "execution_prompt_file": "A1_delivery_success/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "A2_recipient_does_not_acknowledge",
+    "interaction_family": "Delivery and Acknowledgment",
+    "participant_role": "recipient",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "missing_ack",
+    "description_file": "A2_recipient_does_not_acknowledge/scenario_description.txt",
+    "execution_prompt_file": "A2_recipient_does_not_acknowledge/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "A3_recipient_acknowledges_too_late",
+    "interaction_family": "Delivery and Acknowledgment",
+    "participant_role": "recipient",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "late_ack",
+    "description_file": "A3_recipient_acknowledges_too_late/scenario_description.txt",
+    "execution_prompt_file": "A3_recipient_acknowledges_too_late/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "A4_robot_does_not_confirm_delivery",
+    "interaction_family": "Delivery and Acknowledgment",
+    "participant_role": "recipient",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "missing_robot_confirm",
+    "description_file": "A4_robot_does_not_confirm_delivery/scenario_description.txt",
+    "execution_prompt_file": "A4_robot_does_not_confirm_delivery/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "B1_human_interrupts_robot_stops",
+    "interaction_family": "Interruption and Turn-Taking",
+    "participant_role": "interrupter",
+    "expected_verdict": "SAT",
+    "expected_failure_type": "none",
+    "description_file": "B1_human_interrupts_robot_stops/scenario_description.txt",
+    "execution_prompt_file": "B1_human_interrupts_robot_stops/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "B2_human_interrupts_robot_continues",
+    "interaction_family": "Interruption and Turn-Taking",
+    "participant_role": "interrupter",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "interruption",
+    "description_file": "B2_human_interrupts_robot_continues/scenario_description.txt",
+    "execution_prompt_file": "B2_human_interrupts_robot_continues/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "B3_robot_interrupts_human",
+    "interaction_family": "Interruption and Turn-Taking",
+    "participant_role": "speaker",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "robot_interruption",
+    "description_file": "B3_robot_interrupts_human/scenario_description.txt",
+    "execution_prompt_file": "B3_robot_interrupts_human/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "B4_robot_stops_but_no_sorry",
+    "interaction_family": "Interruption and Turn-Taking",
+    "participant_role": "interrupter",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "missing_interrupt_ack",
+    "description_file": "B4_robot_stops_but_no_sorry/scenario_description.txt",
+    "execution_prompt_file": "B4_robot_stops_but_no_sorry/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "C1_retry_success",
+    "interaction_family": "Repair and Timeout",
+    "participant_role": "partner",
+    "expected_verdict": "SAT",
+    "expected_failure_type": "none",
+    "description_file": "C1_retry_success/scenario_description.txt",
+    "execution_prompt_file": "C1_retry_success/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "C2_repair_exhausted",
+    "interaction_family": "Repair and Timeout",
+    "participant_role": "partner",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "repair_exhausted",
+    "description_file": "C2_repair_exhausted/scenario_description.txt",
+    "execution_prompt_file": "C2_repair_exhausted/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "C3_retry_limit_exceeded",
+    "interaction_family": "Repair and Timeout",
+    "participant_role": "partner",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "retry_limit_exceeded",
+    "description_file": "C3_retry_limit_exceeded/scenario_description.txt",
+    "execution_prompt_file": "C3_retry_limit_exceeded/nao_execution_prompt.txt"
+  },
+  {
+    "scenario_id": "C4_global_timeout",
+    "interaction_family": "Repair and Timeout",
+    "participant_role": "partner",
+    "expected_verdict": "UNSAT",
+    "expected_failure_type": "global_timeout",
+    "description_file": "C4_global_timeout/scenario_description.txt",
+    "execution_prompt_file": "C4_global_timeout/nao_execution_prompt.txt"
+  }
+]

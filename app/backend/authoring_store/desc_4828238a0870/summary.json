@@ -1,0 +1,128 @@
+{
+  "description_id": "desc_4828238a0870",
+  "structured_summary": "A NAO robot delivers a package to a recipient. Upon arrival, the robot announces the package and asks for receipt confirmation. The recipient must acknowledge within 10 seconds. After receiving acknowledgement, the robot must confirm successful delivery within 2 seconds. The robot must not interrupt the recipient while speaking. If no acknowledgement within 10 seconds, the robot may repeat the request once. If still no response after retry, the interaction fails. The interaction is successful if the robot announces, recipient acknowledges, and robot confirms. It is unsuccessful if the robot interrupts, recipient does not respond after retry, robot fails to confirm after acknowledgement, or any timing constraint is violated. The entire interaction must finish within 30 seconds from the initial announcement.",
+  "actors": [
+    "NAO robot",
+    "recipient"
+  ],
+  "events": [
+    "robot_arrives",
+    "robot_announces_delivery",
+    "recipient_acknowledges",
+    "robot_confirms_delivery",
+    "robot_interrupts_recipient",
+    "no_acknowledgement_timeout",
+    "robot_repeats_request",
+    "no_response_after_retry",
+    "delivery_interaction_fails",
+    "delivery_interaction_succeeds"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_7980f1663b45",
+      "obligation_type": "sequence",
+      "trigger": "robot_arrives",
+      "expected": "robot_announces_delivery",
+      "deadline_seconds": 1.0,
+      "site": "delivery_location",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "When the robot arrives at the delivery location, it announces that a package has arrived and asks the recipient to confirm receipt."
+    },
+    {
+      "obligation_id": "obl_27fcbaa8f2da",
+      "obligation_type": "conditional_sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "recipient_acknowledges",
+      "deadline_seconds": 10,
+      "site": "recipient_acknowledges",
+      "modalities": [],
+      "repair_event": "robot_repeats_request",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "The recipient should acknowledge the delivery within 10 seconds."
+    },
+    {
+      "obligation_id": "obl_197839c2d008",
+      "obligation_type": "sequence",
+      "trigger": "recipient_acknowledges",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 2,
+      "site": "robot_confirms_delivery",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After receiving the acknowledgement, the robot must confirm the successful delivery within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_e10d4a533191",
+      "obligation_type": "failure",
+      "trigger": "robot_interrupts_recipient",
+      "expected": "",
+      "deadline_seconds": null,
+      "site": "",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot must not interrupt the recipient while the recipient is speaking."
+    },
+    {
+      "obligation_id": "obl_a87520d834dd",
+      "obligation_type": "repair",
+      "trigger": "no_acknowledgement_timeout",
+      "expected": "robot_repeats_request",
+      "deadline_seconds": null,
+      "site": "",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "If no acknowledgement is received within 10 seconds, the robot may repeat the delivery request once."
+    },
+    {
+      "obligation_id": "obl_dbe673d8f4af",
+      "obligation_type": "failure",
+      "trigger": "no_response_after_retry",
+      "expected": "",
+      "deadline_seconds": null,
+      "site": "",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the recipient still does not respond after the retry, the delivery interaction fails."
+    },
+    {
+      "obligation_id": "obl_a40ed73f1791",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "delivery_interaction_succeeds",
+      "deadline_seconds": 30,
+      "site": "delivery_interaction_succeeds",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "recipient_acknowledges AND robot_confirms_delivery",
+      "source_sentence": "The complete interaction must finish within 30 seconds from the initial delivery announcement."
+    }
+  ],
+  "missing_details": [
+    "What constitutes 'interrupting' the recipient (e.g., overlapping speech, starting to speak while recipient is speaking)?",
+    "How is 'speaking' detected (e.g., voice activity detection)?",
+    "What happens if the robot fails to confirm delivery within 2 seconds after acknowledgement?",
+    "Is there a specific modality for the recipient's acknowledgement (e.g., verbal, gesture, button press)?",
+    "What is the exact site/location of delivery?",
+    "What happens if the robot interrupts the recipient? Is there a repair or immediate failure?",
+    "Obligation obl_a87520d834dd: repair missing site label"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'may repeat the delivery request once' could be interpreted as optional or mandatory.",
+    "The condition for successful interaction includes three steps, but the 30-second deadline applies to the entire interaction from the initial announcement, which may conflict with the 10-second and 2-second sub-deadlines.",
+    "The failure condition 'robot fails to confirm the delivery after receiving an acknowledgement' is not explicitly linked to the 2-second deadline; it could be interpreted as a separate failure mode.",
+    "The interaction family is 'turn-taking', but the scenario does not specify how turn-taking is managed beyond the robot not interrupting."
+  ]
+}

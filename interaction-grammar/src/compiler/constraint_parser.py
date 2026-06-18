@@ -102,7 +102,7 @@ class ConstraintTransformer(Transformer):
 class ConstraintParser:
     def __init__(self):
         grammar_path = Path(__file__).parent.parent.parent / "grammar" / "grammar.lark"
-        with open(grammar_path, 'r') as f:
+        with open(grammar_path, 'r', encoding='utf-8') as f:
             self.grammar = f.read()
         
         self.latency_lark = Lark(self.grammar, start='delta', parser='lalr', transformer=ConstraintTransformer())

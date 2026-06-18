@@ -1,0 +1,7 @@
+{"t": 0.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "robot_arrives"}
+{"t": 0.5, "prim": "α", "agent": "human_1", "channel": "speech", "object": "robot_announces_delivery"}
+{"t": 2.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "recipient_acknowledges"}
+{"t": 3.0, "prim": "α", "agent": "human_1", "channel": "speech", "object": "robot_confirms_delivery"}
+{"t": 4.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "no_acknowledgement_timeout"}
+{"t": 5.0, "prim": "α", "agent": "human_1", "channel": "speech", "object": "robot_repeats_request"}
+{"t": 6.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "robot_announces_delivery"}

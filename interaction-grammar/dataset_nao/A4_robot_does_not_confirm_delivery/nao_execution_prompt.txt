@@ -1,0 +1,1 @@
+Robot announces delivery; participant acknowledges on time; robot does not confirm within 1 second.

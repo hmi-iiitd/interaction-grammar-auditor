@@ -35,9 +35,21 @@ class ValidationError(Exception):
         self.message = message
         super().__init__(f"[{code}] {message}")
 
+
+# Authoring-only keys embedded in locked contract.ig.json exports; not part of IG schema.
+_AUTHORING_EXTENSION_KEYS = ("_contract_metadata",)
+
+
+def prepare_contract_for_validation(instance: Dict[str, Any]) -> Dict[str, Any]:
+    """Remove authoring extension keys before schema/semantic validation."""
+    for key in _AUTHORING_EXTENSION_KEYS:
+        instance.pop(key, None)
+    return instance
+
+
 class SchemaValidator:
     def __init__(self, schema_path: str):
-        with open(schema_path, 'r') as f:
+        with open(schema_path, 'r', encoding='utf-8') as f:
             self.schema = json.load(f)
 
     def validate(self, instance: Dict[str, Any]) -> None:

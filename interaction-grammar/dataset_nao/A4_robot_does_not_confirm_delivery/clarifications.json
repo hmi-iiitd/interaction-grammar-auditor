@@ -1,0 +1,62 @@
+{
+  "questions": [
+    {
+      "question_id": "q_7301446a07b9",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: whether the 8\u2011second window starts at the beginning or end of the announcement",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_69973b38bbbd",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: what specific actions constitute an acknowledgment",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_220b752f9f94",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: what specific actions constitute a confirmation",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_f60af0fc9552",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: whether the robot should repeat the announcement if no acknowledgment is received",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "q_7301446a07b9",
+      "answer_text": "end of announcement",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085458Z"
+    },
+    {
+      "question_id": "q_69973b38bbbd",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085475Z"
+    },
+    {
+      "question_id": "q_220b752f9f94",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085481Z"
+    },
+    {
+      "question_id": "q_f60af0fc9552",
+      "answer_text": "yes once ",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085486Z"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "obligation_id": "obl_8c68d036fa81",
+    "source_type": "scenario_sentence",
+    "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-18T06:58:10.962573Z"
+  },
+  {
+    "obligation_id": "obl_8a6e65180d17",
+    "source_type": "scenario_sentence",
+    "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-18T06:58:10.962641Z"
+  }
+]

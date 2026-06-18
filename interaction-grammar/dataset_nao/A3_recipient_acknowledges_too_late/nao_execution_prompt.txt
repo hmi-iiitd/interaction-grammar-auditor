@@ -1,0 +1,1 @@
+Robot announces delivery; participant acknowledges only after the 8 second acknowledgment deadline.

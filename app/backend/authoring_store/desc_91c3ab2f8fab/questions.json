@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_29f62bb539e7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b33b983aaf45",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_06148bcfbcd0",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear whether the 8-second deadline is a strict deadline or a recommended time.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

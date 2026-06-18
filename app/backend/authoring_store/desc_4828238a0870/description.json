@@ -1,0 +1,11 @@
+{
+  "description": "A NAO robot delivers a package to a recipient.\n\nWhen the robot arrives at the delivery location, it announces that a package has arrived and asks the recipient to confirm receipt.\n\nThe recipient should acknowledge the delivery within 10 seconds.\n\nAfter receiving the acknowledgement, the robot must confirm the successful delivery within 2 seconds.\n\nThe robot must not interrupt the recipient while the recipient is speaking.\n\nIf no acknowledgement is received within 10 seconds, the robot may repeat the delivery request once.\n\nIf the recipient still does not respond after the retry, the delivery interaction fails.\n\nThe interaction is successful when:\n\n1. The robot announces the package delivery.\n2. The recipient acknowledges receipt.\n3. The robot confirms successful delivery.\n\nThe interaction is unsuccessful when:\n\n1. The robot interrupts the recipient while speaking.\n2. The recipient does not respond after one retry.\n3. The robot fails to confirm the delivery after receiving an acknowledgement.\n4. Any timing constraints are violated.\n\nThe complete interaction must finish within 30 seconds from the initial delivery announcement.\n",
+  "scenario_title": "Package Delivery Confirmation",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "Robot delivers a package and waits for confirmation from the recipient.",
+  "description_id": "desc_4828238a0870",
+  "created_at": "2026-06-03T06:41:26.841691Z",
+  "created_by": "user"
+}

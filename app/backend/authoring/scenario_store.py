@@ -52,8 +52,8 @@ def save_description(desc: ScenarioDescription) -> str:
     folder = _store_root() / desc.description_id
     folder.mkdir(parents=True, exist_ok=True)
 
-    with open(folder / "description.json", "w") as f:
-        json.dump(desc.to_dict(), f, indent=2)
+    with open(folder / "description.json", "w", encoding="utf-8") as f:
+        json.dump(desc.to_dict(), f, indent=2, ensure_ascii=False)
 
     return desc.description_id
 
@@ -63,7 +63,7 @@ def get_description(desc_id: str) -> ScenarioDescription:
     path = _store_root() / desc_id / "description.json"
     if not path.exists():
         raise StoreError(f"Description not found: {desc_id}")
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return ScenarioDescription.from_dict(json.load(f))
 
 
@@ -75,7 +75,7 @@ def list_descriptions() -> List[ScenarioDescription]:
         desc_file = folder / "description.json"
         if desc_file.exists():
             try:
-                with open(desc_file) as f:
+                with open(desc_file, encoding="utf-8") as f:
                     results.append(ScenarioDescription.from_dict(json.load(f)))
             except Exception:
                 continue
@@ -87,8 +87,8 @@ def save_artifact(desc_id: str, filename: str, data: dict) -> None:
     folder = _store_root() / desc_id
     if not folder.exists():
         raise StoreError(f"Description folder not found: {desc_id}")
-    with open(folder / filename, "w") as f:
-        json.dump(data, f, indent=2)
+    with open(folder / filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 def load_artifact(desc_id: str, filename: str) -> Optional[dict]:
@@ -96,7 +96,7 @@ def load_artifact(desc_id: str, filename: str) -> Optional[dict]:
     path = _store_root() / desc_id / filename
     if not path.exists():
         return None
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -105,8 +105,8 @@ def save_version(desc_id: str, version: str, data: dict, filename: str = "contra
     folder = _store_root() / desc_id / "versions" / version
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / filename
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
     return path
 
 
@@ -115,5 +115,5 @@ def load_version(desc_id: str, version: str, filename: str = "contract.ig.json")
     path = _store_root() / desc_id / "versions" / version / filename
     if not path.exists():
         return None
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)

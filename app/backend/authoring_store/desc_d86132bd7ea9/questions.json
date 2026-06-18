@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_5d78782d01bd",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: medication_schedule_triggers_reminder \u2192 robot_greets_and_prompts",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_190ffc586001",
+    "required": true
+  },
+  {
+    "question_id": "q_17c7f074e23d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'may request clarification once' is permissive, not obligatory; it is unclear if the robot must always do so or only optionally.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_5afe23a06bc6",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The condition 'robot interrupts the patient during speech' is listed as an unsuccessful outcome, but it is not clear if this is a failure that ends the interaction immediately or if it can be recovered.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_7a8d3a22e94f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The 2-second delay between retries is described as 'approximately', leaving room for interpretation.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

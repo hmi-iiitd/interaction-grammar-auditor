@@ -1,0 +1,48 @@
+{
+  "questions": [
+    {
+      "question_id": "q_9469ec4cb050",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_59efd2e74702",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_cccf66b8d516",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The scenario does not specify whether the 8-second deadline starts immediately after the announcement or after some other event.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "q_9469ec4cb050",
+      "answer_text": "gesture and verbal both",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:29:29.248520Z"
+    },
+    {
+      "question_id": "q_59efd2e74702",
+      "answer_text": "verbal confirmation",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:29:29.248550Z"
+    },
+    {
+      "question_id": "q_cccf66b8d516",
+      "answer_text": "immediatley",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:29:29.248562Z"
+    }
+  ]
+}

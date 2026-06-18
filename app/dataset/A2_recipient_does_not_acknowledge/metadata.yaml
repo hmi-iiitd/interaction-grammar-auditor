@@ -1,0 +1,6 @@
+scenario_id: A2_recipient_does_not_acknowledge
+interaction_type: Turn-taking / acknowledgment
+robot_platform: NAO
+source_bag: synthetic
+contract_name: contract.ig.json
+version: '1.0'

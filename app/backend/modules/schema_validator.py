@@ -26,7 +26,7 @@ _SCHEMA_DIR = Path(__file__).parent.parent / "schemas"
 
 def _load_schema(name: str) -> Dict:
     path = _SCHEMA_DIR / name
-    with open(path) as f:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 

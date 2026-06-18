@@ -1,0 +1,109 @@
+{
+  "description_id": "desc_b7357a02782a",
+  "structured_summary": "The robot must hand a delivery package at home. First, it should greet. Then, after a response, it should give the package. After the package is grasped by the human, it should acknowledge and then leave.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "greet",
+    "response",
+    "give_package",
+    "grasp_package",
+    "acknowledge",
+    "leave",
+    "start"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_03f4f3e9e817",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "greet",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "the robot has to hand a delivery package at home first it should greet"
+    },
+    {
+      "obligation_id": "obl_2609834651d4",
+      "obligation_type": "conditional_sequence",
+      "trigger": "greet",
+      "expected": "response",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "after greeting",
+      "source_sentence": "then it should give package after response"
+    },
+    {
+      "obligation_id": "obl_927a7833c17d",
+      "obligation_type": "conditional_sequence",
+      "trigger": "response",
+      "expected": "give_package",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "after response",
+      "source_sentence": "then it should give package after response"
+    },
+    {
+      "obligation_id": "obl_d176471a15af",
+      "obligation_type": "conditional_sequence",
+      "trigger": "give_package",
+      "expected": "grasp_package",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "after giving package",
+      "source_sentence": "then leave package after grasped by human"
+    },
+    {
+      "obligation_id": "obl_0ccde3d110ed",
+      "obligation_type": "conditional_sequence",
+      "trigger": "grasp_package",
+      "expected": "acknowledge",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "after package is grasped",
+      "source_sentence": "then it should acknowledge and leave"
+    },
+    {
+      "obligation_id": "obl_4ba8c7eb12ce",
+      "obligation_type": "sequence",
+      "trigger": "acknowledge",
+      "expected": "leave",
+      "deadline_seconds": null,
+      "site": "home",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "then it should acknowledge and leave"
+    }
+  ],
+  "missing_details": [
+    "What constitutes a valid 'response' from the human?",
+    "What happens if the human does not respond or grasp the package?",
+    "Is there a timeout for waiting for response or grasp?",
+    "What modality should the robot use for greeting, giving, acknowledging (speech, gesture, etc.)?",
+    "What does 'leave' entail (e.g., robot departs, closes door)?"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'after response' could mean after any response or a specific response.",
+    "The phrase 'leave package after grasped by human' could be interpreted as the robot leaving the package after the human grasps it, or the robot leaving the location after the human grasps the package.",
+    "The order of 'acknowledge and leave' is not explicitly sequential or simultaneous."
+  ]
+}

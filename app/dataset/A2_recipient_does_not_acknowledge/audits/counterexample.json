@@ -1,0 +1,51 @@
+{
+  "scenario_id": "A2_recipient_does_not_acknowledge",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'acknowledgment' must be satisfied",
+  "trigger": {
+    "event_id": "e001",
+    "time": 0,
+    "description": "acknowledgment at 0s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 12.0,
+    "description": "Violation detected at 12.0s — expected_response not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 0,
+    "end": 13.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "robot_announces_delivery",
+        "agent": "robot_1",
+        "details": "robot_announces_delivery"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 1.5,
+        "event_type": "wave",
+        "agent": "robot_1",
+        "details": "wave"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 12.0,
+        "event_type": "robot_confirms_delivery",
+        "agent": "robot_1",
+        "details": "robot_confirms_delivery"
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_arrives"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "latency": "1.0s"
+    },
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_announces_delivery"
+          },
+          "right": {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "recipient_acknowledges"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_confirms_delivery"
+      },
+      "latency": "2s"
+    },
+    {
+      "node": "repair",
+      "site": "no_acknowledgement_timeout",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "no_acknowledgement_timeout"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_repeats_request"
+        }
+      },
+      "retry": {
+        "N_leq": 1
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "delivery_interaction_succeeds"
+      },
+      "latency": "30s"
+    }
+  ],
+  "latency": "≤120s",
+  "_contract_metadata": {
+    "contract_id": "contract_4828238a0870",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-03T07:00:36.660186Z",
+    "contract_hash": "sha256:cf8d2b6cf739dc686308d3ffb6e755f8322563cdf510de1b2e95e7c77aff6e3a",
+    "source_description_id": "desc_4828238a0870",
+    "confirmed_assumptions": 7,
+    "unresolved_assumptions": 0
+  }
+}

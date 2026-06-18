@@ -1,0 +1,125 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "robot_arrives",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_arrives",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 0.5,
+      "agent": "human_1",
+      "event_type": "robot_announces_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_announces_delivery",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 1.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 1.5,
+      "agent": "robot_1",
+      "event_type": "robot_announces_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_announces_delivery",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 2.0,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e006",
+      "timestamp": 3.0,
+      "agent": "robot_1",
+      "event_type": "recipient_acknowledges",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "recipient_acknowledges",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e007",
+      "timestamp": 4.0,
+      "agent": "human_1",
+      "event_type": "robot_confirms_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_confirms_delivery",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e008",
+      "timestamp": 5.0,
+      "agent": "robot_1",
+      "event_type": "no_acknowledgement_timeout",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "no_acknowledgement_timeout",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e009",
+      "timestamp": 6.0,
+      "agent": "human_1",
+      "event_type": "robot_repeats_request",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_repeats_request",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e010",
+      "timestamp": 7.0,
+      "agent": "robot_1",
+      "event_type": "robot_announces_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_announces_delivery",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e011",
+      "timestamp": 8.0,
+      "agent": "human_1",
+      "event_type": "delivery_interaction_succeeds",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "delivery_interaction_succeeds",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

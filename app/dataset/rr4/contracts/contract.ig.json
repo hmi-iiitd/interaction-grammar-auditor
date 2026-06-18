@@ -1,0 +1,95 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "medication_schedule_triggers_reminder"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_greets_and_prompts"
+      },
+      "latency": "10.0s"
+    },
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_greets_and_prompts"
+          },
+          "right": {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "patient_responds"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_confirms_receipt"
+      },
+      "latency": "1s"
+    },
+    {
+      "node": "repair",
+      "site": "patient_responds",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "patient_responds"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_confirms_receipt"
+        },
+        "latency": "1s"
+      },
+      "retry": {
+        "N_leq": 1
+      }
+    }
+  ],
+  "latency": "≤120s"
+}

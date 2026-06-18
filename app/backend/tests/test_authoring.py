@@ -302,6 +302,34 @@ class TestContractGenerator:
         assert result["node"] == "bind"
         assert len(result["items"]) == 2
 
+    def test_repair_site_matches_act_object_in_expr(self):
+        """Repair site must be an event name present in expr (semantic validator)."""
+        obls = [
+            Obligation(
+                obligation_type="sequence",
+                trigger="medication_schedule_triggers_reminder",
+                expected="robot_greets_and_prompts",
+                deadline_seconds=10.0,
+                site="care_facility",
+            ),
+            Obligation(
+                obligation_type="repair",
+                trigger="patient_responds",
+                expected="robot_requests_clarification",
+                site="care_facility",
+                repair_event="patient_responds",
+                max_retries=1,
+            ),
+        ]
+        result = _build_contract_json(obls)
+        repair = next(n for n in result["items"] if n["node"] == "repair")
+        expr_objects = {
+            repair["expr"]["left"]["object"],
+            repair["expr"]["right"]["object"],
+        }
+        assert repair["site"] in expr_objects
+        assert repair["site"] == "patient_responds"
+
 
 # ── Module F: Provenance Tracker ────────────────────────────────────
 

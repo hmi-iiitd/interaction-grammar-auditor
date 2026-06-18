@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_3a70ddc63f70",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether 'acknowledge' requires a verbal response or any action",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_042476ee376c",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether 'confirm' is a robot utterance or a signal",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_202d76ec2f94",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the timing windows are inclusive or exclusive of the trigger event",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

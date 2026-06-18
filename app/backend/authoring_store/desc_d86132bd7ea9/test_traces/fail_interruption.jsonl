@@ -1,0 +1,7 @@
+{"t": 0.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "medication_schedule_triggers_reminder"}
+{"t": 1.0, "prim": "α", "agent": "human_1", "channel": "speech", "object": "robot_greets_and_prompts"}
+{"t": 2.0, "prim": "σ", "agent": "human_1", "channel": "speech"}
+{"t": 2.5, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "robot_greets_and_prompts"}
+{"t": 3.0, "prim": "ρ", "agent": "human_1", "channel": "speech"}
+{"t": 5.0, "prim": "α", "agent": "robot_1", "channel": "speech", "object": "patient_responds"}
+{"t": 5.5, "prim": "α", "agent": "human_1", "channel": "speech", "object": "robot_confirms_receipt"}

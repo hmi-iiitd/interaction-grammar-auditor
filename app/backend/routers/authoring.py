@@ -63,6 +63,7 @@ from authoring.contract_locker import (
     can_audit,
     LockError,
 )
+from authoring.milestone3_exporter import export_locked_contract
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -72,6 +73,7 @@ router = APIRouter()
 
 class DescribeRequest(BaseModel):
     description: str
+    scenario_id: str = ""
     scenario_title: str = ""
     robot_platform: str = ""
     interaction_family: str = ""
@@ -144,6 +146,7 @@ def describe_scenario(req: DescribeRequest):
     """Save a new natural-language scenario description."""
     desc = ScenarioDescription(
         description=req.description,
+        scenario_id=req.scenario_id,
         scenario_title=req.scenario_title,
         robot_platform=req.robot_platform,
         interaction_family=req.interaction_family,
@@ -308,6 +311,7 @@ def submit_answers(desc_id: str, req: AnswersRequest):
 
     # Save updated artifacts
     store.save_artifact(desc_id, "summary.json", summary.to_dict())
+    store.save_artifact(desc_id, "answers.json", [a.to_dict() for a in answers])
     store.save_artifact(
         desc_id, "provenance.json", [p.to_dict() for p in provenance]
     )
@@ -443,7 +447,13 @@ def lock(desc_id: str):
     except LockError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-    return {"metadata": metadata.to_dict(), "status": "locked"}
+    exported = None
+    try:
+        exported = export_locked_contract(desc_id)
+    except Exception as e:
+        logger.warning("Milestone 3 dataset export skipped for %s: %s", desc_id, e)
+
+    return {"metadata": metadata.to_dict(), "status": "locked", "dataset_export": exported}
 
 
 @router.get("/locked/{desc_id}")

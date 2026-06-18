@@ -1,0 +1,84 @@
+{
+  "description_id": "desc_7c393762e3df",
+  "plain_language": "1. If the human interrupts by speaking, the robot must stop speaking within 1 second.  \n2. If the human interrupts by speaking, the robot must acknowledge the interruption by saying sorry within 1 second.",
+  "ig_syntax": "human_interrupts_by_speaking during turn-taking → robot_stops_speaking @within(1s)\nhuman_interrupts_by_speaking during turn-taking → robot_acknowledges_interruption_by_saying_sorry @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "σ",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "α",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "human_interrupts_by_speaking"
+            },
+            "right": {
+              "node": "act",
+              "prim": "ρ",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      },
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "σ",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "α",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "human_interrupts_by_speaking"
+            },
+            "right": {
+              "node": "act",
+              "prim": "ρ",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_8c68d036fa81",
+      "source_type": "scenario_sentence",
+      "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:58:10.962573Z"
+    },
+    {
+      "obligation_id": "obl_8a6e65180d17",
+      "source_type": "scenario_sentence",
+      "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:58:10.962641Z"
+    }
+  ],
+  "generated_at": "2026-06-18T07:00:59.476030Z"
+}

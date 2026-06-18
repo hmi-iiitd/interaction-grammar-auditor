@@ -1,0 +1,189 @@
+{
+  "scenario_id": "A4_robot_does_not_confirm_delivery",
+  "description_id": "desc_31a850b9187c",
+  "original_natural_language_description": "The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.\n",
+  "structured_system_interpretation": {
+    "description_id": "desc_31a850b9187c",
+    "structured_summary": "The robot announces a package delivery; the recipient must acknowledge it within 8 seconds, after which the robot must confirm the delivery within 1 second.",
+    "actors": [
+      "robot",
+      "recipient"
+    ],
+    "events": [
+      "robot_announces_delivery",
+      "recipient_acknowledges_delivery",
+      "robot_confirms_delivery"
+    ],
+    "obligations": [
+      {
+        "obligation_id": "obl_c652c246c9b5",
+        "obligation_type": "sequence",
+        "trigger": "robot_announces_delivery",
+        "expected": "recipient_acknowledges_delivery",
+        "deadline_seconds": 8,
+        "site": "delivery_acknowledgment",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+      },
+      {
+        "obligation_id": "obl_c8abf049dd57",
+        "obligation_type": "sequence",
+        "trigger": "recipient_acknowledges_delivery",
+        "expected": "robot_confirms_delivery",
+        "deadline_seconds": 1,
+        "site": "delivery_confirmation",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+      }
+    ],
+    "missing_details": [
+      "modality of acknowledgment (speech, button press, gesture, etc.)",
+      "modality of confirmation (speech, LED, sound, etc.)",
+      "failure behavior if acknowledgment is not received within 8 seconds",
+      "failure behavior if confirmation is not sent within 1 second",
+      "any retry or repair policy",
+      "precise definition of what counts as an acknowledgment or confirmation"
+    ],
+    "potential_ambiguities": [
+      "whether the 8\u2011second window starts at the beginning or end of the announcement",
+      "what specific actions constitute an acknowledgment",
+      "what specific actions constitute a confirmation",
+      "whether the robot should repeat the announcement if no acknowledgment is received"
+    ]
+  },
+  "clarification_questions": [
+    {
+      "question_id": "q_7301446a07b9",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: whether the 8\u2011second window starts at the beginning or end of the announcement",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_69973b38bbbd",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: what specific actions constitute an acknowledgment",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_220b752f9f94",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: what specific actions constitute a confirmation",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_f60af0fc9552",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: whether the robot should repeat the announcement if no acknowledgment is received",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "user_answers": [
+    {
+      "question_id": "q_7301446a07b9",
+      "answer_text": "end of announcement",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085458Z"
+    },
+    {
+      "question_id": "q_69973b38bbbd",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085475Z"
+    },
+    {
+      "question_id": "q_220b752f9f94",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085481Z"
+    },
+    {
+      "question_id": "q_f60af0fc9552",
+      "answer_text": "yes once ",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:52:05.085486Z"
+    }
+  ],
+  "plain_language_contract": "1. After the robot announces delivery, the recipient must acknowledge the delivery within 8 seconds.  \n2. After the recipient acknowledges delivery, the robot must confirm the delivery within 1 second.",
+  "readable_grammar_notation": "robot_announces_delivery \u2192 recipient_acknowledges_delivery @within(8s)\nrecipient_acknowledges_delivery \u2192 robot_confirms_delivery @within(1s)",
+  "contract_json": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges_delivery"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "\u226432s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_c652c246c9b5",
+      "source_type": "scenario_sentence",
+      "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:50:39.275455Z"
+    },
+    {
+      "obligation_id": "obl_c8abf049dd57",
+      "source_type": "scenario_sentence",
+      "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:50:39.275468Z"
+    }
+  ],
+  "validation_output": {
+    "schema_valid": true,
+    "semantic_valid": true,
+    "repair_sites_valid": true,
+    "errors": [],
+    "warnings": [],
+    "all_passed": true
+  },
+  "lock_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+}

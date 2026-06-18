@@ -1,0 +1,1 @@
+The robot prompts the user. If the user does not respond within 3 seconds, the robot should retry prompting the user. At most 1 retry is allowed. The user should acknowledge the prompt.

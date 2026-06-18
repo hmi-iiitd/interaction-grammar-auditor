@@ -1,0 +1,13 @@
+{
+  "schema_valid": false,
+  "semantic_valid": false,
+  "repair_sites_valid": false,
+  "errors": [
+    "Schema error: 'charmap' codec can't decode byte 0x81 in position 550: character maps to <undefined>",
+    "Parse error: 'charmap' codec can't decode byte 0x81 in position 510: character maps to <undefined>"
+  ],
+  "warnings": [
+    "Semantic validation skipped (AST parsing failed)"
+  ],
+  "all_passed": false
+}

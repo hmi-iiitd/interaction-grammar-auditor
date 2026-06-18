@@ -1,0 +1,131 @@
+{
+  "description_id": "desc_d86132bd7ea9",
+  "structured_summary": "A NAO robot in a care facility reminds an elderly patient to take scheduled medication. The robot approaches, greets, and asks if the patient is ready. The patient must verbally acknowledge within 8 seconds; otherwise, the robot repeats the prompt up to two times with a 2-second delay between retries. Upon valid acknowledgement, the robot confirms within 1 second. The robot must not interrupt the patient; if the patient speaks, the robot waits until the utterance ends. If the response is unclear, the robot may request clarification once after the patient finishes speaking. The interaction must complete within 30 seconds from the initial prompt.",
+  "actors": [
+    "NAO robot",
+    "elderly patient"
+  ],
+  "events": [
+    "medication_schedule_triggers_reminder",
+    "robot_greets_and_prompts",
+    "patient_responds",
+    "robot_confirms_receipt",
+    "robot_retries_prompt",
+    "robot_requests_clarification",
+    "interaction_successful",
+    "interaction_unsuccessful",
+    "verbal"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_190ffc586001",
+      "obligation_type": "sequence",
+      "trigger": "medication_schedule_triggers_reminder",
+      "expected": "robot_greets_and_prompts",
+      "deadline_seconds": 10.0,
+      "site": "care_facility",
+      "modalities": [
+        "verbal"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The interaction begins when the medication schedule triggers a reminder event."
+    },
+    {
+      "obligation_id": "obl_3ef24e58d464",
+      "obligation_type": "conditional_sequence",
+      "trigger": "robot_greets_and_prompts",
+      "expected": "patient_responds",
+      "deadline_seconds": 8,
+      "site": "care_facility",
+      "modalities": [
+        "verbal"
+      ],
+      "repair_event": "robot_retries_prompt",
+      "max_retries": 2,
+      "condition": "patient does not respond within 8 seconds",
+      "source_sentence": "If no acknowledgement is received within 8 seconds, the robot should repeat the prompt."
+    },
+    {
+      "obligation_id": "obl_b7c8475520c7",
+      "obligation_type": "sequence",
+      "trigger": "patient_responds",
+      "expected": "robot_confirms_receipt",
+      "deadline_seconds": 1,
+      "site": "care_facility",
+      "modalities": [
+        "verbal"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the patient provides a valid acknowledgement, the robot must verbally confirm receipt of the response within 1 second."
+    },
+    {
+      "obligation_id": "obl_b98a3f141dc3",
+      "obligation_type": "failure",
+      "trigger": "robot_greets_and_prompts",
+      "expected": "patient_responds",
+      "deadline_seconds": null,
+      "site": "care_facility",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "patient does not respond after two retry attempts",
+      "source_sentence": "The patient does not respond after two retry attempts."
+    },
+    {
+      "obligation_id": "obl_2d33065fc9e6",
+      "obligation_type": "failure",
+      "trigger": "patient_responds",
+      "expected": "robot_confirms_receipt",
+      "deadline_seconds": null,
+      "site": "care_facility",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "robot fails to provide confirmation after receiving an acknowledgement",
+      "source_sentence": "The robot fails to provide confirmation after receiving an acknowledgement."
+    },
+    {
+      "obligation_id": "obl_bee67e111042",
+      "obligation_type": "failure",
+      "trigger": "robot_greets_and_prompts",
+      "expected": "interaction_successful",
+      "deadline_seconds": 30,
+      "site": "care_facility",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "timing constraints are violated",
+      "source_sentence": "The complete interaction should finish within 30 seconds from the initial prompt."
+    },
+    {
+      "obligation_id": "obl_1212d7f222d2",
+      "obligation_type": "repair",
+      "trigger": "patient_responds",
+      "expected": "robot_requests_clarification",
+      "deadline_seconds": null,
+      "site": "care_facility",
+      "modalities": [
+        "verbal"
+      ],
+      "repair_event": "patient_responds",
+      "max_retries": 1,
+      "condition": "patient provides an unclear response",
+      "source_sentence": "If the patient provides an unclear response, the robot may request clarification once."
+    }
+  ],
+  "missing_details": [
+    "Explicit definition of what constitutes an 'unclear response'",
+    "Whether the robot should continue waiting after a clarification request if the patient does not respond",
+    "Whether the 30-second deadline includes retries and clarification",
+    "Whether the robot should stop the interaction if the patient interrupts the robot"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'may request clarification once' is permissive, not obligatory; it is unclear if the robot must always do so or only optionally.",
+    "The condition 'robot interrupts the patient during speech' is listed as an unsuccessful outcome, but it is not clear if this is a failure that ends the interaction immediately or if it can be recovered.",
+    "The 2-second delay between retries is described as 'approximately', leaving room for interpretation."
+  ]
+}

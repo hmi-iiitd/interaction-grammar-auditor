@@ -1,0 +1,171 @@
+{
+  "scenario_id": "A2_recipient_does_not_acknowledge",
+  "description_id": "desc_a0ff13cb336c",
+  "original_natural_language_description": "The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.\n",
+  "structured_system_interpretation": {
+    "description_id": "desc_a0ff13cb336c",
+    "structured_summary": "The robot announces a package delivery. The recipient must acknowledge the delivery within 8 seconds. After the recipient acknowledges, the robot must confirm the delivery within 1 second.",
+    "actors": [
+      "robot",
+      "recipient"
+    ],
+    "events": [
+      "robot_announces_delivery",
+      "recipient_acknowledges",
+      "robot_confirms_delivery"
+    ],
+    "obligations": [
+      {
+        "obligation_id": "obl_99312c528366",
+        "obligation_type": "sequence",
+        "trigger": "robot_announces_delivery",
+        "expected": "recipient_acknowledges",
+        "deadline_seconds": 8,
+        "site": "recipient_acknowledges",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+      },
+      {
+        "obligation_id": "obl_d4920c12f434",
+        "obligation_type": "sequence",
+        "trigger": "recipient_acknowledges",
+        "expected": "robot_confirms_delivery",
+        "deadline_seconds": 1,
+        "site": "robot_confirms_delivery",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+      }
+    ],
+    "missing_details": [
+      "What happens if the recipient does not acknowledge within 8 seconds?",
+      "What happens if the robot does not confirm within 1 second?",
+      "Modalities for announcement, acknowledgment, and confirmation (e.g., speech, gesture, button press) are not specified."
+    ],
+    "potential_ambiguities": [
+      "The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "The scenario title suggests the recipient does not acknowledge, but the description assumes acknowledgment occurs; the failure case is not described."
+    ]
+  },
+  "clarification_questions": [
+    {
+      "question_id": "q_ed010cbbc545",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_ac04d3d7f9e2",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_9a4e50c64a22",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The scenario title suggests the recipient does not acknowledge, but the description assumes acknowledgment occurs; the failure case is not described.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "user_answers": [
+    {
+      "question_id": "q_ed010cbbc545",
+      "answer_text": "verbal only",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742045Z"
+    },
+    {
+      "question_id": "q_ac04d3d7f9e2",
+      "answer_text": "verbal confirmation",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742063Z"
+    },
+    {
+      "question_id": "q_9a4e50c64a22",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742067Z"
+    }
+  ],
+  "plain_language_contract": "1. After the robot announces a delivery, the recipient must acknowledge the delivery within 8 seconds.\n2. After the recipient acknowledges, the robot must confirm the delivery within 1 second.",
+  "readable_grammar_notation": "robot_announces_delivery \u2192 recipient_acknowledges @within(8s)\nrecipient_acknowledges \u2192 robot_confirms_delivery @within(1s)",
+  "contract_json": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "\u226432s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_99312c528366",
+      "source_type": "scenario_sentence",
+      "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:36:10.293764Z"
+    },
+    {
+      "obligation_id": "obl_d4920c12f434",
+      "source_type": "scenario_sentence",
+      "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T06:36:10.293786Z"
+    }
+  ],
+  "validation_output": {
+    "schema_valid": true,
+    "semantic_valid": true,
+    "repair_sites_valid": true,
+    "errors": [],
+    "warnings": [],
+    "all_passed": true
+  },
+  "lock_hash": "sha256:6d16ab8fda467f36662d76bc9a2b8c2871405bc2d86a48596cea921b8d88fcc5"
+}

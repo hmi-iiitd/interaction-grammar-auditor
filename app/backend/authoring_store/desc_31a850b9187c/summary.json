@@ -1,0 +1,55 @@
+{
+  "description_id": "desc_31a850b9187c",
+  "structured_summary": "The robot announces a package delivery; the recipient must acknowledge it within 8 seconds, after which the robot must confirm the delivery within 1 second.",
+  "actors": [
+    "robot",
+    "recipient"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "recipient_acknowledges_delivery",
+    "robot_confirms_delivery"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_c652c246c9b5",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "recipient_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "delivery_acknowledgment",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+    },
+    {
+      "obligation_id": "obl_c8abf049dd57",
+      "obligation_type": "sequence",
+      "trigger": "recipient_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "delivery_confirmation",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+    }
+  ],
+  "missing_details": [
+    "modality of acknowledgment (speech, button press, gesture, etc.)",
+    "modality of confirmation (speech, LED, sound, etc.)",
+    "failure behavior if acknowledgment is not received within 8 seconds",
+    "failure behavior if confirmation is not sent within 1 second",
+    "any retry or repair policy",
+    "precise definition of what counts as an acknowledgment or confirmation"
+  ],
+  "potential_ambiguities": [
+    "whether the 8‑second window starts at the beginning or end of the announcement",
+    "what specific actions constitute an acknowledgment",
+    "what specific actions constitute a confirmation",
+    "whether the robot should repeat the announcement if no acknowledgment is received"
+  ]
+}

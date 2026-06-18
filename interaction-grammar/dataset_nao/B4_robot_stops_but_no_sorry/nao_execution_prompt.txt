@@ -1,0 +1,1 @@
+Robot starts speaking; participant interrupts; robot stops on time but does not say sorry within 1 second.

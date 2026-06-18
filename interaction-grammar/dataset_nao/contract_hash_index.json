@@ -1,0 +1,44 @@
+[
+  {
+    "scenario_id": "A1_delivery_success",
+    "description_id": "desc_12ab47595c53",
+    "contract_id": "contract_12ab47595c53",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+  },
+  {
+    "scenario_id": "A2_recipient_does_not_acknowledge",
+    "description_id": "desc_a0ff13cb336c",
+    "contract_id": "contract_a0ff13cb336c",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:6d16ab8fda467f36662d76bc9a2b8c2871405bc2d86a48596cea921b8d88fcc5"
+  },
+  {
+    "scenario_id": "A3_recipient_acknowledges_too_late",
+    "description_id": "desc_12dd7b1fe585",
+    "contract_id": "contract_12dd7b1fe585",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:15a42206b6b4bc44f2ff43d401e61524f2aa82fdc3c9002e3b901fd705ff3b44"
+  },
+  {
+    "scenario_id": "A4_robot_does_not_confirm_delivery",
+    "description_id": "desc_31a850b9187c",
+    "contract_id": "contract_31a850b9187c",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+  },
+  {
+    "scenario_id": "B1_human_interrupts_robot_stops",
+    "description_id": "desc_7c393762e3df",
+    "contract_id": "contract_7c393762e3df",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
+  },
+  {
+    "scenario_id": "B2_human_interrupts_robot_continues",
+    "description_id": "desc_a8c2a0618a1b",
+    "contract_id": "contract_a8c2a0618a1b",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
+  }
+]

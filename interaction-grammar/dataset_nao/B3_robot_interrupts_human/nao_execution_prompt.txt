@@ -1,0 +1,1 @@
+Participant begins speaking; robot emits an utterance before the participant has finished.

@@ -45,7 +45,7 @@ class Trace:
             raise TraceError(f"Trace file not found: {path}")
             
         try:
-            with open(path, 'r') as f:
+            with open(path, 'r', encoding='utf-8-sig') as f:
                 line_num = 0
                 for line in f:
                     line_num += 1

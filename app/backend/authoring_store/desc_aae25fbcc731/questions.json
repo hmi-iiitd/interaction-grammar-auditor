@@ -1,0 +1,122 @@
+[
+  {
+    "question_id": "q_f407fabc6712",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_greets \u2192 robot_asks_confirmation",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_e34fa34c6485",
+    "required": true
+  },
+  {
+    "question_id": "q_275cb1d86a86",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_asks_confirmation \u2192 participant_confirms_by_speech",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_4da7fcc77424",
+    "required": true
+  },
+  {
+    "question_id": "q_0518506657dc",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_asks_confirmation \u2192 participant_confirms_by_nod",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_734ec66fb472",
+    "required": true
+  },
+  {
+    "question_id": "q_76dc90a9bb2a",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: participant_interrupts \u2192 robot_stops_speaking",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_c8e9c507548c",
+    "required": true
+  },
+  {
+    "question_id": "q_d2f3590dd410",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_stops_speaking \u2192 robot_acknowledges_interruption",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_8c91039d74e1",
+    "required": true
+  },
+  {
+    "question_id": "q_80463a5292b7",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_acknowledges_interruption \u2192 robot_continues",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_4a6c95907d4d",
+    "required": true
+  },
+  {
+    "question_id": "q_3b47e4c34bac",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'confirmation' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a038e18c859d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'only twice' could mean the robot asks again at most two times total, or two additional times after the first ask.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_dd9747041f98",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'interrupts' is not defined (e.g., any speech overlap, specific keywords, or gestures).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_52e36ed442a9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The order of events after interruption: does the robot stop immediately, then acknowledge, then continue with the original speech or something else?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

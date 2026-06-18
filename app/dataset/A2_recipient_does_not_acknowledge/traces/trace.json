@@ -1,0 +1,37 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "robot_announces_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_announces_delivery",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 1.5,
+      "agent": "robot_1",
+      "event_type": "wave",
+      "primitive": "α",
+      "modality": "gesture",
+      "object": "wave",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 12.0,
+      "agent": "robot_1",
+      "event_type": "robot_confirms_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_confirms_delivery",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    }
+  ]
+}

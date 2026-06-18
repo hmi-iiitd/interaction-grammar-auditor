@@ -28,6 +28,7 @@ def _new_id(prefix: str = "") -> str:
 class ScenarioDescription:
     """Raw natural-language scenario input from the user."""
     description: str
+    scenario_id: str = ""
     scenario_title: str = ""
     robot_platform: str = ""
     interaction_family: str = ""

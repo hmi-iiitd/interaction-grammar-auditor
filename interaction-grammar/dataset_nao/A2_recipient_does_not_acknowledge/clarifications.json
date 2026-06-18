@@ -1,0 +1,48 @@
+{
+  "questions": [
+    {
+      "question_id": "q_ed010cbbc545",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_ac04d3d7f9e2",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_9a4e50c64a22",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The scenario title suggests the recipient does not acknowledge, but the description assumes acknowledgment occurs; the failure case is not described.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "q_ed010cbbc545",
+      "answer_text": "verbal only",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742045Z"
+    },
+    {
+      "question_id": "q_ac04d3d7f9e2",
+      "answer_text": "verbal confirmation",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742063Z"
+    },
+    {
+      "question_id": "q_9a4e50c64a22",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T06:37:44.742067Z"
+    }
+  ]
+}

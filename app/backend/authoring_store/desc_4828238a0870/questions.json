@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_9f99e9f9e7a4",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_arrives → robot_announces_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_7980f1663b45",
+    "required": true
+  },
+  {
+    "question_id": "q_ccdbca118897",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'may repeat the delivery request once' could be interpreted as optional or mandatory.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_52e27dea1629",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The condition for successful interaction includes three steps, but the 30-second deadline applies to the entire interaction from the initial announcement, which may conflict with the 10-second and 2-second sub-deadlines.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_ad0bf10e9f46",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The failure condition 'robot fails to confirm the delivery after receiving an acknowledgement' is not explicitly linked to the 2-second deadline; it could be interpreted as a separate failure mode.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_96035e8eb9d0",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The interaction family is 'turn-taking', but the scenario does not specify how turn-taking is managed beyond the robot not interrupting.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

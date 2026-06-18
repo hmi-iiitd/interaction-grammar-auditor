@@ -1,0 +1,37 @@
+{
+  "scenario_id": "rr9",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'acknowledgment' must be satisfied",
+  "trigger": {
+    "event_id": "e007",
+    "time": 6.0,
+    "description": "acknowledgment at 6.0s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 6.0,
+    "description": "Violation detected at 6.0s — expected_response not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 5.5,
+    "end": 7.0,
+    "events": [
+      {
+        "event_id": "e007",
+        "timestamp": 6.0,
+        "event_type": "robot_announces_delivery",
+        "agent": "robot_1",
+        "details": "robot_announces_delivery"
+      }
+    ]
+  }
+}

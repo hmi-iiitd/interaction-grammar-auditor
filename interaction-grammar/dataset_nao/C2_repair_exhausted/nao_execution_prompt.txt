@@ -1,0 +1,1 @@
+Robot prompts; participant does not respond; robot retries once; participant still does not acknowledge.

@@ -1,0 +1,51 @@
+[
+  {
+    "obligation_id": "obl_7980f1663b45",
+    "source_type": "user_clarification",
+    "source_text": "When the robot arrives at the delivery location, it announces that a package has arrived and asks the recipient to confirm receipt. → User clarified: 1.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:58:50.750434Z"
+  },
+  {
+    "obligation_id": "obl_27fcbaa8f2da",
+    "source_type": "scenario_sentence",
+    "source_text": "The recipient should acknowledge the delivery within 10 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102301Z"
+  },
+  {
+    "obligation_id": "obl_197839c2d008",
+    "source_type": "scenario_sentence",
+    "source_text": "After receiving the acknowledgement, the robot must confirm the successful delivery within 2 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102320Z"
+  },
+  {
+    "obligation_id": "obl_e10d4a533191",
+    "source_type": "scenario_sentence",
+    "source_text": "The robot must not interrupt the recipient while the recipient is speaking.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102332Z"
+  },
+  {
+    "obligation_id": "obl_a87520d834dd",
+    "source_type": "scenario_sentence",
+    "source_text": "If no acknowledgement is received within 10 seconds, the robot may repeat the delivery request once.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102345Z"
+  },
+  {
+    "obligation_id": "obl_dbe673d8f4af",
+    "source_type": "scenario_sentence",
+    "source_text": "If the recipient still does not respond after the retry, the delivery interaction fails.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102356Z"
+  },
+  {
+    "obligation_id": "obl_a40ed73f1791",
+    "source_type": "scenario_sentence",
+    "source_text": "The complete interaction must finish within 30 seconds from the initial delivery announcement.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-03T06:49:12.102367Z"
+  }
+]

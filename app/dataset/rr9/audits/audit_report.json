@@ -1,0 +1,46 @@
+{
+  "scenario_id": "rr9",
+  "contract_id": "contract.ig.json",
+  "verdict": "UNSAT",
+  "num_events": 7,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "acknowledgment",
+      "agent_attribution": "human_1",
+      "site": "closure",
+      "trigger_event_id": "e007",
+      "expected_event": "expected_response",
+      "observed_event": null,
+      "deadline_seconds": null,
+      "trigger_time": 6.0,
+      "falsification_time": 6.0,
+      "error_code": "V_SEQ_MISSING_RIGHT",
+      "clause_path": "$.items[4]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "sequence",
+    "clause_path": "$.items[4]",
+    "error_code": "V_SEQ_MISSING_RIGHT",
+    "budget": null,
+    "observed": {
+      "after_left_until": 6.0
+    },
+    "responsible_agent": "human_1",
+    "witness": {
+      "left_event": {
+        "idx": 6,
+        "event": {
+          "t": 6.0,
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        }
+      }
+    }
+  }
+}

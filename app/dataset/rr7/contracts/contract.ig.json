@@ -1,0 +1,112 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_arrives"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "latency": "1.0s"
+    },
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_announces_delivery"
+          },
+          "right": {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "recipient_acknowledges"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "robot_confirms_delivery"
+      },
+      "latency": "2s"
+    },
+    {
+      "node": "repair",
+      "site": "no_acknowledgement_timeout",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "no_acknowledgement_timeout"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "robot_repeats_request"
+        }
+      },
+      "retry": {
+        "N_leq": 1
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "delivery_interaction_succeeds"
+      },
+      "latency": "30s"
+    }
+  ],
+  "latency": "≤120s"
+}

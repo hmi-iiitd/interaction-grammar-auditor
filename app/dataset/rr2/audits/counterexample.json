@@ -1,0 +1,37 @@
+{
+  "scenario_id": "rr2",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'acknowledgment' must be satisfied",
+  "trigger": {
+    "event_id": "e005",
+    "time": 3.7,
+    "description": "acknowledgment at 3.7s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 3.7,
+    "description": "Violation detected at 3.7s — expected_response not satisfied"
+  },
+  "attribution": "robot_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 3.2,
+    "end": 4.7,
+    "events": [
+      {
+        "event_id": "e005",
+        "timestamp": 3.7,
+        "event_type": "ack",
+        "agent": "human_1",
+        "details": "ack"
+      }
+    ]
+  }
+}

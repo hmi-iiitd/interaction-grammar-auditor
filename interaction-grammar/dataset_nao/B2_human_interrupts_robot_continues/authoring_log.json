@@ -1,0 +1,225 @@
+{
+  "scenario_id": "B2_human_interrupts_robot_continues",
+  "description_id": "desc_a8c2a0618a1b",
+  "original_natural_language_description": "The robot starts speaking. If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.\n",
+  "structured_system_interpretation": {
+    "description_id": "desc_a8c2a0618a1b",
+    "structured_summary": "The robot begins speaking. If the human interrupts by speaking, the robot must cease its speech within 1 second and then verbally apologize for the interruption within another 1 second.",
+    "actors": [
+      "robot",
+      "human"
+    ],
+    "events": [
+      "robot_starts_speaking",
+      "human_interrupts_by_speaking",
+      "robot_stops_speaking",
+      "robot_says_sorry"
+    ],
+    "obligations": [
+      {
+        "obligation_id": "obl_d8810ab0b292",
+        "obligation_type": "conditional_sequence",
+        "trigger": "human_interrupts_by_speaking",
+        "expected": "robot_stops_speaking",
+        "deadline_seconds": 1,
+        "site": "robot_stops_speaking",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second."
+      },
+      {
+        "obligation_id": "obl_b690dd35d08f",
+        "obligation_type": "conditional_sequence",
+        "trigger": "human_interrupts_by_speaking",
+        "expected": "robot_says_sorry",
+        "deadline_seconds": 1,
+        "site": "robot_says_sorry",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second."
+      }
+    ],
+    "missing_details": [
+      "What the robot should do after stopping and apologizing (e.g., resume speaking, yield turn).",
+      "Whether the robot must finish the current utterance before stopping or can halt mid\u2011utterance.",
+      "Exact definition of 'interrupts by speaking' (any vocalization, specific phrase, overlap threshold).",
+      "Consequences if the robot fails to meet the 1\u2011second deadlines (failure handling, retry policy).",
+      "Whether the apology must be started or completed within 1 second.",
+      "Any modality constraints for the apology (e.g., verbal only, tone, language)."
+    ],
+    "potential_ambiguities": [
+      "The start point for the 1\u2011second timer (onset of human speech vs. detection of interruption).",
+      "Whether 'stop speaking within 1 second' means the robot's audio output must cease entirely within that window or that the robot must begin the stopping process.",
+      "Whether the two 1\u2011second windows run sequentially or concurrently.",
+      "What constitutes an acknowledgment: must the robot say the word 'sorry' exactly, or any apology utterance?",
+      "Whether the robot's initial speaking is a predefined script or continuous speech."
+    ]
+  },
+  "clarification_questions": [
+    {
+      "question_id": "q_d04bca3bb163",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The start point for the 1\u2011second timer (onset of human speech vs. detection of interruption).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_3c9e87d3ccdc",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether 'stop speaking within 1 second' means the robot's audio output must cease entirely within that window or that the robot must begin the stopping process.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_259178937a65",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the two 1\u2011second windows run sequentially or concurrently.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_33a5d1a8ff53",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: What constitutes an acknowledgment: must the robot say the word 'sorry' exactly, or any apology utterance?",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_c14ab7dc6a3d",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the robot's initial speaking is a predefined script or continuous speech.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "user_answers": [
+    {
+      "question_id": "q_d04bca3bb163",
+      "answer_text": "detection of interruption",
+      "selected_options": [],
+      "answered_at": "2026-06-18T07:40:06.269659Z"
+    },
+    {
+      "question_id": "q_3c9e87d3ccdc",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T07:40:06.269671Z"
+    },
+    {
+      "question_id": "q_259178937a65",
+      "answer_text": "concurrently",
+      "selected_options": [],
+      "answered_at": "2026-06-18T07:40:06.269675Z"
+    },
+    {
+      "question_id": "q_33a5d1a8ff53",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T07:40:06.269678Z"
+    },
+    {
+      "question_id": "q_c14ab7dc6a3d",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-18T07:40:06.269681Z"
+    }
+  ],
+  "plain_language_contract": "1. If the human interrupts by speaking, the robot must stop speaking within 1 second.  \n2. If the human interrupts by speaking, the robot must acknowledge the interruption by saying sorry within 1 second.",
+  "readable_grammar_notation": "human_interrupts_by_speaking \u2192 robot_stops_speaking @within(1s)\nhuman_interrupts_by_speaking \u2192 robot_says_sorry @within(1s)",
+  "contract_json": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03c3",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "\u03b1",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "human_interrupts_by_speaking"
+            },
+            "right": {
+              "node": "act",
+              "prim": "\u03c1",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      },
+      {
+        "node": "neg",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03c3",
+            "agent": "human_1",
+            "channel": "speech"
+          },
+          "right": {
+            "node": "seq",
+            "left": {
+              "node": "act",
+              "prim": "\u03b1",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "human_interrupts_by_speaking"
+            },
+            "right": {
+              "node": "act",
+              "prim": "\u03c1",
+              "agent": "human_1",
+              "channel": "speech"
+            }
+          }
+        }
+      }
+    ],
+    "latency": "\u226430s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_d8810ab0b292",
+      "source_type": "scenario_sentence",
+      "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T07:38:20.796996Z"
+    },
+    {
+      "obligation_id": "obl_b690dd35d08f",
+      "source_type": "scenario_sentence",
+      "source_text": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-18T07:38:20.797008Z"
+    }
+  ],
+  "validation_output": {
+    "schema_valid": true,
+    "semantic_valid": true,
+    "repair_sites_valid": true,
+    "errors": [],
+    "warnings": [],
+    "all_passed": true
+  },
+  "lock_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
+}

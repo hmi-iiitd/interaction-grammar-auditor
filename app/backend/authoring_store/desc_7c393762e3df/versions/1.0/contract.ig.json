@@ -1,0 +1,72 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "human_interrupts_by_speaking"
+          },
+          "right": {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    },
+    {
+      "node": "neg",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "σ",
+          "agent": "human_1",
+          "channel": "speech"
+        },
+        "right": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "human_interrupts_by_speaking"
+          },
+          "right": {
+            "node": "act",
+            "prim": "ρ",
+            "agent": "human_1",
+            "channel": "speech"
+          }
+        }
+      }
+    }
+  ],
+  "latency": "≤30s",
+  "_contract_metadata": {
+    "contract_id": "contract_7c393762e3df",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-18T07:01:07.648258Z",
+    "contract_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef",
+    "source_description_id": "desc_7c393762e3df",
+    "confirmed_assumptions": 2,
+    "unresolved_assumptions": 0
+  }
+}

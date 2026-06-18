@@ -1,0 +1,640 @@
+PAGES: 23
+METADATA: {'Title': 'Phase 2', 'Producer': 'Skia/PDF m151 Google Docs Renderer'}
+
+
+===== PAGE 1 =====
+PRD: NAO-Based HRI Experiment Package
+for Interaction Contract Auditor
+1. Objective
+The goal of this phase is to convert the current Interaction Contract Auditor system into a
+complete NAO-based HRI experimental package.
+The system already supports:
+● natural-language contract authoring,
+● scenario understanding,
+● clarification,
+● contract preview,
+● validation and mapping,
+● contract locking,
+● trace audit,
+● UNSAT/SAT report generation,
+● timeline and counterexample visualization.
+The next phase must produce a reproducible NAO dataset, baseline comparisons, and a
+pilot-ready HRI evaluation protocol.
+This phase is not about adding more UI features. It is about producing experimental evidence.
+2. Core Research Goal
+We want to show that non-technical HRI researchers can define intended interaction
+expectations as contracts, lock those contracts before audit, and use the resulting audit reports
+to diagnose NAO interaction failures more clearly and reproducibly.
+The core claim to support is:
+Interaction contracts make HRI breakdowns auditable by identifying what
+coordination obligation failed, when it failed, where it failed, and what trace
+3. Scope
+evidence supports the diagnosis.
+In Scope
+This phase includes:
+
+===== PAGE 2 =====
+1. NAO-only interaction scenarios.
+2. ROS bag / trace collection from NAO.
+3. Scenario authoring through the current interface.
+4. Contract validation, mapping, and locking.
+5. Audit execution on all traces.
+6. SAT/UNSAT and counterexample reports.
+7. Reproducibility checks.
+8. Baseline comparison.
+9. Pilot user study design.
+10. Paper-ready figures, tables, and examples.
+Out of Scope
+Do not work on:
+1. manipulator scenarios,
+2. new robot platforms,
+3. new LLM providers,
+4. new perception modules,
+5. general-purpose natural-language programming,
+6. additional UI redesign unless required for usability,
+7. contract tuning after audit without versioning.
+4. NAO Scenario Dataset
+4.1 Dataset Size
+Minimum required:
+None
+12 NAO scenarios
+Preferred:
+None
+14–16 NAO scenarios, if time permits
+Each scenario must include:
+
+===== PAGE 3 =====
+None
+natural-language scenario description
+structured scenario summary
+clarification answers
+locked contract
+contract hash
+ROS bag or extracted trace
+audit result
+counterexample, if UNSAT
+timeline screenshot
+Markdown report
+JSON report
+metadata file
+4.2 Scenario Families
+Use three coherent NAO interaction families.
+Family A: Delivery and Acknowledgment
+These scenarios focus on package delivery, confirmation, acknowledgment, and closure.
+ID Scenario Expected Failure Type
+Verdict
+A1 normal delivery: announce → acknowledge SAT none
+→ confirm
+A2 recipient does not acknowledge UNSAT missing_ack
+A3 recipient acknowledges too late UNSAT late_ack
+A4 robot receives ack but does not confirm UNSAT missing_robot_confir
+delivery m
+Family B: Interruption and Turn-Taking
+These scenarios focus on interruption, floor management, and robot response to participant
+speech.
+
+===== PAGE 4 =====
+ID Scenario Expected Failure Type
+Verdict
+B1 human interrupts, robot stops and SAT none
+acknowledges
+B2 human interrupts, robot continues speaking UNSAT interruption
+B3 robot interrupts while human is speaking UNSAT robot_interruption
+B4 robot stops after interruption but does not UNSAT missing_interrupt_ac
+acknowledge k
+Family C: Repair and Timeout
+These scenarios focus on retries, bounded repair, and interaction failure after repeated
+non-response.
+ID Scenario Expected Failure Type
+Verdict
+C1 no response, one retry, then SAT none
+acknowledgment
+C2 no response after allowed retry UNSAT repair_exhausted
+C3 robot retries more than allowed UNSAT retry_limit_exceeded
+C4 full interaction exceeds maximum duration UNSAT global_timeout
+Minimum total: 12 scenarios.
+4.3 Metadata Required Per Scenario
+Each scenario folder must contain:
+None
+scenario_id
+interaction_family
+robot_platform
+participant_role
+expected_verdict
+expected_failure_type
+
+===== PAGE 5 =====
+expected_trigger_event
+expected_failed_obligation
+expected_falsification_time
+expected_agent_attribution
+contract_id
+contract_version
+contract_hash
+trace_file
+rosbag_file, if available
+notes
+Suggested folder structure:
+None
+dataset_nao/
+A1_delivery_success/
+scenario_description.txt
+structured_summary.json
+clarifications.json
+contract.ig.json
+contract_lock.json
+trace.jsonl
+audit_report.json
+counterexample.json
+report.md
+report.json
+metadata.yaml
+screenshots/
+overview.png
+timeline.png
+5. Contract Authoring Requirements
+For every scenario, the contract must be created using the current six-step authoring flow:
+
+===== PAGE 6 =====
+None
+Describe
+Understand
+Clarify
+Preview
+Validate and Map
+Lock
+Manual JSON editing should be avoided unless required to fix schema issues. Any manual edit
+must be documented.
+5.1 Required Authoring Logs
+For each contract, save:
+None
+original natural-language description
+structured system interpretation
+clarification questions
+user answers
+plain-language contract
+readable grammar notation
+contract JSON
+provenance
+validation output
+lock hash
+5.2 Pass Conditions
+A scenario passes authoring requirements only if:
+1. It starts from natural-language description.
+2. Candidate obligations are extracted.
+3. Missing timing/repair/interruption details are clarified.
+4. Contract preview shows plain language, grammar notation, JSON, and provenance.
+5. Schema validation passes.
+6. Semantic validation passes.
+7. Event mapping passes or is explicitly not required.
+
+===== PAGE 7 =====
+8. Contract is locked before audit.
+9. Audit report records contract ID, version, and hash.
+5.3 Fail Conditions
+A scenario is invalid if:
+1. Audit is run before contract locking.
+2. Contract is changed after audit without a new version.
+3. Contract hash is missing.
+4. Clarification answers are missing.
+5. Plain-language contract and JSON disagree.
+6. Event mapping is hidden or unresolved.
+6. NAO Data Collection Plan
+6.1 Robot Setup Assumption
+Assume the NAO robot is fully functional and operational.
+The team must verify:
+None
+NAO boots successfully
+speech output works
+speech/event logging works
+gesture/event logging works
+ROS bridge works
+ROS bag recording works
+timestamps are synchronized
+topics are available
+trace extraction works
+6.2 Required ROS Topics
+At minimum, log:
+
+===== PAGE 8 =====
+None
+/interaction/robot_event
+/interaction/human_event
+/interaction/system_event
+Optional if available:
+None
+/nao/speech
+/nao/gaze
+/nao/gesture
+/nao/state
+/nao/audio_event
+/nao/user_event
+6.3 Recording Protocol
+For each scenario:
+1. Load scenario script.
+2. Start ROS bag recording.
+3. Execute NAO interaction.
+4. Participant or experimenter performs required response/failure.
+5. Stop ROS bag recording.
+6. Extract trace.
+7. Run audit against locked contract.
+8. Save all outputs.
+6.4 Repetition
+Each scenario should be recorded at least:
+None
+2 times
+Minimum usable dataset:
+
+===== PAGE 9 =====
+None
+12 scenarios × 1 clean trace each = 12 traces
+Preferred dataset:
+None
+12 scenarios × 2 traces each = 24 traces
+If recording time is limited, prioritize one clean trace per scenario over many noisy repeats.
+7. Ground Truth Annotation
+Before running analysis, define expert ground truth for every scenario.
+Ground truth must include:
+None
+expected SAT/UNSAT
+failure type
+trigger event
+expected event
+observed/missing event
+deadline
+falsification time
+failure site
+agent attribution
+counterexample window
+This ground truth should be created before looking at the auditor output wherever possible.
+Pass Conditions
+Ground truth is complete if every UNSAT scenario has:
+1. trigger event,
+2. violated obligation,
+3. expected event,
+4. deadline,
+
+===== PAGE 10 =====
+5. actual observed/missing event,
+6. expected falsification time,
+7. failure site,
+8. attribution.
+8. System Evaluation
+8.1 Main Questions
+The system evaluation should answer:
+1. Does the auditor classify SAT/UNSAT correctly?
+2. Does it detect the right failure type?
+3. Does it localize the failure time correctly?
+4. Does it produce complete counterexamples?
+5. Are outputs reproducible across runs?
+6. Does contract locking prevent post-hoc tuning?
+8.2 Quantitative Metrics
+For the 12 NAO scenarios, compute:
+Metric Definition
+Verdict accuracy percentage of scenarios where SAT/UNSAT matches ground
+truth
+Failure-type accuracy percentage of UNSAT scenarios where violation type matches
+ground truth
+Precision true detected violations / all detected violations
+Recall true detected violations / all ground-truth violations
+F1 harmonic mean of precision and recall
+Timestamp localization absolute difference between expected and reported falsification
+error time
+Attribution accuracy correct robot/human/system/site attribution
+Counterexample whether report includes trigger, expected event,
+completeness observed/missing event, deadline, site
+
+===== PAGE 11 =====
+Runtime time from trace upload to audit result
+Reproducibility identical outputs across repeated audit runs
+8.3 Reproducibility Test
+For each scenario:
+None
+Run trace extraction 3 times.
+Run audit 3 times.
+Compare audit reports.
+Compare counterexamples.
+Compare verdicts.
+Compare contract hashes.
+Pass condition:
+None
+Same locked contract + same trace = same verdict, same violation,
+same counterexample.
+Any nondeterminism must be logged and explained.
+9. Baseline Comparison
+Use three simple baselines.
+Do not overcomplicate this phase.
+9.1 Baseline 1: Task Outcome
+For each scenario, record whether the apparent task completed.
+Example:
+None
+Package delivered: yes/no
+
+===== PAGE 12 =====
+Robot reached final utterance: yes/no
+Interaction completed within time: yes/no
+Purpose:
+Show that task success can miss interaction-contract failures.
+9.2 Baseline 2: Rule-Based If–Else Monitor
+Implement simple hand-coded rules for the same scenarios.
+Example:
+Python
+if robot_prompt and no human_ack within 10s:
+fail("missing_ack")
+Purpose:
+Show that rules can catch simple failures but do not provide contract provenance, locking,
+reusable structure, or rich counterexamples.
+9.3 Baseline 3: FSM Monitor
+Create a simple FSM for delivery/acknowledgment and interruption.
+States may include:
+None
+START
+ANNOUNCED
+WAITING_FOR_ACK
+ACK_RECEIVED
+CONFIRMED
+INTERRUPTED
+FAILED
+DONE
+
+===== PAGE 13 =====
+Purpose:
+Show that FSMs encode flow but become ad hoc for deadlines, repair, interruption, and
+evidence reporting.
+9.4 Baseline Metrics
+For each baseline, record:
+Metric Task Rule Monitor FSM Interaction Auditor
+Outcome
+Detects failure yes/no yes/no yes/no yes/no
+Identifies failure type no/partial/yes partial partial yes
+Gives timestamp no maybe maybe yes
+Gives trigger event no maybe maybe yes
+Gives missing expected no maybe maybe yes
+event
+Gives agent/site attribution no no/partial partial yes
+Reusable contract no no limited yes
+Locked before audit no no no yes
+Human-readable report no no limited yes
+10. Human Study: Pilot Design
+10.1 Purpose
+The human study should test whether the interface helps HRI researchers:
+1. formulate interaction contracts,
+2. diagnose interaction failures,
+3. understand counterexamples.
+This is a pilot first, not the final full-scale study.
+
+===== PAGE 14 =====
+10.2 Participants
+Pilot:
+None
+3–5 participants
+Main study later:
+None
+18–24 participants
+Participant profile:
+None
+HRI students
+psychology/cognitive science students
+design researchers
+robotics students with HRI interest
+Avoid using only formal-methods or robotics experts.
+10.3 Study Part A: Contract Authoring
+Task
+Participants are given a natural-language NAO scenario and asked to create an auditable
+contract.
+Conditions
+Use within-subjects if possible:
+Condition Description
+Template-only participant fills a structured form manually
+Assisted authoring participant uses NL authoring + clarification + validation interface
+
+===== PAGE 15 =====
+Authoring Scenarios
+Use two scenarios:
+1. Delivery acknowledgment.
+2. Interruption while robot is speaking.
+Counterbalance condition order.
+Quantitative Metrics
+Metric Definition
+Time to valid contract time from start to validated contract
+Validation errors number of failed validation attempts
+Missing obligations expert-counted missing required
+obligations
+Incorrect obligations expert-counted wrong obligations
+Clarification usefulness participant rating
+Confidence participant rating
+NASA-TLX workload
+SUS or UMUX-Lite usability
+Expert Scoring Rubric
+Each contract is scored by two expert raters.
+Score each item 0/1:
+None
+correct actors
+correct trigger events
+correct expected events
+correct deadlines
+correct repair rule
+correct interruption rule
+correct failure condition
+
+===== PAGE 16 =====
+valid JSON
+clear provenance
+no unsupported assumptions
+Maximum score:
+None
+10
+10.4 Study Part B: Failure Diagnosis
+Task
+Participants inspect NAO interaction cases and answer:
+None
+What failed?
+When did it fail?
+What evidence supports the failure?
+Was it robot-side, human-side, or interaction-site related?
+What would need to change?
+Conditions
+Use within-subjects:
+Condition Evidence Shown
+Raw trace/timeline only
+Metrics task outcome + completion time
+Audit audit report + counterexample
+Audit+LLM audit report + grounded natural-language
+explanation
+If time is short, use only:
+
+===== PAGE 17 =====
+None
+Raw vs Audit+LLM
+Diagnosis Scenarios
+Use 4 scenarios:
+1. missing acknowledgment,
+2. interruption,
+3. repair exhausted,
+4. late acknowledgment.
+Quantitative Metrics
+Metric Definition
+Diagnosis accuracy correct failure type
+Failure-site correct site: acknowledgment, interruption, repair, timing
+accuracy
+Timestamp accuracy correct or near-correct failure time
+Attribution accuracy correct robot/human/missing-event attribution
+Evidence accuracy cites correct trace segment
+Time to diagnosis seconds/minutes
+Confidence participant rating
+Perceived participant rating
+usefulness
+Qualitative Questions
+Ask after the tasks:
+None
+What helped you understand the failure?
+What was confusing?
+Did the contract make the expected interaction clearer?
+Did the counterexample help?
+
+===== PAGE 18 =====
+Would this help in your own HRI analysis?
+What would you change?
+11. Paper-Ready Outputs
+At the end of this phase, produce:
+11.1 Dataset Artifacts
+None
+12 completed NAO scenario folders
+metadata table
+ground truth file
+contract hash list
+audit result index
+11.2 Figures
+Required screenshots:
+1. Dataset dashboard.
+2. Scenario authoring screen.
+3. Clarification screen.
+4. Contract preview screen.
+5. Lock contract screen.
+6. Audit summary screen.
+7. Timeline/counterexample screen.
+8. Exported report screen.
+11.3 Tables
+Required tables:
+1. Scenario matrix.
+2. System evaluation metrics.
+3. Baseline comparison.
+4. Reproducibility results.
+5. Pilot user study results.
+
+===== PAGE 19 =====
+11.4 Case Studies
+Prepare 4 concise case studies:
+1. successful delivery,
+2. missing acknowledgment,
+3. interruption,
+4. repair exhausted.
+Each case study should include:
+None
+scenario description
+contract excerpt
+trace excerpt
+audit verdict
+counterexample
+why task metrics alone are insufficient
+12. Development Milestones
+Milestone 1: Scenario Matrix and Scripts
+Deliverables:
+None
+12 scenario descriptions
+NAO execution scripts/prompts
+expected verdicts
+ground truth template
+Pass condition:
+None
+Every scenario has expected SAT/UNSAT and failure type defined
+before recording.
+
+===== PAGE 20 =====
+Milestone 2: Data Collection
+Deliverables:
+None
+ROS bags or extracted traces for all 12 scenarios
+trace extraction logs
+metadata files
+Pass condition:
+None
+Each scenario has at least one clean usable trace.
+Milestone 3: Contract Authoring and Locking
+Deliverables:
+None
+12 authored contracts
+12 validation logs
+12 lock files
+contract hash index
+Pass condition:
+None
+Every audit uses a locked contract.
+Milestone 4: Audit Execution
+Deliverables:
+
+===== PAGE 21 =====
+None
+12 audit reports
+12 JSON reports
+12 Markdown reports
+counterexamples for all UNSAT cases
+timeline screenshots
+Pass condition:
+None
+All expected UNSAT cases produce interpretable counterexamples.
+All expected SAT cases pass without violations.
+Milestone 5: Baseline Comparison
+Deliverables:
+None
+task-outcome labels
+rule-based monitor outputs
+FSM monitor outputs
+comparison table
+Pass condition:
+None
+Baseline comparison completed for all 12 scenarios.
+Milestone 6: Reproducibility Check
+Deliverables:
+None
+repeated-run logs
+determinism table
+
+===== PAGE 22 =====
+hash comparison
+nondeterminism notes, if any
+Pass condition:
+None
+Same trace + same locked contract gives identical audit result
+across 3 runs.
+Milestone 7: Pilot User Study
+Deliverables:
+None
+study protocol
+participant task sheets
+consent form draft if required
+pilot data from 3–5 participants
+summary of issues
+revised study plan
+Pass condition:
+None
+Pilot identifies whether tasks are understandable and whether
+metrics are collectable.
+13. Go / No-Go Criteria for HRI Paper
+Proceed toward paper writing only if:
+1. All 12 NAO scenarios are complete.
+2. At least 10/12 audit outputs match ground truth.
+3. All UNSAT cases produce usable counterexamples.
+4. Reproducibility passes.
+5. Baseline comparison is complete.
+6. Pilot users can complete authoring and diagnosis tasks.
+
+===== PAGE 23 =====
+7. The system does not require manual JSON editing during the normal workflow.
+8. The paper has at least 4 strong case examples.
+Do not proceed if:
+1. contracts are being manually adjusted after audit,
+2. traces are inconsistent,
+3. counterexamples are unclear,
+4. participants cannot understand the workflow,
+5. outputs are not reproducible.

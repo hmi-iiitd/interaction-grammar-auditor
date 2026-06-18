@@ -1,0 +1,51 @@
+{
+  "description_id": "desc_12dd7b1fe585",
+  "structured_summary": "The robot announces a package delivery; the recipient must acknowledge the delivery within 8 seconds, after which the robot must confirm the delivery within 1 second.",
+  "actors": [
+    "robot",
+    "recipient"
+  ],
+  "events": [
+    "robot_announces_package_delivery",
+    "recipient_acknowledges_delivery",
+    "robot_confirms_delivery"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_c1c239773e97",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_package_delivery",
+      "expected": "recipient_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "acknowledgment",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+    },
+    {
+      "obligation_id": "obl_69720169f78c",
+      "obligation_type": "sequence",
+      "trigger": "recipient_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "confirmation",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+    }
+  ],
+  "missing_details": [
+    "modality of announcement, acknowledgment, and confirmation (e.g., speech, gesture, button)",
+    "failure behavior if deadlines are exceeded (e.g., retry, abort)",
+    "whether the 8‑second and 1‑second windows start at the end of the preceding utterance or at its onset"
+  ],
+  "potential_ambiguities": [
+    "whether 'acknowledge' requires a verbal response or any action",
+    "whether 'confirm' is a robot utterance or a signal",
+    "whether the timing windows are inclusive or exclusive of the trigger event"
+  ]
+}

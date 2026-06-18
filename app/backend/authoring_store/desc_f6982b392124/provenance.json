@@ -1,0 +1,51 @@
+[
+  {
+    "obligation_id": "obl_dfd376e638b1",
+    "source_type": "scenario_sentence",
+    "source_text": "The robot greets the participant and asks them to confirm the task.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244122Z"
+  },
+  {
+    "obligation_id": "obl_505382ef95ab",
+    "source_type": "scenario_sentence",
+    "source_text": "The participant can confirm by saying yes or by nodding.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244162Z"
+  },
+  {
+    "obligation_id": "obl_6beb0d7aa2fa",
+    "source_type": "scenario_sentence",
+    "source_text": "The participant can confirm by saying yes or by nodding.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244194Z"
+  },
+  {
+    "obligation_id": "obl_c32ca5155cb3",
+    "source_type": "scenario_sentence",
+    "source_text": "If the participant does not respond, the robot should ask again, but only twice.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244209Z"
+  },
+  {
+    "obligation_id": "obl_fe7767fc2ddc",
+    "source_type": "scenario_sentence",
+    "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244229Z"
+  },
+  {
+    "obligation_id": "obl_ba67233a3f3c",
+    "source_type": "scenario_sentence",
+    "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244241Z"
+  },
+  {
+    "obligation_id": "obl_951802f2b0fc",
+    "source_type": "scenario_sentence",
+    "source_text": "If the participant interrupts while the robot is speaking, the robot should stop and acknowledge the interruption before continuing.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:01:15.244252Z"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_a8c2a0618a1b",
+  "structured_summary": "The robot begins speaking. If the human interrupts by speaking, the robot must cease its speech within 1 second and then verbally apologize for the interruption within another 1 second.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_starts_speaking",
+    "human_interrupts_by_speaking",
+    "robot_stops_speaking",
+    "robot_says_sorry"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_d8810ab0b292",
+      "obligation_type": "conditional_sequence",
+      "trigger": "human_interrupts_by_speaking",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 1,
+      "site": "robot_stops_speaking",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second."
+    },
+    {
+      "obligation_id": "obl_b690dd35d08f",
+      "obligation_type": "conditional_sequence",
+      "trigger": "human_interrupts_by_speaking",
+      "expected": "robot_says_sorry",
+      "deadline_seconds": 1,
+      "site": "robot_says_sorry",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What the robot should do after stopping and apologizing (e.g., resume speaking, yield turn).",
+    "Whether the robot must finish the current utterance before stopping or can halt mid‑utterance.",
+    "Exact definition of 'interrupts by speaking' (any vocalization, specific phrase, overlap threshold).",
+    "Consequences if the robot fails to meet the 1‑second deadlines (failure handling, retry policy).",
+    "Whether the apology must be started or completed within 1 second.",
+    "Any modality constraints for the apology (e.g., verbal only, tone, language)."
+  ],
+  "potential_ambiguities": [
+    "The start point for the 1‑second timer (onset of human speech vs. detection of interruption).",
+    "Whether 'stop speaking within 1 second' means the robot's audio output must cease entirely within that window or that the robot must begin the stopping process.",
+    "Whether the two 1‑second windows run sequentially or concurrently.",
+    "What constitutes an acknowledgment: must the robot say the word 'sorry' exactly, or any apology utterance?",
+    "Whether the robot's initial speaking is a predefined script or continuous speech."
+  ]
+}

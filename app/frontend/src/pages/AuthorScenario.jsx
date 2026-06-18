@@ -3,8 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import AuthoringStepper from '../components/AuthoringStepper';
 import { saveDescription, clarifyScenario } from '../api/client';
 
+const PRD_SCENARIOS = [
+  { id: '', label: 'Not a PRD scenario' },
+  { id: 'A1_delivery_success', label: 'A1 delivery success' },
+  { id: 'A2_recipient_does_not_acknowledge', label: 'A2 missing acknowledgment' },
+  { id: 'A3_recipient_acknowledges_too_late', label: 'A3 late acknowledgment' },
+  { id: 'A4_robot_does_not_confirm_delivery', label: 'A4 missing robot confirmation' },
+  { id: 'B1_human_interrupts_robot_stops', label: 'B1 interruption handled' },
+  { id: 'B2_human_interrupts_robot_continues', label: 'B2 robot continues speaking' },
+  { id: 'B3_robot_interrupts_human', label: 'B3 robot interrupts human' },
+  { id: 'B4_robot_stops_but_no_sorry', label: 'B4 missing interruption acknowledgment' },
+  { id: 'C1_retry_success', label: 'C1 retry success' },
+  { id: 'C2_repair_exhausted', label: 'C2 repair exhausted' },
+  { id: 'C3_retry_limit_exceeded', label: 'C3 retry limit exceeded' },
+  { id: 'C4_global_timeout', label: 'C4 global timeout' },
+];
+
 export default function AuthorScenario() {
   const [description, setDescription] = useState('');
+  const [scenarioId, setScenarioId] = useState('');
   const [title, setTitle] = useState('');
   const [robotPlatform, setRobotPlatform] = useState('NAO');
   const [interactionFamily, setInteractionFamily] = useState('turn-taking');
@@ -32,6 +49,7 @@ export default function AuthorScenario() {
       // Step 1: Save description
       const { description_id } = await saveDescription({
         description,
+        scenario_id: scenarioId,
         scenario_title: title,
         robot_platform: robotPlatform,
         interaction_family: interactionFamily,
@@ -100,6 +118,26 @@ export default function AuthorScenario() {
           </div>
 
           <div className="auth-optional-grid">
+            <div>
+              <label className="auth-label">PRD Scenario ID</label>
+              <select
+                id="scenario-id"
+                className="filter-select"
+                style={{ width: '100%' }}
+                value={scenarioId}
+                onChange={e => {
+                  const nextId = e.target.value;
+                  setScenarioId(nextId);
+                  if (nextId && !title.trim()) setTitle(nextId);
+                }}
+              >
+                {PRD_SCENARIOS.map(scenario => (
+                  <option key={scenario.id || 'none'} value={scenario.id}>
+                    {scenario.label}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div>
               <label className="auth-label">Scenario Title</label>
               <input

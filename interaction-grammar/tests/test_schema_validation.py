@@ -12,7 +12,7 @@ import pytest
 import json
 from pathlib import Path
 from jsonschema import ValidationError as JsonSchemaValidationError
-from src.compiler.validator import SchemaValidator, ValidationError
+from src.compiler.validator import SchemaValidator, ValidationError, prepare_contract_for_validation
 
 VALID_CONTRACTS_DIR = Path(__file__).parent.parent / "contracts" / "valid"
 INVALID_CONTRACTS_DIR = Path(__file__).parent.parent / "contracts" / "invalid"
@@ -30,6 +30,19 @@ def test_valid_contracts(validator):
             validator.validate(data)
         except (JsonSchemaValidationError, ValidationError) as e:
             pytest.fail(f"Valid contract {contract_file.name} failed validation: {e}")
+
+def test_locked_contract_metadata_stripped_before_validation(validator):
+    sample = VALID_CONTRACTS_DIR / "bind_simple.json"
+    if not sample.exists():
+        sample = next(VALID_CONTRACTS_DIR.glob("*.json"))
+    with open(sample, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data["_contract_metadata"] = {"contract_id": "test", "version": "1.0", "locked": True}
+    with pytest.raises(JsonSchemaValidationError):
+        validator.validate(data)
+    prepare_contract_for_validation(data)
+    validator.validate(data)
+
 
 def test_invalid_contracts(validator):
     # These files should fail schema validation

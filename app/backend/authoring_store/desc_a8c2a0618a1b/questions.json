@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "q_d04bca3bb163",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The start point for the 1‑second timer (onset of human speech vs. detection of interruption).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_3c9e87d3ccdc",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'stop speaking within 1 second' means the robot's audio output must cease entirely within that window or that the robot must begin the stopping process.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_259178937a65",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the two 1‑second windows run sequentially or concurrently.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_33a5d1a8ff53",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes an acknowledgment: must the robot say the word 'sorry' exactly, or any apology utterance?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c14ab7dc6a3d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot's initial speaking is a predefined script or continuous speech.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

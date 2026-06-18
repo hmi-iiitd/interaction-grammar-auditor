@@ -1,0 +1,12 @@
+{
+  "description": "The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.\n",
+  "scenario_id": "A4_robot_does_not_confirm_delivery",
+  "scenario_title": "A4_robot_does_not_confirm_delivery",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_31a850b9187c",
+  "created_at": "2026-06-18T06:50:11.817065Z",
+  "created_by": "user"
+}

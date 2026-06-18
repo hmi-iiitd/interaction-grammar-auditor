@@ -1,0 +1,51 @@
+[
+  {
+    "obligation_id": "obl_190ffc586001",
+    "source_type": "user_clarification",
+    "source_text": "The interaction begins when the medication schedule triggers a reminder event. → User clarified: 10.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:12:44.533762Z"
+  },
+  {
+    "obligation_id": "obl_3ef24e58d464",
+    "source_type": "scenario_sentence",
+    "source_text": "If no acknowledgement is received within 8 seconds, the robot should repeat the prompt.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705896Z"
+  },
+  {
+    "obligation_id": "obl_b7c8475520c7",
+    "source_type": "scenario_sentence",
+    "source_text": "Once the patient provides a valid acknowledgement, the robot must verbally confirm receipt of the response within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705910Z"
+  },
+  {
+    "obligation_id": "obl_b98a3f141dc3",
+    "source_type": "scenario_sentence",
+    "source_text": "The patient does not respond after two retry attempts.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705922Z"
+  },
+  {
+    "obligation_id": "obl_2d33065fc9e6",
+    "source_type": "scenario_sentence",
+    "source_text": "The robot fails to provide confirmation after receiving an acknowledgement.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705935Z"
+  },
+  {
+    "obligation_id": "obl_bee67e111042",
+    "source_type": "scenario_sentence",
+    "source_text": "The complete interaction should finish within 30 seconds from the initial prompt.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705946Z"
+  },
+  {
+    "obligation_id": "obl_1212d7f222d2",
+    "source_type": "scenario_sentence",
+    "source_text": "If the patient provides an unclear response, the robot may request clarification once.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-02T21:07:59.705957Z"
+  }
+]

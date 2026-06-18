@@ -1,0 +1,11 @@
+{
+  "description": "A NAO robot acts as a museum guide and assists visitors in locating exhibits.\n\nWhen a visitor approaches the information desk and requests directions, the robot should greet the visitor and ask which exhibit they would like to visit. The visitor is expected to provide the exhibit name within 15 seconds.\n\nAfter receiving the exhibit name, the robot must acknowledge the request within 2 seconds and provide navigation instructions. The robot should then ask whether the visitor understood the directions.\n\nThe visitor should respond with either a positive acknowledgement or a request for clarification within 10 seconds.\n\nIf the visitor requests clarification, the robot may repeat the navigation instructions once. After repeating the instructions, the robot should again ask whether the visitor understood.\n\nThe robot must not interrupt the visitor while the visitor is speaking. If the visitor begins speaking, the robot must wait until the visitor has finished before providing any instructions or clarification.\n\nIf no response is received after 10 seconds, the robot may repeat its question up to two times. If the visitor still does not respond after two retries, the interaction is considered unsuccessful.\n\nThe interaction is considered successful when:\n\n1. The robot greets the visitor.\n2. The visitor requests an exhibit.\n3. The robot provides navigation instructions.\n4. The visitor confirms understanding.\n\nThe interaction is considered unsuccessful when:\n\n1. The robot interrupts the visitor.\n2. The robot fails to provide navigation instructions after receiving a request.\n3. The visitor does not respond after two retry attempts.\n4. Any timing constraints are violated.\n\nThe complete interaction should finish within 60 seconds from the initial greeting.\n",
+  "scenario_title": "Museum Guide Navigation Assistance",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "visitor",
+  "notes": "Robot guides visitors to exhibits and provides navigation assistance.",
+  "description_id": "desc_65d5f9d61e8e",
+  "created_at": "2026-06-03T06:25:43.465975Z",
+  "created_by": "user"
+}

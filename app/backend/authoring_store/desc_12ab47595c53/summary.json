@@ -1,0 +1,51 @@
+{
+  "description_id": "desc_12ab47595c53",
+  "structured_summary": "The robot announces a package delivery. The recipient must acknowledge the delivery within 8 seconds. After acknowledgment, the robot must confirm the delivery within 1 second.",
+  "actors": [
+    "robot",
+    "recipient"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "recipient_acknowledges_delivery",
+    "robot_confirms_delivery"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_aa711551ce68",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "recipient_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "recipient_acknowledges_delivery",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+    },
+    {
+      "obligation_id": "obl_146de4aa3cd0",
+      "obligation_type": "sequence",
+      "trigger": "recipient_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "robot_confirms_delivery",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What happens if the recipient does not acknowledge within 8 seconds?",
+    "What happens if the robot does not confirm within 1 second?",
+    "Modalities for announcement, acknowledgment, and confirmation (e.g., speech, gesture, screen)."
+  ],
+  "potential_ambiguities": [
+    "The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+    "The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+    "The scenario does not specify whether the 8-second deadline starts immediately after the announcement or after some other event."
+  ]
+}

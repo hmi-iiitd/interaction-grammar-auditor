@@ -1,0 +1,53 @@
+{
+  "description_id": "desc_2273f27d6d39",
+  "structured_summary": "The robot announces a package delivery; the recipient must acknowledge the delivery within 8 seconds of the announcement, after which the robot must confirm the delivery within 1 second of receiving the acknowledgment.",
+  "actors": [
+    "robot",
+    "recipient"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "recipient_acknowledges_delivery",
+    "robot_confirms_delivery"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_109eb7afeba0",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "recipient_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "recipient_acknowledges_delivery",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+    },
+    {
+      "obligation_id": "obl_04a7c1223791",
+      "obligation_type": "sequence",
+      "trigger": "recipient_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "robot_confirms_delivery",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What constitutes an acknowledgment (e.g., speech, button press, gesture)?",
+    "What constitutes a confirmation (e.g., speech, display, LED)?",
+    "Failure handling if the recipient does not acknowledge within 8 seconds.",
+    "Failure handling if the robot does not confirm within 1 second.",
+    "Whether the timing windows start at the beginning or end of the announcement/acknowledgment."
+  ],
+  "potential_ambiguities": [
+    "The start time for the 8‑second acknowledgment window is not specified (does it begin at the start or end of the announcement?).",
+    "The modality of acknowledgment and confirmation is unspecified (verbal, gestural, button).",
+    "The terms 'acknowledge' and 'confirm' may be interpreted differently across participants."
+  ]
+}

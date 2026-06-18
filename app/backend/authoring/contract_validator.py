@@ -28,7 +28,12 @@ if str(_IG_DIR) not in sys.path:
     sys.path.insert(0, str(_IG_DIR))
 
 try:
-    from src.compiler.validator import SchemaValidator, SemanticValidator, ValidationError
+    from src.compiler.validator import (
+        SchemaValidator,
+        SemanticValidator,
+        ValidationError,
+        prepare_contract_for_validation,
+    )
     from src.compiler.parser import ContractParser, ParserError
     from src.compiler.constraint_parser import ConstraintError
     from jsonschema import ValidationError as JsonSchemaError
@@ -58,10 +63,13 @@ def validate_contract(contract_json: Dict[str, Any]) -> ValidationResult:
 
     schema_path = _IG_DIR / "schema" / "schema.json"
 
+    contract_for_validation = dict(contract_json)
+    prepare_contract_for_validation(contract_for_validation)
+
     # 1. Schema validation
     try:
         sv = SchemaValidator(str(schema_path))
-        sv.validate(contract_json)
+        sv.validate(contract_for_validation)
         result.schema_valid = True
         logger.info("Schema validation: PASSED")
     except JsonSchemaError as e:
@@ -75,7 +83,7 @@ def validate_contract(contract_json: Dict[str, Any]) -> ValidationResult:
     ast = None
     try:
         parser = ContractParser()
-        ast = parser.parse(contract_json)
+        ast = parser.parse(contract_for_validation)
         result.repair_sites_valid = True  # Parsing succeeded = sites are valid
         logger.info("AST parsing: PASSED")
     except ParserError as e:

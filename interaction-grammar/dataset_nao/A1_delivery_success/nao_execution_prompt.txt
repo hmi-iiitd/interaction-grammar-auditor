@@ -1,0 +1,1 @@
+Robot announces delivery; participant acknowledges within 8 seconds; robot confirms within 1 second.

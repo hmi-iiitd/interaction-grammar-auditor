@@ -1,0 +1,16 @@
+[
+  {
+    "obligation_id": "obl_c1c239773e97",
+    "source_type": "scenario_sentence",
+    "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-18T06:45:41.012546Z"
+  },
+  {
+    "obligation_id": "obl_69720169f78c",
+    "source_type": "scenario_sentence",
+    "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-18T06:45:41.012559Z"
+  }
+]

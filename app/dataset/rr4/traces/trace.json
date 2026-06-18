@@ -1,0 +1,48 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "medication_schedule_triggers_reminder",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "medication_schedule_triggers_reminder",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 12.0,
+      "agent": "human_1",
+      "event_type": "robot_greets_and_prompts",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_greets_and_prompts",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 15.0,
+      "agent": "robot_1",
+      "event_type": "patient_responds",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "patient_responds",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 16.0,
+      "agent": "human_1",
+      "event_type": "robot_confirms_receipt",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_confirms_receipt",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

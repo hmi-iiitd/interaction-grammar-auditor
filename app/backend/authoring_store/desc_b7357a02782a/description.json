@@ -1,0 +1,11 @@
+{
+  "description": "the robot  has to hand a delivery package at home first it should greet then it should give package after response then leave package after grasped by human then it should acknowedge and leave\n ",
+  "scenario_title": "Delivery",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "",
+  "notes": "",
+  "description_id": "desc_b7357a02782a",
+  "created_at": "2026-06-01T13:46:03.025073Z",
+  "created_by": "user"
+}

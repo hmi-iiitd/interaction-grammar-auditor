@@ -72,10 +72,10 @@ def load_scenario(scenario_path: str) -> ScenarioPackage:
         
         try:
             if rel_path.endswith(".yaml") or rel_path.endswith(".yml"):
-                with open(file_path) as f:
+                with open(file_path, "r", encoding="utf-8") as f:
                     loaded[key] = yaml.safe_load(f)
             elif rel_path.endswith(".json"):
-                with open(file_path) as f:
+                with open(file_path, "r", encoding="utf-8") as f:
                     loaded[key] = json.load(f)
         except json.JSONDecodeError as e:
             raise LoaderError(f"Malformed JSON in {rel_path}: {e}")
@@ -87,7 +87,7 @@ def load_scenario(scenario_path: str) -> ScenarioPackage:
         file_path = folder / rel_path
         if file_path.exists():
             try:
-                with open(file_path) as f:
+                with open(file_path, "r", encoding="utf-8") as f:
                     loaded[key] = json.load(f)
             except json.JSONDecodeError as e:
                 raise LoaderError(f"Malformed JSON in {rel_path}: {e}")
