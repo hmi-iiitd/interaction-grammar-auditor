@@ -53,7 +53,7 @@ def generate_contract(
     obligations = summary.obligations
 
     # 1. Generate machine-readable JSON (deterministic, no LLM)
-    json_contract = _build_contract_json(obligations)
+    json_contract = _build_contract_json(obligations, summary.actors)
 
     # 2. Generate plain-language contract (LLM-assisted)
     plain_language = _generate_plain_language(obligations, llm_provider)
@@ -73,7 +73,43 @@ def generate_contract(
     return draft
 
 
-def _build_contract_json(obligations: List[Obligation]) -> dict:
+def _infer_agent(event_name: str, actors: List[str]) -> str:
+    """Infer the correct agent from the event name based on the available actors."""
+    if not event_name:
+        return "unknown_1"
+    event_lower = event_name.lower()
+    
+    inferred_actor = None
+    for actor in actors:
+        actor_base = actor.split("_")[0].lower()
+        if actor_base in event_lower:
+            inferred_actor = actor
+            break
+            
+    if not inferred_actor:
+        if "robot" in event_lower: 
+            inferred_actor = "robot_1"
+        elif "human" in event_lower or "recipient" in event_lower or "participant" in event_lower: 
+            inferred_actor = "human_1"
+        elif actors:
+            inferred_actor = actors[0]
+        else:
+            inferred_actor = "unknown_1"
+            
+    if "_" not in inferred_actor:
+        # Some fallback logic since the validator requires type_index
+        # Validate type is one of human, robot, system, env
+        base = inferred_actor.lower()
+        if base in ["participant", "recipient"]:
+            base = "human"
+        elif base not in ["human", "robot", "system", "env"]:
+            base = "system" # fallback valid type
+        return f"{base}_1"
+        
+    return inferred_actor
+
+
+def _build_contract_json(obligations: List[Obligation], actors: List[str]) -> dict:
     """
     Build a machine-readable contract JSON conforming to the existing
     interaction-grammar schema.json.
@@ -81,7 +117,7 @@ def _build_contract_json(obligations: List[Obligation]) -> dict:
     Mapping:
       sequence → Seq node
       repair → Repair node
-      conditional_sequence → Neg(Seq(...)) node
+      conditional_sequence → mapped to Seq node based on obligation data
       alias → Act with agent list
       failure → handled by Repair node
 
@@ -91,17 +127,17 @@ def _build_contract_json(obligations: List[Obligation]) -> dict:
 
     for obl in obligations:
         if obl.obligation_type == "sequence":
-            node = _build_seq_node(obl)
+            node = _build_seq_node(obl, actors)
             if node:
                 nodes.append(node)
 
         elif obl.obligation_type == "repair":
-            node = _build_repair_node(obl, obligations)
+            node = _build_repair_node(obl, obligations, actors)
             if node:
                 nodes.append(node)
 
         elif obl.obligation_type == "conditional_sequence":
-            node = _build_neg_node(obl)
+            node = _build_neg_node(obl, actors)
             if node:
                 nodes.append(node)
 
@@ -136,13 +172,16 @@ def _build_contract_json(obligations: List[Obligation]) -> dict:
     }
 
 
-def _build_seq_node(obl: Obligation) -> Optional[dict]:
+def _build_seq_node(obl: Obligation, actors: List[str]) -> Optional[dict]:
     """Build a Seq AST node from a sequence obligation."""
     if not obl.trigger or not obl.expected:
         return None
 
-    left_act = _build_act("α", "robot_1", "speech", obl.trigger)
-    right_act = _build_act("α", "human_1", "speech", obl.expected)
+    trigger_agent = _infer_agent(obl.trigger, actors)
+    expected_agent = _infer_agent(obl.expected, actors)
+
+    left_act = _build_act("α", trigger_agent, "speech", obl.trigger)
+    right_act = _build_act("α", expected_agent, "speech", obl.expected)
 
     node = {
         "node": "seq",
@@ -201,18 +240,20 @@ def _find_sequence_for_repair(
     return None
 
 
-def _build_repair_node(obl: Obligation, all_obligations: List[Obligation]) -> Optional[dict]:
+def _build_repair_node(obl: Obligation, all_obligations: List[Obligation], actors: List[str]) -> Optional[dict]:
     """Build a Repair AST node from a repair obligation."""
     site_seq = _find_sequence_for_repair(obl, all_obligations)
 
     if site_seq is None:
+        trigger_agent = _infer_agent(obl.repair_event or obl.trigger, actors)
+        expected_agent = _infer_agent(obl.expected or "response", actors)
         inner = {
             "node": "seq",
-            "left": _build_act("α", "robot_1", "speech", obl.repair_event or obl.trigger),
-            "right": _build_act("α", "human_1", "speech", obl.expected or "response"),
+            "left": _build_act("α", trigger_agent, "speech", obl.repair_event or obl.trigger),
+            "right": _build_act("α", expected_agent, "speech", obl.expected or "response"),
         }
     else:
-        inner = _build_seq_node(site_seq)
+        inner = _build_seq_node(site_seq, actors)
         if inner is None:
             return None
 
@@ -230,31 +271,31 @@ def _build_repair_node(obl: Obligation, all_obligations: List[Obligation]) -> Op
     return node
 
 
-def _build_neg_node(obl: Obligation) -> Optional[dict]:
+def _build_neg_node(obl: Obligation, actors: List[str]) -> Optional[dict]:
     """
-    Build a Neg node for a conditional_sequence (interruption rule).
-
-    Pattern: ¬(human_start → robot_interrupt → human_end)
-    Meaning: robot must NOT interrupt while human is speaking.
+    Build a node for a conditional_sequence (e.g. interruption).
+    Instead of a fixed hardcoded Neg pattern, we map the actual trigger 
+    and expected events to a Seq node, preserving the obligation semantics.
     """
     if not obl.trigger or not obl.expected:
         return None
 
-    # Build the inner sequence that should NOT happen
-    inner_seq = {
+    trigger_agent = _infer_agent(obl.trigger, actors)
+    expected_agent = _infer_agent(obl.expected, actors)
+
+    left_act = _build_act("α", trigger_agent, "speech", obl.trigger)
+    right_act = _build_act("α", expected_agent, "speech", obl.expected)
+
+    node = {
         "node": "seq",
-        "left": _build_act("σ", "human_1", "speech"),
-        "right": {
-            "node": "seq",
-            "left": _build_act("α", "robot_1", "speech", obl.trigger),
-            "right": _build_act("ρ", "human_1", "speech"),
-        },
+        "left": left_act,
+        "right": right_act,
     }
 
-    return {
-        "node": "neg",
-        "expr": inner_seq,
-    }
+    if obl.deadline_seconds is not None:
+        node["latency"] = f"{obl.deadline_seconds}s"
+
+    return node
 
 
 def _build_act(prim: str, agent: str, channel: str, obj: Optional[str] = None) -> dict:

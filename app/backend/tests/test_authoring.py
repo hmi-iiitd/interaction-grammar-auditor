@@ -252,7 +252,7 @@ class TestContractGenerator:
                 site="ack",
             ),
         ]
-        result = _build_contract_json(obls)
+        result = _build_contract_json(obls, ["robot_1", "human_1"])
         assert result["node"] == "seq"
         assert result["latency"] == "2.0s"
 
@@ -298,7 +298,7 @@ class TestContractGenerator:
                 max_retries=2,
             ),
         ]
-        result = _build_contract_json(obls)
+        result = _build_contract_json(obls, ["robot_1", "human_1"])
         assert result["node"] == "bind"
         assert len(result["items"]) == 2
 
@@ -321,7 +321,7 @@ class TestContractGenerator:
                 max_retries=1,
             ),
         ]
-        result = _build_contract_json(obls)
+        result = _build_contract_json(obls, ["robot_1", "human_1"])
         repair = next(n for n in result["items"] if n["node"] == "repair")
         expr_objects = {
             repair["expr"]["left"]["object"],

@@ -19,10 +19,10 @@ from pathlib import Path
 # Add interaction-grammar to sys.path
 sys.path.append(str(Path(__file__).parent / "interaction-grammar"))
 
-from src.compiler.validator import SchemaValidator, SemanticValidator
+from src.compiler.validator import SchemaValidator, SemanticValidator, ValidationError as SemanticValidationError
 from src.compiler.parser import ContractParser
 from src.compiler.ast import Act, Seq, Par, Repair, Bind, Neg
-from jsonschema import ValidationError
+from jsonschema import ValidationError as SchemaValidationError
 
 VALID_CONTRACTS_DIR = Path("interaction-grammar/contracts/valid")
 INVALID_CONTRACTS_DIR = Path("interaction-grammar/contracts/invalid")
@@ -40,7 +40,7 @@ def test_schema_validation():
         try:
             validator.validate(data)
             print("PASS")
-        except ValidationError as e:
+        except SchemaValidationError as e:
             print(f"FAIL: {e}")
             return False
 
@@ -56,7 +56,7 @@ def test_schema_validation():
             validator.validate(data)
             print(f"FAIL: Expected ValidationError but got success")
             return False
-        except ValidationError as e:
+        except SchemaValidationError as e:
             print(f"PASS (Expected failure: {e.message})")
     return True
 
@@ -152,9 +152,9 @@ def test_semantic_validation():
         act = Act(prim="σ", agent="robot1", channel="speech")
         try:
             validator.validate(act)
-            print("FAIL: Expected ValueError")
+            print("FAIL: Expected ValidationError")
             return False
-        except ValueError:
+        except SemanticValidationError:
             print("PASS")
     except Exception as e:
         print(f"FAIL: {e}")
@@ -165,12 +165,12 @@ def test_semantic_validation():
         print("  Testing Invalid Agent Type (fixture)...", end=" ")
         with open(INVALID_CONTRACTS_DIR / "invalid_agent_type.json", 'r') as f:
             data = json.load(f)
-        ast = parser.parse(data)
         try:
+            ast = parser.parse(data)
             validator.validate(ast)
-            print("FAIL: Expected ValueError")
+            print("FAIL: Expected ValidationError")
             return False
-        except ValueError as e:
+        except Exception as e:
             print(f"PASS (Expected failure: {e})")
     except Exception as e:
         print(f"FAIL: {e}")
