@@ -6,6 +6,7 @@ it automatically retries with the fallback key.
 """
 
 import logging
+import time
 from openai import OpenAI
 
 from llm.provider import LLMProvider
@@ -20,7 +21,7 @@ class NIMProvider(LLMProvider):
         model: str,
         base_url: str = "https://integrate.api.nvidia.com/v1",
         temperature: float = 0.1,
-        max_tokens: int = 2048,
+        max_tokens: int = 4096,
         fallback_model: str | None = None,
     ):
         self.api_keys = [k for k in api_keys if k]  # filter empty
@@ -43,23 +44,36 @@ class NIMProvider(LLMProvider):
             api_key=self.api_keys[self._current_key_idx],
         )
 
-    def _call(self, system_prompt: str, user_prompt: str, model: str) -> str:
+    def _call(self, system_prompt: str, user_prompt: str, model: str, json_mode: bool = False) -> str:
         client = self._get_client()
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
+
+        kwargs = {
+            "model": model,
+            "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
             ],
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-        )
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+        }
+
+        if json_mode:
+            kwargs["response_format"] = { "type": "json_object" }
+
+        response = client.chat.completions.create(**kwargs)
         return response.choices[0].message.content
 
-    def generate(self, system_prompt: str, user_prompt: str) -> str:
+    def _sleep_for_retry(self, error_msg: str, attempt: int) -> None:
+        if "429" not in error_msg:
+            return
+        delay = min(2 ** attempt, 8)
+        logger.info("Rate limit hit (429). Sleeping for %s seconds before retrying...", delay)
+        time.sleep(delay)
+
+    def generate(self, system_prompt: str, user_prompt: str, json_mode: bool = False) -> str:
         """
         Generate with automatic key rotation and model fallback.
-        
+
         Tries: primary key + primary model
              → fallback key + primary model
              → primary key + fallback model
@@ -70,12 +84,16 @@ class NIMProvider(LLMProvider):
         for attempt in range(len(self.api_keys)):
             try:
                 logger.info(f"NIM call: model={self.model}, key_idx={self._current_key_idx}")
-                result = self._call(system_prompt, user_prompt, self.model)
+                result = self._call(system_prompt, user_prompt, self.model, json_mode=json_mode)
                 logger.info(f"NIM success: {len(result)} chars")
                 return result
             except Exception as e:
+                error_msg = str(e)
                 errors.append(f"key_{self._current_key_idx}/{self.model}: {e}")
                 logger.warning(f"NIM key {self._current_key_idx} failed: {e}")
+
+                self._sleep_for_retry(error_msg, attempt)
+
                 self._current_key_idx = (self._current_key_idx + 1) % len(self.api_keys)
 
         # Try fallback model if available
@@ -83,12 +101,16 @@ class NIMProvider(LLMProvider):
             for attempt in range(len(self.api_keys)):
                 try:
                     logger.info(f"NIM fallback: model={self.fallback_model}, key_idx={self._current_key_idx}")
-                    result = self._call(system_prompt, user_prompt, self.fallback_model)
+                    result = self._call(system_prompt, user_prompt, self.fallback_model, json_mode=json_mode)
                     logger.info(f"NIM fallback success: {len(result)} chars")
                     return result
                 except Exception as e:
+                    error_msg = str(e)
                     errors.append(f"key_{self._current_key_idx}/{self.fallback_model}: {e}")
                     logger.warning(f"NIM fallback key {self._current_key_idx} failed: {e}")
+
+                    self._sleep_for_retry(error_msg, attempt)
+
                     self._current_key_idx = (self._current_key_idx + 1) % len(self.api_keys)
 
         error_detail = "; ".join(errors)

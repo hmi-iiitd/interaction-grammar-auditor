@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_0c6a164ae246",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_announces_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_a5cfee40a7a8",
+    "required": true
+  },
+  {
+    "question_id": "q_3bad984fe271",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'expected to acknowledge' could be interpreted as an obligation or a suggestion.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e593b1efa184",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The acknowledgment modality 'head nod' may be difficult for the robot to detect reliably.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_6ab359543cd9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The scenario title suggests a failure case (user does not acknowledge), but the description only covers the success path.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

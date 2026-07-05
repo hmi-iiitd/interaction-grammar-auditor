@@ -1,25 +1,41 @@
 {
   "questions": [
     {
-      "question_id": "q_ed010cbbc545",
+      "question_id": "q_91c28ed846b7",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "question_text": "Clarification needed: Whether 'within 8 seconds' measures from the start or end of the robot's announcement speech",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_ac04d3d7f9e2",
+      "question_id": "q_8d4d561bdfb2",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "question_text": "Clarification needed: Whether 'within 1 second' measures from the start or end of the user's acknowledgment speech",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_9a4e50c64a22",
+      "question_id": "q_1f71722de0d4",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The scenario title suggests the recipient does not acknowledge, but the description assumes acknowledgment occurs; the failure case is not described.",
+      "question_text": "Clarification needed: What constitutes a valid acknowledgment (specific words or any speech)",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_07264b407fc7",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: What constitutes a valid final confirmation",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_b991319ec5a0",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received (not specified)",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -27,22 +43,34 @@
   ],
   "answers": [
     {
-      "question_id": "q_ed010cbbc545",
-      "answer_text": "verbal only",
+      "question_id": "q_91c28ed846b7",
+      "answer_text": "end of the robot's announcement speech",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:37:44.742045Z"
+      "answered_at": "2026-06-23T18:35:58.248827Z"
     },
     {
-      "question_id": "q_ac04d3d7f9e2",
-      "answer_text": "verbal confirmation",
+      "question_id": "q_8d4d561bdfb2",
+      "answer_text": "end of the user's acknowledgment speech",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:37:44.742063Z"
+      "answered_at": "2026-06-23T18:35:58.248853Z"
     },
     {
-      "question_id": "q_9a4e50c64a22",
+      "question_id": "q_1f71722de0d4",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:37:44.742067Z"
+      "answered_at": "2026-06-23T18:35:58.248864Z"
+    },
+    {
+      "question_id": "q_07264b407fc7",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-23T18:35:58.248873Z"
+    },
+    {
+      "question_id": "q_b991319ec5a0",
+      "answer_text": "no",
+      "selected_options": [],
+      "answered_at": "2026-06-23T18:35:58.248882Z"
     }
   ]
 }

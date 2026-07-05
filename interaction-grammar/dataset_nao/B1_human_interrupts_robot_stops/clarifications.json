@@ -1,17 +1,31 @@
 {
   "questions": [
     {
-      "question_id": "q_3e1deb9458aa",
+      "question_id": "q_73a5a847ad7c",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_provides_guidelines",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_53c6aa87524b",
+      "required": true
+    },
+    {
+      "question_id": "q_043fd525a858",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: Whether the 1\u2011second deadline for stopping speaking and the 1\u2011second deadline for saying sorry are independent (both must be completed within 1\u202fs of the interruption) or sequential (stop within 1\u202fs, then sorry within another 1\u202fs)",
+      "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' could be interpreted as stopping within 2 seconds after the acknowledgment, or within 2 seconds of the interruption. The text says 'first acknowledge... within 2 seconds, and then immediately stop speaking within 2 seconds.' This suggests two separate deadlines: one for acknowledgment (2s) and one for stopping (2s after acknowledgment).",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_2fc9ecb69faa",
+      "question_id": "q_c9164c16a405",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: Exact wording of the apology (e.g., 'sorry' vs. 'Sorry.')",
+      "question_text": "Clarification needed: The obligation 'robot must not interrupt the human while they are speaking' is a general constraint, but it is not clear if it applies only during the robot's guideline delivery or at all times. It is listed as a failure condition.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -19,16 +33,24 @@
   ],
   "answers": [
     {
-      "question_id": "q_3e1deb9458aa",
-      "answer_text": "are independent",
-      "selected_options": [],
-      "answered_at": "2026-06-18T07:00:02.558123Z"
+      "question_id": "q_73a5a847ad7c",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-07-04T13:26:37.973408Z"
     },
     {
-      "question_id": "q_2fc9ecb69faa",
-      "answer_text": "Sorry",
+      "question_id": "q_043fd525a858",
+      "answer_text": "yes separate",
       "selected_options": [],
-      "answered_at": "2026-06-18T07:00:02.558135Z"
+      "answered_at": "2026-07-04T13:26:37.973440Z"
+    },
+    {
+      "question_id": "q_c9164c16a405",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-07-04T13:26:37.973452Z"
     }
   ]
 }

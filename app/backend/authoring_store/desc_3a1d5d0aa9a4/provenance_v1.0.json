@@ -1,0 +1,16 @@
+[
+  {
+    "obligation_id": "obl_fc0bbc7c63de",
+    "source_type": "scenario_sentence",
+    "source_text": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T07:47:51.439526Z"
+  },
+  {
+    "obligation_id": "obl_0dad2363f35e",
+    "source_type": "scenario_sentence",
+    "source_text": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T07:47:51.439552Z"
+  }
+]

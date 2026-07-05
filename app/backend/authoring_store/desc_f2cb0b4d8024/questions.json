@@ -1,0 +1,32 @@
+[
+  {
+    "question_id": "q_73a5a847ad7c",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_53c6aa87524b",
+    "required": true
+  },
+  {
+    "question_id": "q_043fd525a858",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' could be interpreted as stopping within 2 seconds after the acknowledgment, or within 2 seconds of the interruption. The text says 'first acknowledge... within 2 seconds, and then immediately stop speaking within 2 seconds.' This suggests two separate deadlines: one for acknowledgment (2s) and one for stopping (2s after acknowledgment).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c9164c16a405",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The obligation 'robot must not interrupt the human while they are speaking' is a general constraint, but it is not clear if it applies only during the robot's guideline delivery or at all times. It is listed as a failure condition.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

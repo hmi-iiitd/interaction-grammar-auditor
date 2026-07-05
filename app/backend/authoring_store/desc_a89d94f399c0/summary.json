@@ -1,0 +1,83 @@
+{
+  "description_id": "desc_a89d94f399c0",
+  "structured_summary": "In a high-traffic reception area, a robot interacts with a user to confirm a critical task. The robot prompts the user via speech. The user must respond within 3 seconds. If no response within 3 seconds, the robot retries the prompt exactly once. After a successful response or retry, the user must acknowledge the prompt's intent. Each prompt attempt has a total time of 3 seconds.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_prompts_user",
+    "user_responds",
+    "robot_retries_prompt",
+    "user_acknowledges_intent",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_e79e2876f9ff",
+      "obligation_type": "sequence",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds",
+      "deadline_seconds": 3.0,
+      "site": "high-traffic reception area",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot should prompt the user via speech."
+    },
+    {
+      "obligation_id": "obl_ed9dfc6c8646",
+      "obligation_type": "failure",
+      "trigger": "user_responds",
+      "expected": "robot_retries_prompt",
+      "deadline_seconds": 3,
+      "site": "high-traffic reception area",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": 1,
+      "condition": "if user does not respond within 3 seconds",
+      "source_sentence": "If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+    },
+    {
+      "obligation_id": "obl_fdaf95b21159",
+      "obligation_type": "sequence",
+      "trigger": "user_responds",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "high-traffic reception area",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    },
+    {
+      "obligation_id": "obl_a7501c212f9f",
+      "obligation_type": "sequence",
+      "trigger": "robot_retries_prompt",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "high-traffic reception area",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    }
+  ],
+  "missing_details": [
+    "What constitutes a 'successful response' (e.g., specific content or format)?",
+    "What happens if the user does not respond after the retry?",
+    "Is there a deadline for the acknowledgment after a response?",
+    "What is the modality for the user's response and acknowledgment (e.g., speech, gesture)?",
+    "Obligation obl_e79e2876f9ff: deadline 3s may be invented — source sentence has no numeric value. Setting to null."
+  ],
+  "potential_ambiguities": [
+    "The phrase 'total time for each prompt attempt is 3 seconds' could mean the robot's prompt duration or the entire attempt cycle.",
+    "The relationship between the 3-second response window and the 3-second total attempt time is unclear.",
+    "Whether the acknowledgment is required after both initial response and retry response is ambiguous."
+  ]
+}

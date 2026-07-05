@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_3a1d5d0aa9a4",
+  "structured_summary": "The robot delivers instructional guidelines to a human. If the human interrupts by speaking, the robot must acknowledge the interruption by saying 'sorry' within 2 seconds, and then cease its own speech within another 2 seconds.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "human_interrupts [suggested]",
+    "robot_acknowledge_sorry [suggested]",
+    "robot_stop_speaking [suggested]",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_fc0bbc7c63de",
+      "obligation_type": "sequence",
+      "trigger": "human_interrupts [suggested]",
+      "expected": "robot_acknowledge_sorry [suggested]",
+      "deadline_seconds": 2,
+      "site": "robot_acknowledge_sorry_[suggested]",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_0dad2363f35e",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledge_sorry [suggested]",
+      "expected": "robot_stop_speaking [suggested]",
+      "deadline_seconds": 2,
+      "site": "robot_stop_speaking_[suggested]",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "Definition of what counts as an interruption (any speech, specific phrase, volume threshold)",
+    "Robot's initial speaking state (must be speaking guidelines at time of interruption)",
+    "Consequences if robot fails to acknowledge or stop speaking within deadlines",
+    "Whether the 2‑second stop‑speaking timer starts after acknowledgment completion or from the interruption moment"
+  ],
+  "potential_ambiguities": [
+    "The phrase \"immediately stop speaking within 2 seconds\" is ambiguous about the start point of the 2‑second window",
+    "Whether overlapping speech (robot and human speaking simultaneously) satisfies the acknowledgment requirement",
+    "How to handle multiple successive interruptions"
+  ]
+}

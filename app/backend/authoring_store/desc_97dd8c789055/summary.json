@@ -1,0 +1,54 @@
+{
+  "description_id": "desc_97dd8c789055",
+  "structured_summary": "The robot begins speaking. If the human interrupts by speaking, the robot must stop speaking within 1 second and then acknowledge the interruption by saying sorry within 1 second.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_starts_speaking",
+    "human_interrupts_by_speaking",
+    "robot_stops_speaking",
+    "robot_says_sorry"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_b0ec30faec8a",
+      "obligation_type": "conditional_sequence",
+      "trigger": "human_interrupts_by_speaking",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 1,
+      "site": "B1_human_interrupts_robot_stops",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "human_interrupts_by_speaking occurs while robot is speaking",
+      "source_sentence": "If the human interrupts by speaking, the robot must stop speaking within 1 second"
+    },
+    {
+      "obligation_id": "obl_a776207e1265",
+      "obligation_type": "sequence",
+      "trigger": "robot_stops_speaking",
+      "expected": "robot_says_sorry",
+      "deadline_seconds": 1,
+      "site": "B1_human_interrupts_robot_stops",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "and acknowledge the interruption by saying sorry within 1 second"
+    }
+  ],
+  "missing_details": [
+    "What happens if the robot fails to stop speaking within 1 second?",
+    "What happens if the robot fails to say sorry within 1 second?",
+    "Is there a maximum number of interruptions allowed?",
+    "Does the robot resume speaking after acknowledging?",
+    "Is the human's interruption required to be verbal only?"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'within 1 second' could apply to both stopping and apologizing separately or to the combined action.",
+    "It is unclear whether the robot must stop speaking before saying sorry, or if saying sorry can overlap with stopping.",
+    "The scenario does not specify if the robot should wait for the human to finish speaking before apologizing."
+  ]
+}

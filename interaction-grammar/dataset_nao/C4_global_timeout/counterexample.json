@@ -1,0 +1,37 @@
+{
+  "scenario_id": "C4_global_timeout",
+  "violation_id": "v001",
+  "violated_obligation": "After e004, system must observe human_1_user_acknowledges_intent within 3.0s",
+  "trigger": {
+    "event_id": "e004",
+    "time": 6.69,
+    "description": "latency at 6.69s"
+  },
+  "expected": {
+    "event": "human_1_user_acknowledges_intent",
+    "time_window": "(6.69s, 9.690000000000001s]"
+  },
+  "observed": {
+    "event": "human_1_user_acknowledges_intent",
+    "description": "human_1_user_acknowledges_intent observed"
+  },
+  "falsification": {
+    "time": 9.69,
+    "description": "Violation detected at 9.69s — human_1_user_acknowledges_intent not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "timing",
+  "evidence_window": {
+    "start": 6.19,
+    "end": 10.69,
+    "events": [
+      {
+        "event_id": "e004",
+        "timestamp": 6.69,
+        "event_type": "user_responds_to_prompt",
+        "agent": "human_1",
+        "details": "user_responds_to_prompt"
+      }
+    ]
+  }
+}

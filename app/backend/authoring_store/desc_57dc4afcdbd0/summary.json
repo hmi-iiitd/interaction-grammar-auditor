@@ -1,0 +1,60 @@
+{
+  "description_id": "desc_57dc4afcdbd0",
+  "structured_summary": "The robot delivers instructional guidelines to a human. If the human interrupts by speaking, the robot must first apologize by saying 'sorry' via speech within 2 seconds, and then cease its own speech within another 2 seconds.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_start_instruction",
+    "human_interrupts_robot",
+    "robot_says_sorry",
+    "robot_stops_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_e854e069d70c",
+      "obligation_type": "sequence",
+      "trigger": "human_interrupts_robot",
+      "expected": "robot_says_sorry",
+      "deadline_seconds": 2,
+      "site": "robot_says_sorry",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_e23f601c1fc8",
+      "obligation_type": "sequence",
+      "trigger": "robot_says_sorry",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 2,
+      "site": "robot_stops_speaking",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "What happens after the robot stops speaking (e.g., resumes instruction, waits for human response)",
+    "Whether the robot should retry the apology if not heard or understood",
+    "Exact wording required for the apology ('sorry')",
+    "Definition of an interrupt (any human speech vs. specific trigger phrase)",
+    "Whether the 2-second timers start at the onset of the human's interruption or at its end",
+    "What occurs if the robot fails to meet either deadline"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 2 seconds' is ambiguous: does it mean stop within 2 seconds after the apology, or within 2 seconds total from the interruption?",
+    "The term 'immediately' conflicts with the allowed 2-second window.",
+    "Whether the robot must stop speaking even if it was not speaking at the moment of interruption."
+  ]
+}

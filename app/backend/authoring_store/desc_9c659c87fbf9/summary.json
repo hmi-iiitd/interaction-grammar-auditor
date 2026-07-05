@@ -1,0 +1,62 @@
+{
+  "description_id": "desc_9c659c87fbf9",
+  "structured_summary": "The robot announces the package delivery via speech. The user must acknowledge the delivery (by speech or head nod) within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must give a final confirmation of delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot announces delivery",
+    "user acknowledges delivery",
+    "robot provides final confirmation",
+    "speech",
+    "head nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_acf75856a26e",
+      "obligation_type": "sequence",
+      "trigger": "robot announces delivery",
+      "expected": "user acknowledges delivery",
+      "deadline_seconds": 8,
+      "site": "office",
+      "modalities": [
+        "speech",
+        "head nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_cd298edb9ad9",
+      "obligation_type": "sequence",
+      "trigger": "user acknowledges delivery",
+      "expected": "robot provides final confirmation",
+      "deadline_seconds": 1,
+      "site": "office",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "Consequences if the user fails to acknowledge within 8 seconds (e.g., retry, abort, escalation)",
+    "Consequences if the robot fails to provide the final confirmation within 1 second",
+    "How the robot detects a head‑nod acknowledgment (sensor thresholds, duration, confidence)",
+    "Exact wording or content of the robot's announcement and final confirmation speech",
+    "Whether the 8‑second and 1‑second timers start at the end of the speech utterance or at its beginning"
+  ],
+  "potential_ambiguities": [
+    "Whether acknowledgment via speech requires a specific phrase or any utterance",
+    "Whether a head nod must be detected with a certain confidence level or by specific sensors",
+    "Whether the time limits are hard deadlines or soft guidelines",
+    "Whether the robot should repeat the announcement if no acknowledgment is received",
+    "Whether the final confirmation must be spoken immediately after acknowledgment or can be delayed up to 1 second"
+  ]
+}

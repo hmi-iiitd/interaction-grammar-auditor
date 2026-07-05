@@ -1,0 +1,12 @@
+{
+  "description": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace. When the human is speaking, the robot must not interrupt. The robot may respond only after the human has finished speaking.\n",
+  "scenario_id": "B3_robot_interrupts_human",
+  "scenario_title": "B3_robot_interrupts_human",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_2ab4c633aa05",
+  "created_at": "2026-06-24T08:19:24.979670Z",
+  "created_by": "user"
+}

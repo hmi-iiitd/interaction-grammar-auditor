@@ -1,0 +1,12 @@
+{
+  "description": "The robot announces package delivery, the user acknowledges within 8 seconds, and the robot confirms within 1 second. The entire interaction must complete within a global timeout of 5 seconds.\n",
+  "scenario_id": "C4_global_timeout",
+  "scenario_title": "C4_global_timeout",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_b578230931da",
+  "created_at": "2026-06-24T18:52:31.477119Z",
+  "created_by": "user"
+}

@@ -17,7 +17,7 @@ try:
         llm_model: str = "deepseek-ai/deepseek-v4-flash"
         llm_fallback_model: str = "nvidia/nemotron-3-super-120b-a12b"
         llm_temperature: float = 0.1
-        llm_max_tokens: int = 2048
+        llm_max_tokens: int = 4096
         dataset_root: str = "./dataset"
         backend_port: int = 8000
         frontend_port: int = 5173
@@ -47,7 +47,7 @@ except ImportError:
             self.llm_model = os.getenv("LLM_MODEL", "deepseek-ai/deepseek-v4-flash")
             self.llm_fallback_model = os.getenv("LLM_FALLBACK_MODEL", "nvidia/nemotron-3-super-120b-a12b")
             self.llm_temperature = float(os.getenv("LLM_TEMPERATURE", "0.1"))
-            self.llm_max_tokens = int(os.getenv("LLM_MAX_TOKENS", "2048"))
+            self.llm_max_tokens = int(os.getenv("LLM_MAX_TOKENS", "4096"))
             self.dataset_root = os.getenv("DATASET_ROOT", "./dataset")
             self.backend_port = int(os.getenv("BACKEND_PORT", "8000"))
 

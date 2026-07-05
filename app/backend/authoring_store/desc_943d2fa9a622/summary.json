@@ -1,0 +1,62 @@
+{
+  "description_id": "desc_943d2fa9a622",
+  "structured_summary": "In a quiet office, the robot delivers a package and announces it via speech. The user must acknowledge the announcement (by speaking or nodding) within 8 seconds. After receiving the acknowledgment, the robot confirms the delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "[uncertain]",
+    "[uncertain]",
+    "[uncertain]",
+    "speech",
+    "head_nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_1948642d7c29",
+      "obligation_type": "sequence",
+      "trigger": "[uncertain]",
+      "expected": "[uncertain]",
+      "deadline_seconds": 8,
+      "site": "[uncertain]",
+      "modalities": [
+        "speech",
+        "head_nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_af35e2e45af4",
+      "obligation_type": "sequence",
+      "trigger": "[uncertain]",
+      "expected": "[uncertain]",
+      "deadline_seconds": 1,
+      "site": "[uncertain]",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "Consequences if the user fails to acknowledge within 8 seconds.",
+    "Consequences if the robot fails to provide final confirmation within 1 second.",
+    "Exact location/site of the interaction.",
+    "Exact wording of the robot's announcement and confirmation speech.",
+    "How the robot detects a head‑nod acknowledgment.",
+    "Whether the 8‑second and 1‑second timers start at the end of the robot's utterance or at its start."
+  ],
+  "potential_ambiguities": [
+    "Reliability of detecting head‑nod acknowledgment by the robot.",
+    "Whether the 8‑second window begins at the end or start of the announcement speech.",
+    "Whether the 1‑second window begins at the completion or onset of acknowledgment detection.",
+    "Definition of 'quiet office environment' in terms of ambient noise levels."
+  ]
+}

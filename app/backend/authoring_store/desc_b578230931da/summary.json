@@ -1,0 +1,65 @@
+{
+  "description_id": "desc_b578230931da",
+  "structured_summary": "The interaction begins, the robot announces a package delivery, the user acknowledges the announcement within 8 seconds, the robot then confirms the delivery within 1 second, and the whole sequence must finish within a global timeout of 5 seconds.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "start",
+    "robot_announces_delivery",
+    "user_acknowledges_delivery",
+    "robot_confirms_delivery"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_e9c68e90f718",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "user_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "interaction",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot announces package delivery, the user acknowledges within 8 seconds, and the robot confirms within 1 second."
+    },
+    {
+      "obligation_id": "obl_7a5c9f5515a4",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "interaction",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot announces package delivery, the user acknowledges within 8 seconds, and the robot confirms within 1 second."
+    },
+    {
+      "obligation_id": "obl_b3b24358ec54",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 5,
+      "site": "interaction",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The entire interaction must complete within a global timeout of 5 seconds."
+    }
+  ],
+  "missing_details": [
+    "Modality of user acknowledgment (speech, nod, or other)",
+    "Modality of robot announcements and confirmations (speech, display, etc.)",
+    "Failure behavior if any timeout is exceeded (e.g., retry, abort, error message)"
+  ],
+  "potential_ambiguities": [
+    "Whether the 8‑second and 1‑second deadlines are measured from the start of the preceding event or from its end",
+    "Whether the global timeout of 5 seconds starts at the interaction start (start event) or after the robot’s announcement",
+    "Whether the robot’s confirmation must occur strictly after the user acknowledgment or could overlap"
+  ]
+}

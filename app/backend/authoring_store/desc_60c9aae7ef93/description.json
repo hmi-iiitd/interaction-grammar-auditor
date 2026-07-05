@@ -1,0 +1,12 @@
+{
+  "description": "The robot is delivering a package to a user in a quiet office environment. The robot should announce the delivery via speech. The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "scenario_id": "A2_recipient_does_not_acknowledge",
+  "scenario_title": "A2_recipient_does_not_acknowledge",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_60c9aae7ef93",
+  "created_at": "2026-06-22T11:16:46.814253Z",
+  "created_by": "user"
+}

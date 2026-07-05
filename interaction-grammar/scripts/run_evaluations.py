@@ -64,7 +64,7 @@ def run_full_eval():
         # 2. Baselines
         # Load raw trace for baselines
         raw_events = []
-        with open(trace_path, "r") as f:
+        with open(trace_path, "r", encoding="utf-8-sig") as f:
             for line in f:
                 if line.strip(): raw_events.append(json.loads(line))
 

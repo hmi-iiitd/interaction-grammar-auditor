@@ -1,0 +1,18 @@
+[
+  {
+    "question_id": "q_e38c957c68b2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'e.g., via speech or a head nod' suggests these are examples; other acknowledgment modalities may be acceptable but are not specified.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_65b7265ad990",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The scenario title 'A2_recipient_does_not_acknowledge' implies a focus on the case where the user does not acknowledge, but the description does not specify what the robot should do in that case.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

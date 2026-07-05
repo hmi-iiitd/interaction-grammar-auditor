@@ -1,0 +1,77 @@
+{
+  "description_id": "desc_4e7baedabb96",
+  "structured_summary": "The robot begins by providing instructional guidelines to a human in a collaborative workspace. While doing so, it must avoid interrupting the human's speech. If the human interrupts the robot by speaking, the robot must acknowledge the interruption by saying 'sorry' within two seconds, and then cease its own speech within two seconds of that acknowledgement.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "start",
+    "robot_provides_guidelines",
+    "user_interrupts_by_speaking",
+    "robot_acknowledges_interruption",
+    "robot_stops_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_a3bb2ae011ca",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_provides_guidelines",
+      "deadline_seconds": 5.0,
+      "site": "workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace."
+    },
+    {
+      "obligation_id": "obl_b274231041af",
+      "obligation_type": "sequence",
+      "trigger": "user_interrupts_by_speaking",
+      "expected": "robot_acknowledges_interruption",
+      "deadline_seconds": 2,
+      "site": "workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_cf0e3fb25399",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 2,
+      "site": "workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "What constitutes 'immediately stop speaking' (zero delay vs. within the 2-second window)?",
+    "What happens after the robot stops speaking (does it resume guidelines later, or end the interaction)?",
+    "How should the robot detect that the human has finished speaking to resume guideline provision?",
+    "What are the failure conditions if the robot misses the 2‑second deadlines (e.g., retry, escalation)?",
+    "Is the acknowledgement required to be spoken, or could it be another modality?",
+    "What exact location or context does 'workspace' refer to?"
+  ],
+  "potential_ambiguities": [
+    "Whether the two 2‑second limits apply sequentially (acknowledgement within 2s, then stop within another 2s) or both must occur within 2s of the interruption.",
+    "Whether any human speech over the robot counts as an interruption, or only sustained speech.",
+    "Whether the robot must cease all speech immediately after acknowledgement or finish the current utterance before stopping.",
+    "Whether the robot's obligation to not interrupt the human while they are speaking is distinct from the interruption handling described, or if it is covered by the same rules."
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "question_id": "q_bb17d3d79081",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-07-05T07:42:09.151292Z"
+  },
+  {
+    "question_id": "q_d88b257f017f",
+    "answer_text": " two separate deadlines: 2 seconds for acknowledgment, then another 2 seconds for stopping",
+    "selected_options": [],
+    "answered_at": "2026-07-05T07:42:09.151323Z"
+  },
+  {
+    "question_id": "q_ef60ad460346",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-07-05T07:42:09.151333Z"
+  }
+]

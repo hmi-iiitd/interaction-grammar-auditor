@@ -1,16 +1,16 @@
-scenario_id: "C1_retry_success"
-interaction_family: "Repair and Timeout"
-robot_platform: "NAO"
-participant_role: "partner"
-expected_verdict: "SAT"
-expected_failure_type: "none"
-expected_trigger_event: "initial robot prompt"
-expected_failed_obligation: "none"
-expected_falsification_time: "none"
-expected_agent_attribution: "none"
-contract_id: "pending_authoring"
-contract_version: "pending_authoring"
-contract_hash: "pending_authoring"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "One allowed retry repairs the missing initial response."
+scenario_id: C1_retry_success
+interaction_family: Repair and Timeout
+robot_platform: NAO
+participant_role: partner
+expected_verdict: SAT
+expected_failure_type: none
+expected_trigger_event: initial robot prompt
+expected_failed_obligation: human acknowledgment after one retry
+expected_falsification_time: none
+expected_agent_attribution: none
+contract_id: contract_08f6bcdcf015
+contract_version: '1.0'
+contract_hash: sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: One allowed retry repairs the missing initial response.

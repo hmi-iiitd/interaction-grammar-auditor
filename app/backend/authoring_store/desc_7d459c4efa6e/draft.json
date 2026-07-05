@@ -1,0 +1,121 @@
+{
+  "description_id": "desc_7d459c4efa6e",
+  "plain_language": "1. The robot must prompt the user via speech within 5 seconds after the interaction starts.  \n2. If the user does not respond within 3 seconds after the robot prompts the user, the robot must retry the prompt exactly once.  \n3. After the user responds to the prompt, the user must acknowledge the prompt's intent within 3 seconds.  \n4. The user must acknowledge the prompt's intent within 30 seconds after the interaction starts.",
+  "ig_syntax": "start → robot_prompts_user @within(5.0s)\nrobot_prompts_user → user_responds_to_prompt @within(3s)\nrepair(site=robot_prompts_user, max_retries=1)\nuser_responds_to_prompt → user_acknowledges_intent @within(3.0s)\nstart → user_acknowledges_intent @within(30s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "repair",
+        "site": "robot_prompts_user",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          },
+          "right": {
+            "node": "act",
+            "prim": "α",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          },
+          "latency": "3s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "3.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "30s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_0aaab5d257f7",
+      "source_type": "user_clarification",
+      "source_text": "The robot prompts the user via speech. → User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T19:01:09.037730Z"
+    },
+    {
+      "obligation_id": "obl_8e7473a6ded3",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T18:59:40.772117Z"
+    },
+    {
+      "obligation_id": "obl_3359e2cdc8d8",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 sec",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T19:01:09.037752Z"
+    },
+    {
+      "obligation_id": "obl_56bbb0354e57",
+      "source_type": "scenario_sentence",
+      "source_text": "The entire interaction must complete within a global timeout of 30 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T18:59:40.772136Z"
+    }
+  ],
+  "generated_at": "2026-06-24T19:02:06.909027Z"
+}

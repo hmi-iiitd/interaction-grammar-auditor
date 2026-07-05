@@ -1,0 +1,96 @@
+{
+  "description_id": "desc_08f6bcdcf015",
+  "plain_language": "1. The robot must prompt the user via speech within 5 seconds after the start.  \n2. The user must respond to the robot's prompt within 3 seconds; if the user does not respond within that time, the robot may retry the prompt once.  \n3. After the user responds to the prompt (including any retry), the user must acknowledge the prompt's intent within 3 seconds.",
+  "ig_syntax": "start → robot_prompts_user @within(5s)\nrobot_prompts_user → user_responds_to_prompt @within(3s) repair(max_retries=1)\nuser_responds_to_prompt → user_acknowledges_intent @within(3s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "repair",
+        "site": "robot_prompts_user",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          },
+          "right": {
+            "node": "act",
+            "prim": "α",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          },
+          "latency": "3s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "3.0s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_7c88582d5b34",
+      "source_type": "user_clarification",
+      "source_text": "The robot prompts the user via speech. → User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:50:57.795735Z"
+    },
+    {
+      "obligation_id": "obl_9ac4fe1e92c5",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:49:12.007752Z"
+    },
+    {
+      "obligation_id": "obl_0193a6199dd8",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 sec",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:50:57.795773Z"
+    }
+  ],
+  "generated_at": "2026-06-24T17:52:18.151166Z"
+}

@@ -1,0 +1,11 @@
+{
+  "scenario_id": "C1_retry_success",
+  "contract_id": "contract.ig.json",
+  "verdict": "SAT",
+  "num_events": 5,
+  "num_violations": 0,
+  "violations": [],
+  "raw_auditor_output": {
+    "verdict": "PASS"
+  }
+}

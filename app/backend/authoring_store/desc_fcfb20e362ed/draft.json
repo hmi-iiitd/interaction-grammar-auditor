@@ -1,0 +1,96 @@
+{
+  "description_id": "desc_fcfb20e362ed",
+  "plain_language": "1. When the robot prompts the user via speech in the high-traffic reception area, the user must respond within 3 seconds.\n2. If the user does not respond within 3 seconds, the robot must retry the prompt exactly once (at most 1 retry).\n3. When the robot retries the prompt via speech in the high-traffic reception area, the user must respond within 3 seconds.\n4. After the user responds (either initially or after a retry), the user must acknowledge the prompt's intent within 5 seconds.",
+  "ig_syntax": "robot_prompts_user → user_responds @within(3s)\nrepair(site=high-traffic reception area, max_retries=1) if user_responds fails\nrobot_retries_prompt → user_responds @within(3s)\nuser_responds → user_acknowledges_intent @within(5s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds"
+        },
+        "latency": "3.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_retries_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds"
+        },
+        "latency": "3s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_3115009b4ffa",
+      "source_type": "user_clarification",
+      "source_text": "The robot should prompt the user via speech. → User clarified: 3.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T04:00:28.883003Z"
+    },
+    {
+      "obligation_id": "obl_6e13bb6f395c",
+      "source_type": "scenario_sentence",
+      "source_text": "If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T03:51:48.381693Z"
+    },
+    {
+      "obligation_id": "obl_3e6ffee22e26",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T04:00:28.883013Z"
+    },
+    {
+      "obligation_id": "obl_6854cb1b9a6a",
+      "source_type": "scenario_sentence",
+      "source_text": "The total time for each prompt attempt is 3 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T03:51:48.381697Z"
+    }
+  ],
+  "generated_at": "2026-06-23T04:00:54.655591Z"
+}

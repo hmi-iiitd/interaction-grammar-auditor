@@ -1,0 +1,60 @@
+{
+  "description_id": "desc_bf3bebaee5ef",
+  "structured_summary": "In a quiet office, the NAO robot delivers a package and announces it via speech. The user must acknowledge the announcement (by speech or head nod) within 8 seconds. Upon receiving the acknowledgment, the robot must give a final spoken confirmation of delivery within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announce_delivery",
+    "user_acknowledge",
+    "robot_confirm_delivery",
+    "speech",
+    "head_nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_d8801e3d71e2",
+      "obligation_type": "sequence",
+      "trigger": "robot_announce_delivery",
+      "expected": "user_acknowledge",
+      "deadline_seconds": 8,
+      "site": "user_acknowledge",
+      "modalities": [
+        "speech",
+        "head_nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_cee7fe66a5af",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledge",
+      "expected": "robot_confirm_delivery",
+      "deadline_seconds": 1,
+      "site": "robot_confirm_delivery",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "Consequences if the user fails to acknowledge within 8 seconds.",
+    "Consequences if the robot fails to confirm within 1 second.",
+    "Whether the robot should retry the announcement or acknowledgment if timing is missed.",
+    "Exact modality required for user acknowledgment (speech, head nod, or either)."
+  ],
+  "potential_ambiguities": [
+    "Whether the 8‑second window starts at the beginning or end of the robot's announcement.",
+    "Whether the 1‑second window starts at the beginning or end of the user's acknowledgment.",
+    "Whether 'speech or a head nod' means either modality suffices or both are acceptable.",
+    "The relevance of the 'quiet office environment' to timing or modality is not specified."
+  ]
+}

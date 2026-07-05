@@ -1,25 +1,39 @@
 {
   "questions": [
     {
-      "question_id": "q_9469ec4cb050",
+      "question_id": "q_a46f19c07085",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_announces_delivery",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_e9542795471a",
+      "required": true
+    },
+    {
+      "question_id": "q_f920120085ee",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The term 'acknowledge' is not defined (e.g., verbal response, button press, gesture).",
+      "question_text": "Clarification needed: whether the 8\u2011second window starts at the beginning or end of the robot's announcement",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_59efd2e74702",
+      "question_id": "q_a2afc64692bd",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The term 'confirm' is not defined (e.g., verbal confirmation, visual display).",
+      "question_text": "Clarification needed: whether the 1\u2011second window starts at the beginning or end of the user's acknowledgment",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_cccf66b8d516",
+      "question_id": "q_d29af324e95d",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The scenario does not specify whether the 8-second deadline starts immediately after the announcement or after some other event.",
+      "question_text": "Clarification needed: whether acknowledgment is considered complete when the user starts speaking or when they finish speaking",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -27,22 +41,30 @@
   ],
   "answers": [
     {
-      "question_id": "q_9469ec4cb050",
-      "answer_text": "gesture and verbal both",
-      "selected_options": [],
-      "answered_at": "2026-06-18T06:29:29.248520Z"
+      "question_id": "q_a46f19c07085",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-06-24T14:13:08.829231Z"
     },
     {
-      "question_id": "q_59efd2e74702",
-      "answer_text": "verbal confirmation",
+      "question_id": "q_f920120085ee",
+      "answer_text": "end of the robot's announcement",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:29:29.248550Z"
+      "answered_at": "2026-06-24T14:13:08.829264Z"
     },
     {
-      "question_id": "q_cccf66b8d516",
-      "answer_text": "immediatley",
+      "question_id": "q_a2afc64692bd",
+      "answer_text": "end of the user's acknowledgment",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:29:29.248562Z"
+      "answered_at": "2026-06-24T14:13:08.829275Z"
+    },
+    {
+      "question_id": "q_d29af324e95d",
+      "answer_text": "when they finish speaking",
+      "selected_options": [],
+      "answered_at": "2026-06-24T14:13:08.829283Z"
     }
   ]
 }

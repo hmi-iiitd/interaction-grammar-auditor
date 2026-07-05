@@ -1,0 +1,16 @@
+[
+  {
+    "obligation_id": "obl_c0eefe4839ef",
+    "source_type": "scenario_sentence",
+    "source_text": "When the human is speaking, the robot must not interrupt.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T08:20:12.345336Z"
+  },
+  {
+    "obligation_id": "obl_2f1eb3beee73",
+    "source_type": "user_clarification",
+    "source_text": "The robot may respond only after the human has finished speaking. → User clarified: 3 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T08:22:16.558621Z"
+  }
+]

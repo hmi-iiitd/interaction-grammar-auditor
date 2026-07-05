@@ -1,0 +1,53 @@
+{
+  "description_id": "desc_c8f0e3bd8e12",
+  "structured_summary": "In a quiet office, the NAO robot delivers a package. It first announces the delivery via speech. The user must acknowledge the announcement (by speaking or nodding) within 8 seconds. Upon receiving the acknowledgment, the robot must then confirm the delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announce_delivery",
+    "user_acknowledge",
+    "robot_final_confirmation"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_40f512d85371",
+      "obligation_type": "sequence",
+      "trigger": "robot_announce_delivery",
+      "expected": "user_acknowledge",
+      "deadline_seconds": 8,
+      "site": "user_acknowledge",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_26b696ed7af9",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledge",
+      "expected": "robot_final_confirmation",
+      "deadline_seconds": 1,
+      "site": "robot_final_confirmation",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "How the robot detects a head nod acknowledgment",
+    "Exact speech content for the announcement and final confirmation",
+    "Behavior if the user fails to acknowledge within 8 seconds (timeout handling, retries, failure)",
+    "Any retry or repair logic for missed acknowledgment"
+  ],
+  "potential_ambiguities": [
+    "Whether acknowledgment via head nod is reliably detectable by the robot",
+    "What constitutes a valid speech acknowledgment (specific keywords, tone)",
+    "Exact wording of the final confirmation message",
+    "Whether the quiet office environment imposes any noise constraints on speech recognition"
+  ]
+}

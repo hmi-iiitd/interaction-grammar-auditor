@@ -1,0 +1,66 @@
+[
+  {
+    "question_id": "q_cb6f78f568c1",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_prompts_user",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_0aaab5d257f7",
+    "required": true
+  },
+  {
+    "question_id": "q_d56d0fac74df",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_3359e2cdc8d8",
+    "required": true
+  },
+  {
+    "question_id": "q_4fddbe4b7bc3",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_9b9e26d8e312",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the user must acknowledge the intent after each response or only after the final successful response is unclear.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e1de7cef1772",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The start point for the 30‑second global timeout is ambiguous: does it begin at the very first prompt or at the moment the interaction is initiated?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_58561f80600a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear what constitutes a 'successful response' (e.g., any verbal reply vs. a specific confirmation phrase).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

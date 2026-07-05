@@ -1,0 +1,77 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "start"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_prompts_user"
+      },
+      "latency": "5.0s"
+    },
+    {
+      "node": "repair",
+      "site": "robot_prompts_user",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "latency": "3s"
+      },
+      "retry": {
+        "N_leq": 1
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_responds_to_prompt"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_acknowledges_intent"
+      },
+      "latency": "3.0s"
+    }
+  ],
+  "latency": "≤30s",
+  "_contract_metadata": {
+    "contract_id": "contract_d676805ab3a7",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-24T18:44:07.082106Z",
+    "contract_hash": "sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6",
+    "source_description_id": "desc_d676805ab3a7",
+    "confirmed_assumptions": 3,
+    "unresolved_assumptions": 0
+  }
+}

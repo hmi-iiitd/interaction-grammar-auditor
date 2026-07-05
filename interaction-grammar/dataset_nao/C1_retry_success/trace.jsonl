@@ -1,0 +1,5 @@
+{"t": 1783078205.4685645, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "start"}
+{"t": 1783078208.0193062, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "robot_prompts_user"}
+{"t": 1783078211.8493428, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "robot_prompts_user"}
+{"t": 1783078214.3738499, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "user_responds_to_prompt"}
+{"t": 1783078216.7905867, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "user_acknowledges_intent"}

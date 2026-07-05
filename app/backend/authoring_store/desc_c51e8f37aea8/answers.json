@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_4a1300ab80bf",
+    "answer_text": "10.0 seconds",
+    "selected_options": [
+      "10.0 seconds"
+    ],
+    "answered_at": "2026-06-23T07:52:13.161843Z"
+  },
+  {
+    "question_id": "q_a088d050489e",
+    "answer_text": "one is sufficent",
+    "selected_options": [],
+    "answered_at": "2026-06-23T07:52:13.161872Z"
+  },
+  {
+    "question_id": "q_4e4fcca7eae7",
+    "answer_text": "end of the robot's announcement ",
+    "selected_options": [],
+    "answered_at": "2026-06-23T07:52:13.161881Z"
+  },
+  {
+    "question_id": "q_eb0e40edeef9",
+    "answer_text": "after acknowledgment completion",
+    "selected_options": [],
+    "answered_at": "2026-06-23T07:52:13.161889Z"
+  },
+  {
+    "question_id": "q_b2a8ea19ecc8",
+    "answer_text": "any",
+    "selected_options": [],
+    "answered_at": "2026-06-23T07:52:13.161898Z"
+  }
+]

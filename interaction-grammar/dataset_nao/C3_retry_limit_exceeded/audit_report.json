@@ -1,0 +1,73 @@
+{
+  "scenario_id": "C3_retry_limit_exceeded",
+  "contract_id": "contract.ig.json",
+  "verdict": "UNSAT",
+  "num_events": 5,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "repair_exhausted",
+      "agent_attribution": "robot_1",
+      "site": "repair",
+      "trigger_event_id": "e003",
+      "expected_event": "human_1_user_responds_to_prompt",
+      "observed_event": "human_1_user_responds_to_prompt",
+      "deadline_seconds": null,
+      "trigger_time": 5.52,
+      "falsification_time": 10.52,
+      "error_code": "V_REPAIR_EXHAUSTED",
+      "clause_path": "$.items[1]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "repair",
+    "clause_path": "$.items[1]",
+    "error_code": "V_REPAIR_EXHAUSTED",
+    "budget": "retries ≤ 1",
+    "observed": {
+      "attempts": 3
+    },
+    "responsible_agent": "robot_1",
+    "expected": {},
+    "witness": {
+      "last_failure": {
+        "verdict": "FAIL",
+        "operator": "sequence",
+        "clause_path": "$.items[1].expr",
+        "error_code": "V_SEQ_LATENCY_EXCEEDED",
+        "budget": "≤3.0s",
+        "observed": {
+          "dt": 5.0
+        },
+        "responsible_agent": "human_1",
+        "expected": {
+          "latency_leq": "3.0s"
+        },
+        "witness": {
+          "left_event": {
+            "idx": 2,
+            "event": {
+              "t": 1783078861.3439379,
+              "prim": "α",
+              "agent": "robot_1",
+              "channel": "speech",
+              "object": "robot_prompts_user"
+            }
+          },
+          "right_event": {
+            "idx": 4,
+            "event": {
+              "t": 1783078866.3439379,
+              "prim": "α",
+              "agent": "human_1",
+              "channel": "speech",
+              "object": "user_responds_to_prompt"
+            }
+          }
+        }
+      }
+    }
+  }
+}

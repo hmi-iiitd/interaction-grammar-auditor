@@ -1,0 +1,67 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "start"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_prompts_user"
+      },
+      "latency": "5.0s"
+    },
+    {
+      "node": "repair",
+      "site": "robot_prompts_user",
+      "expr": {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "latency": "3s"
+      },
+      "retry": {
+        "N_leq": 1
+      }
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_responds_to_prompt"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_acknowledges_intent"
+      },
+      "latency": "3.0s"
+    }
+  ],
+  "latency": "≤30s"
+}

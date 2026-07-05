@@ -42,6 +42,7 @@ class AuditResult:
                  "budget": self.budget,
                  "observed": self.observed,
                  "responsible_agent": self.responsible_agent,
+                 "expected": self.expected,
                  "witness": self.witness
              })
         return res
@@ -102,19 +103,20 @@ class Auditor:
 
         left_idx = res_left.witness["idx"]
         left_t = self._get_start_time(res_left.witness)
-        
+
         # 2. Find Right (must be strictly after Left)
         res_right = self._check_node(node.right, trace, left_idx + 1, path + ".right")
-        
+
         if res_right.verdict == AuditVerdict.FAIL:
              if "MISSING" in (res_right.error_code or ""):
+                 # CRITICAL FIX: Ensure the witness reflects the actual left event of THIS sequence
                  return AuditResult(
                      AuditVerdict.FAIL,
                      operator="sequence",
                      error_code="V_SEQ_MISSING_RIGHT",
                      clause_path=path,
-                     responsible_agent=res_right.responsible_agent, 
-                     expected={"right": "Present after left"},
+                     responsible_agent=res_right.responsible_agent,
+                     expected={"right": "Present after left", "object": node.right.object if hasattr(node.right, "object") else None},
                      observed={"after_left_until": trace[-1].t if len(trace) > 0 else 0.0},
                      witness={"left_event": res_left.witness}
                  )
@@ -128,7 +130,7 @@ class Auditor:
         if node.latency:
              dt = right_t - left_t
              limit_ms = node.latency.value_ms
-             
+
              if limit_ms is not None:
                  limit_sec = limit_ms / 1000.0
                  if dt > limit_sec + 1e-6:
@@ -147,7 +149,7 @@ class Auditor:
         # PASS
         return AuditResult(
             AuditVerdict.PASS,
-            witness={"left": res_left.witness, "right": res_right.witness, "idx": right_idx} 
+            witness={"left": res_left.witness, "right": res_right.witness, "idx": right_idx}
         )
 
     def _check_par(self, node: Par, trace: Trace, start_idx: int, path: str) -> AuditResult:
@@ -218,30 +220,86 @@ class Auditor:
         max_retries = node.retry.n_max if node.retry else 0
         current_start_idx = start_idx
         last_failure = None
-        
+
+        # Track all prompts issued by the robot for this repair site
+        prompts_issued = 0
+
         while attempt <= max_retries:
             res = self._check_node(node.expr, trace, current_start_idx, path + ".expr")
-            
+
             if res.verdict == AuditVerdict.PASS:
+                # If we passed, but we did it on an attempt that exceeds the budget, it's a failure
+                if attempt > max_retries:
+                    return AuditResult(
+                        AuditVerdict.FAIL,
+                        operator="repair",
+                        error_code="V_REPAIR_EXHAUSTED",
+                        clause_path=path,
+                        budget=f"retries ≤ {max_retries}",
+                        responsible_agent=node.expr.left.agent[0] if isinstance(node.expr.left.agent, list) else str(node.expr.left.agent),
+                        observed={"attempts": attempt + 1},
+                        witness={"last_failure": res.to_dict()}
+                    )
                 return res
-            
+
             last_failure = res
+
+            # Count the prompt that was just attempted
+            if "left_event" in res.witness:
+                prompts_issued += 1
+
             attempt += 1
             if attempt > max_retries:
-                return AuditResult(
-                    AuditVerdict.FAIL,
-                    operator="repair",
-                    error_code="V_REPAIR_EXHAUSTED",
-                    clause_path=path,
-                    budget=f"retries ≤ {max_retries}",
-                    responsible_agent=res.responsible_agent,
-                    observed={"attempts": attempt},
-                    witness={"last_failure": res.to_dict()}
-                )
-            current_start_idx += 1
+                # Check if the robot issued yet another prompt beyond the budget
+                # Search the trace for any more prompts for this specific action
+                found_extra = False
+                search_idx = current_start_idx
+                if "left_event" in res.witness:
+                    search_idx = res.witness["left_event"].get("idx", 0) + 1
+
+                for i in range(search_idx, len(trace)):
+                    if EventMatcher.match_act(node.expr.left, trace[i]):
+                        found_extra = True
+                        break
+
+                if found_extra:
+                    # Robot is responsible for exceeding budget
+                    return AuditResult(
+                        AuditVerdict.FAIL,
+                        operator="repair",
+                        error_code="V_REPAIR_EXHAUSTED",
+                        clause_path=path,
+                        budget=f"retries ≤ {max_retries}",
+                        responsible_agent=node.expr.left.agent[0] if isinstance(node.expr.left.agent, list) else str(node.expr.left.agent),
+                        observed={"attempts": prompts_issued + 1},
+                        witness={"last_failure": res.to_dict()}
+                    )
+                else:
+                    # Budget not exceeded, but no more responses. Human is responsible.
+                    return AuditResult(
+                        AuditVerdict.FAIL,
+                        operator="repair",
+                        error_code="V_REPAIR_EXHAUSTED",
+                        clause_path=path,
+                        budget=f"retries ≤ {max_retries}",
+                        responsible_agent=node.expr.right.agent[0] if isinstance(node.expr.right.agent, list) else str(node.expr.right.agent),
+                        observed={"attempts": prompts_issued},
+                        witness={"last_failure": res.to_dict()}
+                    )
+
+            # Advance start_idx to move past the trigger of the failed attempt
+            if "left_event" in res.witness and isinstance(res.witness["left_event"], dict):
+                left_idx = res.witness["left_event"].get("idx")
+                if left_idx is not None:
+                    current_start_idx = left_idx + 1
+                else:
+                    current_start_idx += 1
+            else:
+                current_start_idx += 1
+
             if current_start_idx >= len(trace):
                  break
-        
+
         return last_failure if last_failure else AuditResult(AuditVerdict.FAIL)
 
     def _check_neg(self, node: Neg, trace: Trace, start_idx: int, path: str) -> AuditResult:

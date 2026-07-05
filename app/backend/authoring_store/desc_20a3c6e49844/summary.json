@@ -1,0 +1,58 @@
+{
+  "description_id": "desc_20a3c6e49844",
+  "structured_summary": "In a quiet office environment, a robot delivers a package to a user. The robot announces the delivery via speech. The user must acknowledge the delivery (via speech or head nod) within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "user_acknowledges_delivery",
+    "robot_confirms_delivery",
+    "speech",
+    "head nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_0aef54c0b1e7",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "user_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech",
+        "head nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_88a386e5aa46",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What happens if the user does not acknowledge within 8 seconds (failure condition)?",
+    "What happens if the robot fails to confirm within 1 second (failure condition)?",
+    "Is there a maximum number of retries or repair attempts?",
+    "Are there any alternative modalities for the robot's announcement or confirmation?"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'e.g., via speech or a head nod' suggests these are examples; other acknowledgment modalities may be acceptable but are not specified.",
+    "The scenario title 'A2_recipient_does_not_acknowledge' implies a focus on the case where the user does not acknowledge, but the description does not specify what the robot should do in that case."
+  ]
+}

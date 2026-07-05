@@ -1,44 +1,86 @@
 [
   {
     "scenario_id": "A1_delivery_success",
-    "description_id": "desc_12ab47595c53",
-    "contract_id": "contract_12ab47595c53",
+    "description_id": "desc_d113e4b429f2",
+    "contract_id": "contract_d113e4b429f2",
     "contract_version": "1.0",
-    "contract_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+    "contract_hash": "sha256:15edec5431e43b8e73bf8588b2474145e750c4ce8a9a67b496d0c6d0a89fb60c"
   },
   {
     "scenario_id": "A2_recipient_does_not_acknowledge",
-    "description_id": "desc_a0ff13cb336c",
-    "contract_id": "contract_a0ff13cb336c",
+    "description_id": "desc_23a9eb511506",
+    "contract_id": "contract_23a9eb511506",
     "contract_version": "1.0",
-    "contract_hash": "sha256:6d16ab8fda467f36662d76bc9a2b8c2871405bc2d86a48596cea921b8d88fcc5"
+    "contract_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431"
   },
   {
     "scenario_id": "A3_recipient_acknowledges_too_late",
-    "description_id": "desc_12dd7b1fe585",
-    "contract_id": "contract_12dd7b1fe585",
+    "description_id": "desc_c060c7961c83",
+    "contract_id": "contract_c060c7961c83",
     "contract_version": "1.0",
-    "contract_hash": "sha256:15a42206b6b4bc44f2ff43d401e61524f2aa82fdc3c9002e3b901fd705ff3b44"
+    "contract_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431"
   },
   {
     "scenario_id": "A4_robot_does_not_confirm_delivery",
-    "description_id": "desc_31a850b9187c",
-    "contract_id": "contract_31a850b9187c",
+    "description_id": "desc_284654cc2a4a",
+    "contract_id": "contract_284654cc2a4a",
     "contract_version": "1.0",
-    "contract_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+    "contract_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431"
   },
   {
     "scenario_id": "B1_human_interrupts_robot_stops",
-    "description_id": "desc_7c393762e3df",
-    "contract_id": "contract_7c393762e3df",
+    "description_id": "desc_f2cb0b4d8024",
+    "contract_id": "contract_f2cb0b4d8024",
     "contract_version": "1.0",
-    "contract_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
+    "contract_hash": "sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929"
   },
   {
     "scenario_id": "B2_human_interrupts_robot_continues",
-    "description_id": "desc_a8c2a0618a1b",
-    "contract_id": "contract_a8c2a0618a1b",
+    "description_id": "desc_1a0670c644c0",
+    "contract_id": "contract_1a0670c644c0",
     "contract_version": "1.0",
-    "contract_hash": "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
+    "contract_hash": "sha256:0174ec2295c1a4c0e5e34fe4f25b0a99a0b713c07a33ec6777e2b52105b3c5a3"
+  },
+  {
+    "scenario_id": "B3_robot_interrupts_human",
+    "description_id": "desc_b7f1a440994c",
+    "contract_id": "contract_b7f1a440994c",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929"
+  },
+  {
+    "scenario_id": "B4_robot_stops_but_no_sorry",
+    "description_id": "desc_4e7baedabb96",
+    "contract_id": "contract_4e7baedabb96",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929"
+  },
+  {
+    "scenario_id": "C1_retry_success",
+    "description_id": "desc_08f6bcdcf015",
+    "contract_id": "contract_08f6bcdcf015",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6"
+  },
+  {
+    "scenario_id": "C2_repair_exhausted",
+    "description_id": "desc_2525c9c8a49b",
+    "contract_id": "contract_2525c9c8a49b",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6"
+  },
+  {
+    "scenario_id": "C3_retry_limit_exceeded",
+    "description_id": "desc_d676805ab3a7",
+    "contract_id": "contract_d676805ab3a7",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6"
+  },
+  {
+    "scenario_id": "C4_global_timeout",
+    "description_id": "desc_7d459c4efa6e",
+    "contract_id": "contract_7d459c4efa6e",
+    "contract_version": "1.0",
+    "contract_hash": "sha256:97244b2ecd006d5cbd183b2369459ce550377f7f373df6717cf96b9ca7b5f004"
   }
 ]

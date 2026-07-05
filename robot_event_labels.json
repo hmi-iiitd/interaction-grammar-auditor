@@ -1,0 +1,20 @@
+{
+  "robot_events": {
+    "robot_announces_delivery": "Robot announces that a package is being delivered.",
+    "robot_confirms_delivery": "Robot provides the final confirmation of delivery.",
+    "robot_acknowledges_interruption": "Robot says 'sorry' in response to a human interruption.",
+    "robot_stops_speaking": "Robot immediately ceases all speech output.",
+    "robot_prompts_user": "Robot prompts the user for a response or confirmation.",
+    "robot_provides_guidelines": "Robot speaks instructional guidelines to the user."
+  },
+  "human_events": {
+    "user_acknowledges_delivery": "User acknowledges the delivery announcement (speech/nod).",
+    "user_interrupts_by_speaking": "User interrupts the robot's speech by speaking over it.",
+    "user_finishes_speaking": "User has clearly stopped speaking, signaling the robot to respond.",
+    "user_responds_to_prompt": "User provides a response to the robot's prompt.",
+    "user_acknowledges_intent": "User acknowledges the intent of the prompt."
+  },
+  "system_events": {
+    "start": "The beginning of the interaction sequence."
+  }
+}

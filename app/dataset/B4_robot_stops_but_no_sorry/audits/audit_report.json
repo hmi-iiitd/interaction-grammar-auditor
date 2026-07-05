@@ -1,0 +1,50 @@
+{
+  "scenario_id": "B4_robot_stops_but_no_sorry",
+  "contract_id": "contract.ig.json",
+  "verdict": "UNSAT",
+  "num_events": 4,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "acknowledgment",
+      "agent_attribution": "robot_1",
+      "site": "closure",
+      "trigger_event_id": "e003",
+      "expected_event": "robot_1_robot_acknowledges_interruption",
+      "observed_event": null,
+      "deadline_seconds": null,
+      "trigger_time": 3.09,
+      "falsification_time": 3.09,
+      "error_code": "V_SEQ_MISSING_RIGHT",
+      "clause_path": "$.items[1]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "sequence",
+    "clause_path": "$.items[1]",
+    "error_code": "V_SEQ_MISSING_RIGHT",
+    "budget": null,
+    "observed": {
+      "after_left_until": 1783076474.4024627
+    },
+    "responsible_agent": "robot_1",
+    "expected": {
+      "right": "Present after left",
+      "object": "robot_acknowledges_interruption"
+    },
+    "witness": {
+      "left_event": {
+        "idx": 2,
+        "event": {
+          "t": 1783076474.4018426,
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_interrupts_by_speaking"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_b46b3de73c65",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_f22b70b0fae1",
+    "required": true
+  },
+  {
+    "question_id": "q_36f4cc73224a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'must not interrupt the human while they are speaking' does not specify how the robot detects human speech onset",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_1acc10c63505",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: 'immediately stop speaking within 2 seconds' is ambiguous: does 'immediately' mean zero delay or simply within the 2‑second window?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_36821da9dca1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The 2‑second limit for acknowledgment and stopping could be interpreted as each must finish within 2 seconds of the interruption, or the stop must occur within 2 seconds after the acknowledgment finishes.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

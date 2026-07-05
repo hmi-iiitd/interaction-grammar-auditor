@@ -36,6 +36,7 @@ from authoring.schemas import (
     compute_contract_hash,
 )
 from authoring.scenario_store import save_description, get_description, StoreError
+from authoring.scenario_clarifier import ClarifierError, clarify_scenario
 from authoring.obligation_extractor import (
     validate_extraction, enrich_obligations, get_missing_fields,
 )
@@ -103,6 +104,46 @@ class TestScenarioStore:
     def test_description_not_found(self):
         with pytest.raises(StoreError, match="not found"):
             get_description("nonexistent_id")
+
+
+class TestScenarioClarifierErrors:
+    class _BadJsonLLM:
+        def generate(self, *args, **kwargs):
+            return '{"structured_summary": "truncated", "obligations": [{"obligation_type": "tr'
+
+    class _FailingLLM:
+        def generate(self, *args, **kwargs):
+            raise RuntimeError("429 Too Many Requests")
+
+    def test_truncated_json_raises_without_fallback(self):
+        desc = ScenarioDescription(
+            description=(
+                "The robot prompts the user via speech. The user is expected to respond "
+                "to the prompt within 3 seconds. If the user does not respond within "
+                "the 3-second window, the robot should retry the prompt exactly once. "
+                "After a successful response or retry, the user must acknowledge the "
+                "prompt's intent."
+            ),
+            scenario_title="C1_retry_success",
+        )
+
+        with pytest.raises(ClarifierError, match="valid structured JSON"):
+            clarify_scenario(desc, self._BadJsonLLM())
+
+    def test_provider_failure_raises_without_fallback(self):
+        desc = ScenarioDescription(
+            description=(
+                "The robot is providing a set of instructional guidelines to a human. "
+                "The robot must not interrupt the human while they are speaking. "
+                "If the human interrupts the robot by speaking, the robot must first "
+                "acknowledge the interruption by saying sorry via speech within 2 seconds, "
+                "and then immediately stop speaking within 2 seconds."
+            ),
+            scenario_title="B1_human_interrupts_robot_stops",
+        )
+
+        with pytest.raises(ClarifierError, match="valid structured JSON"):
+            clarify_scenario(desc, self._FailingLLM())
 
 
 # ── Module C: Obligation Extractor ──────────────────────────────────

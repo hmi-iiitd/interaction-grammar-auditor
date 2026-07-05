@@ -14,6 +14,7 @@ Pass conditions (from PRD):
 
 import json
 import logging
+import os
 from typing import Optional
 
 from authoring.schemas import ScenarioDescription, ScenarioSummary, Obligation
@@ -40,6 +41,26 @@ def clarify_scenario(
     Returns:
         ScenarioSummary with actors, events, obligations, and missing details.
     """
+    # Load event labels vocabulary
+    try:
+        # Get the project root directory (3 levels up from this file: authoring -> backend -> app -> root)
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        labels_path = os.path.join(base_dir, "robot_event_labels.json")
+
+        with open(labels_path, "r", encoding="utf-8") as f:
+            labels_data = json.load(f)
+            # Format labels as a readable list: "label: description"
+            labels_str = ""
+            for category, events in labels_data.items():
+                labels_str += f"\n{category.replace('_', ' ').title()}:\n"
+                for label, desc in events.items():
+                    labels_str += f"- {label}: {desc}\n"
+    except Exception as e:
+        logger.error(f"Failed to load robot_event_labels.json from {labels_path if 'labels_path' in locals() else 'unknown path'}: {e}")
+        labels_str = "No event labels provided."
+
+    system_prompt = SCENARIO_CLARIFY_SYSTEM.format(event_labels=labels_str)
+
     user_prompt = SCENARIO_CLARIFY_USER.format(
         description=description.description,
         title=description.scenario_title or "(not provided)",
@@ -47,14 +68,35 @@ def clarify_scenario(
         interaction_family=description.interaction_family or "(not specified)",
     )
 
-    logger.info("Calling LLM for scenario clarification...")
-    raw = llm_provider.generate(SCENARIO_CLARIFY_SYSTEM, user_prompt)
+    raw = ""
 
-    # Parse the LLM response as JSON
-    parsed = _extract_json(raw)
-    if parsed is None:
+    # Retry loop to handle occasional LLM JSON truncation or malformations
+    max_retries = 3
+    provider_errors = []
+    for attempt in range(max_retries):
+        logger.info(f"Calling LLM for scenario clarification (attempt {attempt + 1}/{max_retries})...")
+        try:
+            raw = llm_provider.generate(system_prompt, user_prompt, json_mode=True)
+        except Exception as e:
+            provider_errors.append(str(e))
+            logger.warning("LLM clarification call failed on attempt %s/%s: %s", attempt + 1, max_retries, e)
+            continue
+
+        # Parse the LLM response as JSON
+        parsed = _extract_json(raw)
+        if parsed is not None:
+            break
+
+        logger.warning(f"LLM returned invalid JSON on attempt {attempt + 1}. Retrying...")
+    else:
+        provider_detail = ""
+        if provider_errors:
+            provider_detail = "\nProvider errors:\n" + "\n".join(provider_errors[-3:])
         raise ClarifierError(
-            f"LLM did not return valid JSON. Raw response:\n{raw[:500]}"
+            "The LLM did not return valid structured JSON after "
+            f"{max_retries} attempts. Please retry in a moment. "
+            f"Raw response preview:\n{raw[:500]}"
+            f"{provider_detail}"
         )
 
     # Build obligations from the parsed data

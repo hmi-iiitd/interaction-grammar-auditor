@@ -18,7 +18,7 @@
           "node": "act",
           "prim": "α",
           "agent": "human_1",
-          "channel": "speech",
+          "channel": "speech, gesture",
           "object": "recipient_acknowledges_delivery"
         },
         "latency": "8s"
@@ -28,14 +28,14 @@
         "left": {
           "node": "act",
           "prim": "α",
-          "agent": "robot_1",
+          "agent": "human_1",
           "channel": "speech",
           "object": "recipient_acknowledges_delivery"
         },
         "right": {
           "node": "act",
           "prim": "α",
-          "agent": "human_1",
+          "agent": "robot_1",
           "channel": "speech",
           "object": "robot_confirms_delivery"
         },
@@ -60,5 +60,5 @@
       "timestamp": "2026-06-18T06:28:00.318746Z"
     }
   ],
-  "generated_at": "2026-06-18T06:29:35.696642Z"
+  "generated_at": "2026-06-20T07:00:00.000000Z"
 }

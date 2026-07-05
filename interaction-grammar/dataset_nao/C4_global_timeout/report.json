@@ -1,0 +1,36 @@
+{
+  "verdict": "FAIL",
+  "operator": "sequence",
+  "clause_path": "$.items[2]",
+  "error_code": "V_SEQ_LATENCY_EXCEEDED",
+  "budget": "\u22643.0s",
+  "observed": {
+    "dt": 25.131624221801758
+  },
+  "responsible_agent": "human_1",
+  "expected": {
+    "latency_leq": "3.0s"
+  },
+  "witness": {
+    "left_event": {
+      "idx": 3,
+      "event": {
+        "t": 1783080300.1736193,
+        "prim": "\u03b1",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_responds_to_prompt"
+      }
+    },
+    "right_event": {
+      "idx": 4,
+      "event": {
+        "t": 1783080325.3052435,
+        "prim": "\u03b1",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_acknowledges_intent"
+      }
+    }
+  }
+}

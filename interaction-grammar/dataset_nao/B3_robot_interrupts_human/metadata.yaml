@@ -1,16 +1,16 @@
-scenario_id: "B3_robot_interrupts_human"
-interaction_family: "Interruption and Turn-Taking"
-robot_platform: "NAO"
-participant_role: "speaker"
-expected_verdict: "UNSAT"
-expected_failure_type: "robot_interruption"
-expected_trigger_event: "human speaking start"
-expected_failed_obligation: "no robot interruption while human speaks"
-expected_falsification_time: "time of robot interruption"
-expected_agent_attribution: "robot_1"
-contract_id: "pending_authoring"
-contract_version: "pending_authoring"
-contract_hash: "pending_authoring"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "Robot interrupts while the human holds the floor."
+scenario_id: B3_robot_interrupts_human
+interaction_family: Interruption and Turn-Taking
+robot_platform: NAO
+participant_role: speaker
+expected_verdict: UNSAT
+expected_failure_type: robot_interruption
+expected_trigger_event: human speaking start
+expected_failed_obligation: robot remains silent until human speaking end
+expected_falsification_time: time of robot interruption
+expected_agent_attribution: robot_1
+contract_id: contract_b7f1a440994c
+contract_version: '1.0'
+contract_hash: sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: Robot interrupts while the human holds the floor.

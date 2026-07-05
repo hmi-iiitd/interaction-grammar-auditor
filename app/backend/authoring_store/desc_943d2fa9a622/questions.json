@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_67c5d6e552f0",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Reliability of detecting head‑nod acknowledgment by the robot.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_5408179c2e29",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window begins at the end or start of the announcement speech.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_de722b0a8d6b",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window begins at the completion or onset of acknowledgment detection.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_5d4d8fb8b556",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Definition of 'quiet office environment' in terms of ambient noise levels.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

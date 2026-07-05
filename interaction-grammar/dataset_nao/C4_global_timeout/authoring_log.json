@@ -1,0 +1,318 @@
+{
+  "scenario_id": "C4_global_timeout",
+  "description_id": "desc_7d459c4efa6e",
+  "original_natural_language_description": "The robot interacts with a user in a high-traffic reception area to confirm a critical task. The robot prompts the user via speech. The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once. After a successful response or retry, the user must acknowledge the prompt's intent. The entire interaction must complete within a global timeout of 30 seconds.",
+  "structured_system_interpretation": {
+    "description_id": "desc_7d459c4efa6e",
+    "structured_summary": "The interaction begins with the robot prompting the user via speech. The user must respond within 3 seconds; if they fail to do so, the robot repeats the prompt exactly once. After the user finally responds (either to the initial or repeated prompt), the user must acknowledge the prompt's intent. The whole exchange must finish within 30 seconds from the start.",
+    "actors": [
+      "robot",
+      "user"
+    ],
+    "events": [
+      "start",
+      "robot_prompts_user",
+      "user_responds_to_prompt",
+      "user_acknowledges_intent"
+    ],
+    "obligations": [
+      {
+        "obligation_id": "obl_0aaab5d257f7",
+        "obligation_type": "sequence",
+        "trigger": "start",
+        "expected": "robot_prompts_user",
+        "deadline_seconds": 5.0,
+        "site": "robot_prompts_user",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "The robot prompts the user via speech."
+      },
+      {
+        "obligation_id": "obl_8e7473a6ded3",
+        "obligation_type": "repair",
+        "trigger": "robot_prompts_user",
+        "expected": "user_responds_to_prompt",
+        "deadline_seconds": 3,
+        "site": null,
+        "modalities": [],
+        "repair_event": "robot_prompts_user",
+        "max_retries": 1,
+        "condition": "",
+        "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+      },
+      {
+        "obligation_id": "obl_3359e2cdc8d8",
+        "obligation_type": "sequence",
+        "trigger": "user_responds_to_prompt",
+        "expected": "user_acknowledges_intent",
+        "deadline_seconds": 3.0,
+        "site": "user_acknowledges_intent",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+      },
+      {
+        "obligation_id": "obl_56bbb0354e57",
+        "obligation_type": "sequence",
+        "trigger": "start",
+        "expected": "user_acknowledges_intent",
+        "deadline_seconds": 30,
+        "site": "user_acknowledges_intent",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "The entire interaction must complete within a global timeout of 30 seconds."
+      }
+    ],
+    "missing_details": [
+      "Modality of the robot's prompt (speech) and user's response (speech/gesture) are not explicitly stated.",
+      "Site or location details beyond 'high-traffic reception area' are unspecified.",
+      "What happens if the retry also fails (no second response) is not defined.",
+      "Obligation obl_8e7473a6ded3: repair missing site label"
+    ],
+    "potential_ambiguities": [
+      "Whether the user must acknowledge the intent after each response or only after the final successful response is unclear.",
+      "The start point for the 30\u2011second global timeout is ambiguous: does it begin at the very first prompt or at the moment the interaction is initiated?",
+      "It is unclear what constitutes a 'successful response' (e.g., any verbal reply vs. a specific confirmation phrase)."
+    ]
+  },
+  "clarification_questions": [
+    {
+      "question_id": "q_cb6f78f568c1",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_prompts_user",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_0aaab5d257f7",
+      "required": true
+    },
+    {
+      "question_id": "q_d56d0fac74df",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt \u2192 user_acknowledges_intent",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_3359e2cdc8d8",
+      "required": true
+    },
+    {
+      "question_id": "q_4fddbe4b7bc3",
+      "category": "failure_condition_missing",
+      "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+      "suggested_options": [
+        "Mark interaction as failed",
+        "Continue without acknowledgment",
+        "Escalate to human operator"
+      ],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_9b9e26d8e312",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the user must acknowledge the intent after each response or only after the final successful response is unclear.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_e1de7cef1772",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: The start point for the 30\u2011second global timeout is ambiguous: does it begin at the very first prompt or at the moment the interaction is initiated?",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_58561f80600a",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: It is unclear what constitutes a 'successful response' (e.g., any verbal reply vs. a specific confirmation phrase).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "user_answers": [
+    {
+      "question_id": "q_cb6f78f568c1",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-06-24T19:01:09.036907Z"
+    },
+    {
+      "question_id": "q_d56d0fac74df",
+      "answer_text": "3 sec",
+      "selected_options": [],
+      "answered_at": "2026-06-24T19:01:09.036938Z"
+    },
+    {
+      "question_id": "q_4fddbe4b7bc3",
+      "answer_text": "",
+      "selected_options": [
+        "Mark interaction as failed"
+      ],
+      "answered_at": "2026-06-24T19:01:09.036949Z"
+    },
+    {
+      "question_id": "q_9b9e26d8e312",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T19:01:09.036958Z"
+    },
+    {
+      "question_id": "q_e1de7cef1772",
+      "answer_text": "moment the interaction is initiated?",
+      "selected_options": [],
+      "answered_at": "2026-06-24T19:01:09.036966Z"
+    },
+    {
+      "question_id": "q_58561f80600a",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T19:01:09.036973Z"
+    }
+  ],
+  "plain_language_contract": "1. The robot must prompt the user via speech within 5 seconds after the interaction starts.  \n2. If the user does not respond within 3 seconds after the robot prompts the user, the robot must retry the prompt exactly once.  \n3. After the user responds to the prompt, the user must acknowledge the prompt's intent within 3 seconds.  \n4. The user must acknowledge the prompt's intent within 30 seconds after the interaction starts.",
+  "readable_grammar_notation": "start \u2192 robot_prompts_user @within(5.0s)\nrobot_prompts_user \u2192 user_responds_to_prompt @within(3s)\nrepair(site=robot_prompts_user, max_retries=1)\nuser_responds_to_prompt \u2192 user_acknowledges_intent @within(3.0s)\nstart \u2192 user_acknowledges_intent @within(30s)",
+  "contract_json": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "repair",
+        "site": "robot_prompts_user",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          },
+          "right": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          },
+          "latency": "3s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "3.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "30s"
+      }
+    ],
+    "latency": "\u226430s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_0aaab5d257f7",
+      "source_type": "user_clarification",
+      "source_text": "The robot prompts the user via speech. \u2192 User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T19:01:09.037730Z"
+    },
+    {
+      "obligation_id": "obl_8e7473a6ded3",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T18:59:40.772117Z"
+    },
+    {
+      "obligation_id": "obl_3359e2cdc8d8",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. \u2192 User clarified: 3 sec",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T19:01:09.037752Z"
+    },
+    {
+      "obligation_id": "obl_56bbb0354e57",
+      "source_type": "scenario_sentence",
+      "source_text": "The entire interaction must complete within a global timeout of 30 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T18:59:40.772136Z"
+    }
+  ],
+  "validation_output": {
+    "schema_valid": true,
+    "semantic_valid": true,
+    "repair_sites_valid": true,
+    "errors": [],
+    "warnings": [],
+    "all_passed": true
+  },
+  "lock_hash": "sha256:97244b2ecd006d5cbd183b2369459ce550377f7f373df6717cf96b9ca7b5f004"
+}

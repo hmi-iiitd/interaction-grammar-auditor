@@ -1,0 +1,12 @@
+{
+  "description": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace. The robot must not interrupt the human while they are speaking. Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.\n",
+  "scenario_id": "B1_human_interrupts_robot_stops",
+  "scenario_title": "B1_human_interrupts_robot_stops",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_f2cb0b4d8024",
+  "created_at": "2026-07-04T13:24:09.090733Z",
+  "created_by": "user"
+}

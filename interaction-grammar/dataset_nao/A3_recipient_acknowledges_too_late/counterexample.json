@@ -1,0 +1,100 @@
+{
+  "scenario_id": "A3_recipient_acknowledges_too_late",
+  "violation_id": "v001",
+  "violated_obligation": "After e005, system must observe human_1_user_acknowledges_delivery within 8.0s",
+  "trigger": {
+    "event_id": "e005",
+    "time": 5.44,
+    "description": "latency at 5.44s"
+  },
+  "expected": {
+    "event": "human_1_user_acknowledges_delivery",
+    "time_window": "(5.44s, 13.440000000000001s]"
+  },
+  "observed": {
+    "event": "human_1_user_acknowledges_delivery",
+    "description": "human_1_user_acknowledges_delivery observed"
+  },
+  "falsification": {
+    "time": 13.44,
+    "description": "Violation detected at 13.44s — human_1_user_acknowledges_delivery not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "timing",
+  "evidence_window": {
+    "start": 4.94,
+    "end": 14.44,
+    "events": [
+      {
+        "event_id": "e004",
+        "timestamp": 4.94,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e005",
+        "timestamp": 5.44,
+        "event_type": "robot_announces_delivery",
+        "agent": "robot_1",
+        "details": "robot_announces_delivery"
+      },
+      {
+        "event_id": "e006",
+        "timestamp": 6.77,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e007",
+        "timestamp": 6.97,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e008",
+        "timestamp": 8.82,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e009",
+        "timestamp": 9.02,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e010",
+        "timestamp": 10.86,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e011",
+        "timestamp": 11.07,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e012",
+        "timestamp": 12.9,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      },
+      {
+        "event_id": "e013",
+        "timestamp": 13.11,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      }
+    ]
+  }
+}

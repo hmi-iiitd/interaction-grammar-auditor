@@ -1,0 +1,23 @@
+[
+  {
+    "obligation_id": "obl_0d2a38b668c9",
+    "source_type": "user_clarification",
+    "source_text": "The robot prompts the user. → User clarified: 3 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-20T11:07:37.949398Z"
+  },
+  {
+    "obligation_id": "obl_68fb4f4d6850",
+    "source_type": "scenario_sentence",
+    "source_text": "If the user does not respond within 3 seconds, the robot should retry prompting the user. At most 1 retry is allowed.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-20T11:05:55.049639Z"
+  },
+  {
+    "obligation_id": "obl_6549fad79e62",
+    "source_type": "user_clarification",
+    "source_text": "The user should acknowledge the prompt. → User clarified: 3 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-20T11:07:37.949420Z"
+  }
+]

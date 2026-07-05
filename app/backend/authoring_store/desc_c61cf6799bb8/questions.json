@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_93a7c89a93c1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' is ambiguous about the start time of the 2‑second window",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_9ce554bb9ca8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear if both acknowledgment and stopping must occur within the same 2‑second period after interruption",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_0b0d479e6363",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'acknowledge the interruption by saying \"sorry\"' could be interpreted as any apology phrase rather than the exact word 'sorry'",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

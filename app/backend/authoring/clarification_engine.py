@@ -13,6 +13,7 @@ Pass conditions (from PRD):
 """
 
 import logging
+import json
 from typing import List
 
 from authoring.schemas import (
@@ -152,14 +153,67 @@ def apply_answers(
     obligations: List[Obligation],
     answers: List[ClarificationAnswer],
     questions: List[ClarificationQuestion],
+    llm_provider=None,
 ) -> List[Obligation]:
     """
     Apply user answers to update the obligations.
+    Includes an LLM-driven step to detect logical changes to the interaction sequence.
 
     Returns the updated list of obligations.
     """
-    # Build a lookup: question_id → (question, answer)
+    # Build a lookup: question_id → question
     q_map = {q.question_id: q for q in questions}
+
+    # 1. LLM-driven Logical Analysis
+    # If the user provides answers that contradict the current sequence,
+    # the LLM can suggest changes to 'trigger' and 'expected' fields.
+    if llm_provider:
+        obl_text = "\n".join([f"ID: {o.obligation_id} | {o.trigger} -> {o.expected}" for o in obligations])
+        ans_text = "\n".join([
+            f"Q: {q_map[a.question_id].question_text if a.question_id in q_map else 'Unknown'} | "
+            f"A: {a.answer_text or a.selected_options}"
+            for a in answers
+        ])
+
+        prompt = (
+            "You are an expert in interaction grammars. You are given a set of obligations "
+            "(trigger -> expected) and a set of user answers to clarification questions.\n\n"
+            "Your goal is to ensure the logical sequence of events matches the user's intent. "
+            "Crucially, look for answers that describe a sequence of events (e.g., 'X then Y', 'first X, then Y', 'do Y before X').\n\n"
+            "If a user's answer contradicts the current order of obligations (e.g., the user says 'say sorry then stop' "
+            "but the current obligations are 'stop' -> 'sorry'), you MUST propose changes to the 'trigger' and 'expected' "
+            "fields to swap or reorder them.\n\n"
+            "Example: If User says 'Say sorry then stop' and Current is [Obl1: stop -> sorry], "
+            "you should propose updates to make it [Obl1: sorry -> stop].\n\n"
+            "Return a list of proposed updates in JSON format: "
+            "[{'obligation_id': '...', 'field': 'trigger', 'new_value': '...'}, ...]\n"
+            "If no logical changes are needed, return an empty list [].\n\n"
+            f"Current Obligations:\n{obl_text}\n\n"
+            f"User Answers:\n{ans_text}"
+        )
+
+        try:
+            response = llm_provider.generate(prompt)
+            # Simple cleanup to find JSON array in case LLM adds markdown blocks
+            cleaned_resp = response.strip()
+            if cleaned_resp.startswith("```json"):
+                cleaned_resp = cleaned_resp.split("```json")[1].split("```")[0].strip()
+            elif cleaned_resp.startswith("```"):
+                cleaned_resp = cleaned_resp.split("```")[1].split("```")[0].strip()
+
+            updates = json.loads(cleaned_resp)
+            if isinstance(updates, list):
+                for up in updates:
+                    oid = up.get("obligation_id")
+                    field = up.get("field")
+                    val = up.get("new_value")
+
+                    target = next((o for o in obligations if o.obligation_id == oid), None)
+                    if target and field in ["trigger", "expected"]:
+                        setattr(target, field, val)
+                        logger.info(f"LLM logical update for {oid}: {field} = {val}")
+        except Exception as e:
+            logger.error(f"LLM logical analysis failed: {e}")
 
     for ans in answers:
         q = q_map.get(ans.question_id)

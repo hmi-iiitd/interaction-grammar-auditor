@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_2ab4c633aa05",
+  "structured_summary": "The robot provides instructional guidelines to a human in a collaborative workspace. While the human is speaking, the robot must remain silent and not interrupt. After the human finishes speaking, the robot is allowed to respond.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "human_speaking_start",
+    "human_speaking_end",
+    "robot_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_c0eefe4839ef",
+      "obligation_type": "failure",
+      "trigger": "human_speaking_start",
+      "expected": "robot_speaking",
+      "deadline_seconds": null,
+      "site": "collaborative_workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "When the human is speaking, the robot must not interrupt."
+    },
+    {
+      "obligation_id": "obl_2f1eb3beee73",
+      "obligation_type": "sequence",
+      "trigger": "human_speaking_end",
+      "expected": "robot_speaking",
+      "deadline_seconds": 3.0,
+      "site": "collaborative_workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot may respond only after the human has finished speaking."
+    }
+  ],
+  "missing_details": [
+    "Exact definition of 'finished speaking' (e.g., required silence duration)",
+    "Modalities allowed for robot response (speech, gesture, etc.)",
+    "Precise spatial bounds of the collaborative workspace",
+    "Threshold for what counts as an interruption (overlap length)"
+  ],
+  "potential_ambiguities": [
+    "Whether brief pauses in human speech count as 'finished speaking'",
+    "Whether non-verbal robot behavior (e.g., movement) counts as interrupting",
+    "If the robot's initial instructional guidelines count as a separate speaking event that must also follow turn-taking rules"
+  ]
+}

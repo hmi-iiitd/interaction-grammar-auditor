@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL",
+  "operator": "act",
+  "clause_path": "$.items[0].left",
+  "error_code": "V_ACT_MISSING",
+  "budget": null,
+  "observed": {
+    "trace_len": 6,
+    "searched_from": 0
+  },
+  "responsible_agent": "robot_1",
+  "witness": {}
+}

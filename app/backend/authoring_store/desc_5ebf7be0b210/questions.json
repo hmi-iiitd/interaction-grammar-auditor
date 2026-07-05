@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_2a15f88cffcf",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: None → announcement",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_cbb0263684d4",
+    "required": true
+  },
+  {
+    "question_id": "q_357f174d2c1e",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window starts at the beginning or end of the announcement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c884b31fc5b4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window starts at the moment acknowledgment is detected or after it completes",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_3e659db11213",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether either speech or head nod alone satisfies the acknowledgment requirement, or if both are needed",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_f446e7a216e3",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a 'quiet office environment' and whether the robot must adapt its behavior to noise levels",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

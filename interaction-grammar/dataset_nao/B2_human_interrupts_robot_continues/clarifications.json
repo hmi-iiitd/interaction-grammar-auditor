@@ -1,41 +1,39 @@
 {
   "questions": [
     {
-      "question_id": "q_d04bca3bb163",
+      "question_id": "q_b46b3de73c65",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_provides_guidelines",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_f22b70b0fae1",
+      "required": true
+    },
+    {
+      "question_id": "q_36f4cc73224a",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: The start point for the 1\u2011second timer (onset of human speech vs. detection of interruption).",
+      "question_text": "Clarification needed: The phrase 'must not interrupt the human while they are speaking' does not specify how the robot detects human speech onset",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_3c9e87d3ccdc",
+      "question_id": "q_1acc10c63505",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: Whether 'stop speaking within 1 second' means the robot's audio output must cease entirely within that window or that the robot must begin the stopping process.",
+      "question_text": "Clarification needed: 'immediately stop speaking within 2 seconds' is ambiguous: does 'immediately' mean zero delay or simply within the 2\u2011second window?",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_259178937a65",
+      "question_id": "q_36821da9dca1",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: Whether the two 1\u2011second windows run sequentially or concurrently.",
-      "suggested_options": [],
-      "related_obligation_id": "",
-      "required": false
-    },
-    {
-      "question_id": "q_33a5d1a8ff53",
-      "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: What constitutes an acknowledgment: must the robot say the word 'sorry' exactly, or any apology utterance?",
-      "suggested_options": [],
-      "related_obligation_id": "",
-      "required": false
-    },
-    {
-      "question_id": "q_c14ab7dc6a3d",
-      "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: Whether the robot's initial speaking is a predefined script or continuous speech.",
+      "question_text": "Clarification needed: The 2\u2011second limit for acknowledgment and stopping could be interpreted as each must finish within 2 seconds of the interruption, or the stop must occur within 2 seconds after the acknowledgment finishes.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -43,34 +41,30 @@
   ],
   "answers": [
     {
-      "question_id": "q_d04bca3bb163",
-      "answer_text": "detection of interruption",
-      "selected_options": [],
-      "answered_at": "2026-06-18T07:40:06.269659Z"
+      "question_id": "q_b46b3de73c65",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-07-04T13:55:44.894717Z"
     },
     {
-      "question_id": "q_3c9e87d3ccdc",
+      "question_id": "q_36f4cc73224a",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T07:40:06.269671Z"
+      "answered_at": "2026-07-04T13:55:44.894750Z"
     },
     {
-      "question_id": "q_259178937a65",
-      "answer_text": "concurrently",
+      "question_id": "q_1acc10c63505",
+      "answer_text": "within the 2\u2011second window?",
       "selected_options": [],
-      "answered_at": "2026-06-18T07:40:06.269675Z"
+      "answered_at": "2026-07-04T13:55:44.894764Z"
     },
     {
-      "question_id": "q_33a5d1a8ff53",
-      "answer_text": "",
+      "question_id": "q_36821da9dca1",
+      "answer_text": "top must occur within 2 seconds after the acknowledgment finishes.",
       "selected_options": [],
-      "answered_at": "2026-06-18T07:40:06.269678Z"
-    },
-    {
-      "question_id": "q_c14ab7dc6a3d",
-      "answer_text": "",
-      "selected_options": [],
-      "answered_at": "2026-06-18T07:40:06.269681Z"
+      "answered_at": "2026-07-04T13:55:44.894775Z"
     }
   ]
 }

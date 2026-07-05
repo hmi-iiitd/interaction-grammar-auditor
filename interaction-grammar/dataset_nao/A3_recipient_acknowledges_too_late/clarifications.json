@@ -1,25 +1,25 @@
 {
   "questions": [
     {
-      "question_id": "q_3a70ddc63f70",
+      "question_id": "q_e8318aa8e543",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether 'acknowledge' requires a verbal response or any action",
+      "question_text": "Clarification needed: What constitutes a valid acknowledgment (any utterance vs. specific phrase)",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_042476ee376c",
+      "question_id": "q_6962740bd74a",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether 'confirm' is a robot utterance or a signal",
+      "question_text": "Clarification needed: Whether the 8\u2011second window begins at the end of the robot's announcement or at its start",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_202d76ec2f94",
+      "question_id": "q_ec8e1dae75c9",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the timing windows are inclusive or exclusive of the trigger event",
+      "question_text": "Clarification needed: Whether the robot's final confirmation must be a specific phrase or any speech",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -27,22 +27,22 @@
   ],
   "answers": [
     {
-      "question_id": "q_3a70ddc63f70",
+      "question_id": "q_e8318aa8e543",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872880Z"
+      "answered_at": "2026-06-23T18:40:43.233369Z"
     },
     {
-      "question_id": "q_042476ee376c",
-      "answer_text": "robot utterance",
+      "question_id": "q_6962740bd74a",
+      "answer_text": "end of the robot's announcement ",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872893Z"
+      "answered_at": "2026-06-23T18:40:43.233398Z"
     },
     {
-      "question_id": "q_202d76ec2f94",
+      "question_id": "q_ec8e1dae75c9",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872897Z"
+      "answered_at": "2026-06-23T18:40:43.233408Z"
     }
   ]
 }

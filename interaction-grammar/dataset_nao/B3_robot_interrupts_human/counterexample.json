@@ -1,0 +1,58 @@
+{
+  "scenario_id": "B3_robot_interrupts_human",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'acknowledgment' must be satisfied",
+  "trigger": {
+    "event_id": "e002",
+    "time": 0.01,
+    "description": "acknowledgment at 0.01s"
+  },
+  "expected": {
+    "event": "robot_1_robot_acknowledges_interruption",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No robot_1_robot_acknowledges_interruption observed before deadline"
+  },
+  "falsification": {
+    "time": 3.08,
+    "description": "Violation detected at 3.08s — robot_1_robot_acknowledges_interruption not satisfied"
+  },
+  "attribution": "robot_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 0,
+    "end": 4.08,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "start",
+        "agent": "robot_1",
+        "details": "start"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 0.01,
+        "event_type": "user_interrupts_by_speaking",
+        "agent": "human_1",
+        "details": "user_interrupts_by_speaking"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 3.08,
+        "event_type": "robot_provides_guidelines",
+        "agent": "robot_1",
+        "details": "robot_provides_guidelines"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 3.08,
+        "event_type": "user_finishes_speaking",
+        "agent": "human_1",
+        "details": "user_finishes_speaking"
+      }
+    ]
+  }
+}

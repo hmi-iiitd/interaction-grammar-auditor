@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_a46f19c07085",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_announces_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_e9542795471a",
+    "required": true
+  },
+  {
+    "question_id": "q_f920120085ee",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the 8‑second window starts at the beginning or end of the robot's announcement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a2afc64692bd",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the 1‑second window starts at the beginning or end of the user's acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d29af324e95d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether acknowledgment is considered complete when the user starts speaking or when they finish speaking",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

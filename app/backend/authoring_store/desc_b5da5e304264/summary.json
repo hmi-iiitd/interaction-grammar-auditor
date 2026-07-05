@@ -1,0 +1,74 @@
+{
+  "description_id": "desc_b5da5e304264",
+  "structured_summary": "The robot announces the delivery via speech. The user must acknowledge the delivery (by speech or head nod) within 8 seconds of the announcement. After receiving the acknowledgment, the robot must give a final confirmation via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "announcement",
+    "acknowledgment",
+    "final_confirmation",
+    "speech",
+    "gesture"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_121920fed27f",
+      "obligation_type": "sequence",
+      "trigger": "",
+      "expected": "announcement",
+      "deadline_seconds": 5.0,
+      "site": "office",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot should announce the delivery via speech."
+    },
+    {
+      "obligation_id": "obl_2cb0b453d06d",
+      "obligation_type": "sequence",
+      "trigger": "announcement",
+      "expected": "acknowledgment",
+      "deadline_seconds": 8,
+      "site": "office",
+      "modalities": [
+        "speech",
+        "gesture"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_dade733fbb31",
+      "obligation_type": "sequence",
+      "trigger": "acknowledgment",
+      "expected": "final_confirmation",
+      "deadline_seconds": 1,
+      "site": "office",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "Trigger event for the robot's announcement is not explicitly stated.",
+    "Exact start point of the 8‑second and 1‑second deadlines (e.g., end of announcement vs. start) is ambiguous.",
+    "Whether acknowledgment via speech or head nod must be a specific modality or either is acceptable is ambiguous.",
+    "Obligation obl_121920fed27f: sequence missing trigger event"
+  ],
+  "potential_ambiguities": [
+    "Acknowledgment modality: speech or head nod – either acceptable or required?",
+    "Deadline measurement: does the 8‑second window begin at the completion of the announcement utterance?",
+    "Deadline measurement: does the 1‑second window begin at the completion of the acknowledgment signal?"
+  ]
+}

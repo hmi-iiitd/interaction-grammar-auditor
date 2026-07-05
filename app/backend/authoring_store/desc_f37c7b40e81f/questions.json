@@ -1,0 +1,18 @@
+[
+  {
+    "question_id": "q_39180615d634",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 1 second' could be interpreted as a single 1‑second window for both acknowledgement and stopping, or as two separate 1‑second windows.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_70306ac800fc",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The exact modality for 'stopping speaking' is not specified (e.g., mute audio vs. cease utterance).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

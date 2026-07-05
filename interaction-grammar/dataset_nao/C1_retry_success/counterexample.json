@@ -1,0 +1,46 @@
+{
+  "verdict": "FAIL",
+  "operator": "repair",
+  "clause_path": "$.items[1]",
+  "error_code": "V_REPAIR_EXHAUSTED",
+  "budget": "retries \u2264 1",
+  "observed": {
+    "attempts": 2
+  },
+  "responsible_agent": "human_1",
+  "witness": {
+    "last_failure": {
+      "verdict": "FAIL",
+      "operator": "sequence",
+      "clause_path": "$.items[1].expr",
+      "error_code": "V_SEQ_LATENCY_EXCEEDED",
+      "budget": "\u22643.0s",
+      "observed": {
+        "dt": 6.354543685913086
+      },
+      "responsible_agent": "human_1",
+      "witness": {
+        "left_event": {
+          "idx": 1,
+          "event": {
+            "t": 1783078208.0193062,
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          }
+        },
+        "right_event": {
+          "idx": 3,
+          "event": {
+            "t": 1783078214.3738499,
+            "prim": "\u03b1",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_01baa6ee41d5",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' is ambiguous: does it mean stop within 2 seconds after the apology, or within 2 seconds total from the interruption?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_7ec77641fd25",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'immediately' conflicts with the allowed 2-second window.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_daa8634e30d8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot must stop speaking even if it was not speaking at the moment of interruption.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

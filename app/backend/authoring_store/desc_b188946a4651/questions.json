@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_c5ce13d13557",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window starts at the start or end of the robot's announcement speech.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4a50aa239db8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window starts at the start or end of the user's acknowledgment utterance.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_2c70f664bdd4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What qualifies as a valid acknowledgment (any speech vs specific phrase).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

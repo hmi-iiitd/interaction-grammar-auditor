@@ -1,16 +1,16 @@
-scenario_id: "B1_human_interrupts_robot_stops"
-interaction_family: "Interruption and Turn-Taking"
-robot_platform: "NAO"
-participant_role: "interrupter"
-expected_verdict: "SAT"
-expected_failure_type: "none"
-expected_trigger_event: "human interruption"
-expected_failed_obligation: "none"
-expected_falsification_time: "none"
-expected_agent_attribution: "none"
-contract_id: "contract_7c393762e3df"
-contract_version: "1.0"
-contract_hash: "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "Human interruption is handled correctly."
+scenario_id: B1_human_interrupts_robot_stops
+interaction_family: Interruption and Turn-Taking
+robot_platform: NAO
+participant_role: interrupter
+expected_verdict: SAT
+expected_failure_type: none
+expected_trigger_event: human interruption
+expected_failed_obligation: robot stops speaking and acknowledges interruption
+expected_falsification_time: none
+expected_agent_attribution: none
+contract_id: contract_f2cb0b4d8024
+contract_version: '1.0'
+contract_hash: sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: Human interruption is handled correctly.

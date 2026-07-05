@@ -1,0 +1,70 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "start"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "latency": "1.0s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech, head_nod",
+        "object": "robot_announces_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech, head_nod",
+        "object": "recipient_acknowledges_delivery"
+      },
+      "latency": "8s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "recipient_acknowledges_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_final_confirmation"
+      },
+      "latency": "1s"
+    }
+  ],
+  "latency": "≤30s",
+  "_contract_metadata": {
+    "contract_id": "contract_cfe80db70a71",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-22T17:23:07.041406Z",
+    "contract_hash": "sha256:e69a98f5a79c437bb907e3645c058b8aa34e5ae62ae09d85f0825341af361abf",
+    "source_description_id": "desc_cfe80db70a71",
+    "confirmed_assumptions": 3,
+    "unresolved_assumptions": 0
+  }
+}

@@ -1,1 +1,0 @@
-Robot prompts; participant does not respond before 3 seconds; robot retries once; participant acknowledges after retry.

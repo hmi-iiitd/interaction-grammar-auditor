@@ -1,0 +1,52 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_announces_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_acknowledges_delivery"
+      },
+      "latency": "8s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_acknowledges_delivery"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_confirms_delivery"
+      },
+      "latency": "1s"
+    }
+  ],
+  "latency": "≤30s",
+  "_contract_metadata": {
+    "contract_id": "contract_b188946a4651",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-23T19:22:14.010090Z",
+    "contract_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431",
+    "source_description_id": "desc_b188946a4651",
+    "confirmed_assumptions": 2,
+    "unresolved_assumptions": 0
+  }
+}

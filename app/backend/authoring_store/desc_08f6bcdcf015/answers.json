@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_f31945bae88c",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-06-24T17:50:57.794550Z"
+  },
+  {
+    "question_id": "q_d86210aa0dfd",
+    "answer_text": "3 sec",
+    "selected_options": [],
+    "answered_at": "2026-06-24T17:50:57.794581Z"
+  },
+  {
+    "question_id": "q_1fa366d26d80",
+    "answer_text": "",
+    "selected_options": [
+      "Mark interaction as failed"
+    ],
+    "answered_at": "2026-06-24T17:50:57.794592Z"
+  },
+  {
+    "question_id": "q_955b9c87f474",
+    "answer_text": "finshes ",
+    "selected_options": [],
+    "answered_at": "2026-06-24T17:50:57.794600Z"
+  },
+  {
+    "question_id": "q_2c7c49f94ac2",
+    "answer_text": "immediate after the timeout",
+    "selected_options": [],
+    "answered_at": "2026-06-24T17:50:57.794608Z"
+  },
+  {
+    "question_id": "q_3ef39aac3979",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T17:50:57.794616Z"
+  },
+  {
+    "question_id": "q_dd48d43f3369",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T17:50:57.794623Z"
+  }
+]

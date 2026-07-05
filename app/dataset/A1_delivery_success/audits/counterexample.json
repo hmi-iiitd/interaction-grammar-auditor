@@ -1,0 +1,44 @@
+{
+  "scenario_id": "A1_delivery_success",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'missing_action' must be satisfied",
+  "trigger": {
+    "event_id": null,
+    "time": 0,
+    "description": "missing_action at 0s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 0,
+    "description": "Violation detected at 0s — expected_response not satisfied"
+  },
+  "attribution": "robot_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 0,
+    "end": 5.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "start",
+        "agent": "system",
+        "details": "start"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 4.95,
+        "event_type": "robot_announces_delivery",
+        "agent": "robot_1",
+        "details": "robot_announces_delivery"
+      }
+    ]
+  }
+}

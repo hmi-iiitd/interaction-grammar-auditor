@@ -1,0 +1,30 @@
+[
+  {
+    "obligation_id": "obl_e79e2876f9ff",
+    "source_type": "user_clarification",
+    "source_text": "The robot should prompt the user via speech. → User clarified: 3 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T07:48:23.966696Z"
+  },
+  {
+    "obligation_id": "obl_ed9dfc6c8646",
+    "source_type": "scenario_sentence",
+    "source_text": "If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T07:45:33.988010Z"
+  },
+  {
+    "obligation_id": "obl_fdaf95b21159",
+    "source_type": "user_clarification",
+    "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 sec",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T07:48:23.966714Z"
+  },
+  {
+    "obligation_id": "obl_a7501c212f9f",
+    "source_type": "user_clarification",
+    "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 sec",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T07:48:23.966723Z"
+  }
+]

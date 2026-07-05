@@ -1,1 +1,1 @@
-The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.
+The robot is delivering a package to a user in a quiet office environment. The robot should announce the delivery via speech. The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.

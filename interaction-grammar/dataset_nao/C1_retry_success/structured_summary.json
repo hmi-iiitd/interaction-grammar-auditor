@@ -1,0 +1,68 @@
+{
+  "description_id": "desc_08f6bcdcf015",
+  "structured_summary": "The interaction begins with the system start. The robot prompts the user via speech. The user must respond to the prompt within 3 seconds. If the user fails to respond within this window, the robot retries the prompt exactly once. After a successful response (either on the first prompt or after the retry), the user must acknowledge the prompt's intent.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "start",
+    "robot_prompts_user",
+    "user_responds_to_prompt",
+    "user_acknowledges_intent"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_7c88582d5b34",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_prompts_user",
+      "deadline_seconds": 5.0,
+      "site": "robot_prompts_user",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot prompts the user via speech."
+    },
+    {
+      "obligation_id": "obl_9ac4fe1e92c5",
+      "obligation_type": "repair",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds_to_prompt",
+      "deadline_seconds": 3,
+      "site": null,
+      "modalities": [],
+      "repair_event": "robot_prompts_user",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+    },
+    {
+      "obligation_id": "obl_0193a6199dd8",
+      "obligation_type": "sequence",
+      "trigger": "user_responds_to_prompt",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "user_acknowledges_intent",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    }
+  ],
+  "missing_details": [
+    "What constitutes a valid user response (content, modality, correctness).",
+    "What happens after the user acknowledges the intent (e.g., task completion, further steps).",
+    "Whether the robot provides any feedback after a successful response or after the retry.",
+    "What occurs if the user fails to respond even after the retry (failure handling).",
+    "Obligation obl_9ac4fe1e92c5: repair missing site label"
+  ],
+  "potential_ambiguities": [
+    "Whether the 3-second timer starts when the robot finishes speaking or when it starts speaking.",
+    "Whether the retry is immediate after the timeout or after some additional delay.",
+    "What counts as a response (any speech, specific keyword, etc.).",
+    "Whether the user's acknowledgment of intent must be verbal or can be non-verbal."
+  ]
+}

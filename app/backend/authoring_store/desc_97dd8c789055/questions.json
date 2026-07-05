@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_9c89fb07b0ab",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'within 1 second' could apply to both stopping and apologizing separately or to the combined action.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_2ecce90d1179",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear whether the robot must stop speaking before saying sorry, or if saying sorry can overlap with stopping.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4d425083c438",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The scenario does not specify if the robot should wait for the human to finish speaking before apologizing.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

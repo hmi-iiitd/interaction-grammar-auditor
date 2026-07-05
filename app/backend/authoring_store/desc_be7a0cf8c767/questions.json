@@ -1,0 +1,56 @@
+[
+  {
+    "question_id": "q_455104db511c",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: scenario_start → robot_announce_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_f4ddb5544bc3",
+    "required": true
+  },
+  {
+    "question_id": "q_c059edc44e2e",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window begins at the start or end of the robot's announcement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_908b4f6cf126",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window begins at the moment the acknowledgment is detected or after it is completed",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_eb94321c3119",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether a head nod must be a specific gesture or any head movement counts as acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_0d7301311cf9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_22457f2f2923",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the final confirmation must be identical to the announcement or can be a different phrase",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

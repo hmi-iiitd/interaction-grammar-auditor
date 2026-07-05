@@ -1,0 +1,12 @@
+{
+  "description": "The robot interacts with a user in a high-traffic reception area to confirm a critical task. The robot prompts the user via speech. The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once. After a successful response or retry, the user must acknowledge the prompt's intent.\n",
+  "scenario_id": "C1_retry_success",
+  "scenario_title": "C1_retry_success",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_f48eb1cb32ac",
+  "created_at": "2026-06-24T14:42:57.985932Z",
+  "created_by": "user"
+}

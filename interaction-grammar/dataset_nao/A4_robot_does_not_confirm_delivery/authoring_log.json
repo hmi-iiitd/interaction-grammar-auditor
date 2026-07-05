@@ -1,91 +1,85 @@
 {
   "scenario_id": "A4_robot_does_not_confirm_delivery",
-  "description_id": "desc_31a850b9187c",
-  "original_natural_language_description": "The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.\n",
+  "description_id": "desc_284654cc2a4a",
+  "original_natural_language_description": "The robot is delivering a package to a user in a quiet office environment. The robot should announce the delivery via speech. The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
   "structured_system_interpretation": {
-    "description_id": "desc_31a850b9187c",
-    "structured_summary": "The robot announces a package delivery; the recipient must acknowledge it within 8 seconds, after which the robot must confirm the delivery within 1 second.",
+    "description_id": "desc_284654cc2a4a",
+    "structured_summary": "The robot announces the package delivery via speech. The user must acknowledge the delivery via speech within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must provide a final confirmation of delivery via speech within 1 second.",
     "actors": [
       "robot",
-      "recipient"
+      "user"
     ],
     "events": [
-      "robot_announces_delivery",
-      "recipient_acknowledges_delivery",
-      "robot_confirms_delivery"
+      "robot_announce_delivery",
+      "user_acknowledge",
+      "robot_final_confirmation",
+      "speech"
     ],
     "obligations": [
       {
-        "obligation_id": "obl_c652c246c9b5",
+        "obligation_id": "obl_717e8b44f9ad",
         "obligation_type": "sequence",
-        "trigger": "robot_announces_delivery",
-        "expected": "recipient_acknowledges_delivery",
+        "trigger": "robot_announce_delivery",
+        "expected": "user_acknowledge",
         "deadline_seconds": 8,
-        "site": "delivery_acknowledgment",
-        "modalities": [],
+        "site": "user_acknowledge",
+        "modalities": [
+          "speech"
+        ],
         "repair_event": "",
         "max_retries": null,
         "condition": "",
-        "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+        "source_sentence": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement."
       },
       {
-        "obligation_id": "obl_c8abf049dd57",
+        "obligation_id": "obl_95926e75d5c1",
         "obligation_type": "sequence",
-        "trigger": "recipient_acknowledges_delivery",
-        "expected": "robot_confirms_delivery",
+        "trigger": "user_acknowledge",
+        "expected": "robot_final_confirmation",
         "deadline_seconds": 1,
-        "site": "delivery_confirmation",
-        "modalities": [],
+        "site": "robot_final_confirmation",
+        "modalities": [
+          "speech"
+        ],
         "repair_event": "",
         "max_retries": null,
         "condition": "",
-        "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+        "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
       }
     ],
     "missing_details": [
-      "modality of acknowledgment (speech, button press, gesture, etc.)",
-      "modality of confirmation (speech, LED, sound, etc.)",
-      "failure behavior if acknowledgment is not received within 8 seconds",
-      "failure behavior if confirmation is not sent within 1 second",
-      "any retry or repair policy",
-      "precise definition of what counts as an acknowledgment or confirmation"
+      "What happens if the user does not acknowledge within 8 seconds (timeout behavior, robot retry or abort).",
+      "What constitutes a valid acknowledgment (specific phrase, any speech).",
+      "What the robot should do if it fails to announce the delivery.",
+      "Speech modality details such as language, volume, or tone."
     ],
     "potential_ambiguities": [
-      "whether the 8\u2011second window starts at the beginning or end of the announcement",
-      "what specific actions constitute an acknowledgment",
-      "what specific actions constitute a confirmation",
-      "whether the robot should repeat the announcement if no acknowledgment is received"
+      "Whether 'acknowledge' requires a specific verbal response or any utterance.",
+      "Whether the robot should repeat the announcement if no acknowledgment is received.",
+      "What the final confirmation entails (e.g., same phrase as announcement or a distinct message)."
     ]
   },
   "clarification_questions": [
     {
-      "question_id": "q_7301446a07b9",
+      "question_id": "q_008885c888da",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the 8\u2011second window starts at the beginning or end of the announcement",
+      "question_text": "Clarification needed: Whether 'acknowledge' requires a specific verbal response or any utterance.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_69973b38bbbd",
+      "question_id": "q_b1b8b036a5ea",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: what specific actions constitute an acknowledgment",
+      "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_220b752f9f94",
+      "question_id": "q_197e39832210",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: what specific actions constitute a confirmation",
-      "suggested_options": [],
-      "related_obligation_id": "",
-      "required": false
-    },
-    {
-      "question_id": "q_f60af0fc9552",
-      "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the robot should repeat the announcement if no acknowledgment is received",
+      "question_text": "Clarification needed: What the final confirmation entails (e.g., same phrase as announcement or a distinct message).",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -93,32 +87,26 @@
   ],
   "user_answers": [
     {
-      "question_id": "q_7301446a07b9",
-      "answer_text": "end of announcement",
-      "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085458Z"
-    },
-    {
-      "question_id": "q_69973b38bbbd",
+      "question_id": "q_008885c888da",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085475Z"
+      "answered_at": "2026-06-23T19:40:02.641150Z"
     },
     {
-      "question_id": "q_220b752f9f94",
+      "question_id": "q_b1b8b036a5ea",
+      "answer_text": "no",
+      "selected_options": [],
+      "answered_at": "2026-06-23T19:40:02.641177Z"
+    },
+    {
+      "question_id": "q_197e39832210",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085481Z"
-    },
-    {
-      "question_id": "q_f60af0fc9552",
-      "answer_text": "yes once ",
-      "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085486Z"
+      "answered_at": "2026-06-23T19:40:02.641186Z"
     }
   ],
-  "plain_language_contract": "1. After the robot announces delivery, the recipient must acknowledge the delivery within 8 seconds.  \n2. After the recipient acknowledges delivery, the robot must confirm the delivery within 1 second.",
-  "readable_grammar_notation": "robot_announces_delivery \u2192 recipient_acknowledges_delivery @within(8s)\nrecipient_acknowledges_delivery \u2192 robot_confirms_delivery @within(1s)",
+  "plain_language_contract": "1. After the robot announces the delivery, the user must acknowledge the delivery via speech within 8 seconds.  \n2. After the user acknowledges, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "readable_grammar_notation": "robot_announce_delivery \u2192 user_acknowledge @within(8s)\nuser_acknowledge \u2192 robot_final_confirmation @within(1s)",
   "contract_json": {
     "node": "bind",
     "items": [
@@ -136,7 +124,7 @@
           "prim": "\u03b1",
           "agent": "human_1",
           "channel": "speech",
-          "object": "recipient_acknowledges_delivery"
+          "object": "user_acknowledges_delivery"
         },
         "latency": "8s"
       },
@@ -145,36 +133,36 @@
         "left": {
           "node": "act",
           "prim": "\u03b1",
-          "agent": "robot_1",
+          "agent": "human_1",
           "channel": "speech",
-          "object": "recipient_acknowledges_delivery"
+          "object": "user_acknowledges_delivery"
         },
         "right": {
           "node": "act",
           "prim": "\u03b1",
-          "agent": "human_1",
+          "agent": "robot_1",
           "channel": "speech",
           "object": "robot_confirms_delivery"
         },
         "latency": "1s"
       }
     ],
-    "latency": "\u226432s"
+    "latency": "\u226430s"
   },
   "provenance": [
     {
-      "obligation_id": "obl_c652c246c9b5",
+      "obligation_id": "obl_717e8b44f9ad",
       "source_type": "scenario_sentence",
-      "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+      "source_text": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement.",
       "confirmed_by_user": true,
-      "timestamp": "2026-06-18T06:50:39.275455Z"
+      "timestamp": "2026-06-23T19:39:29.475416Z"
     },
     {
-      "obligation_id": "obl_c8abf049dd57",
+      "obligation_id": "obl_95926e75d5c1",
       "source_type": "scenario_sentence",
-      "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
       "confirmed_by_user": true,
-      "timestamp": "2026-06-18T06:50:39.275468Z"
+      "timestamp": "2026-06-23T19:39:29.475438Z"
     }
   ],
   "validation_output": {
@@ -185,5 +173,5 @@
     "warnings": [],
     "all_passed": true
   },
-  "lock_hash": "sha256:4ff3a2704c5f70c2d5136f813671f00db706a414087b24b3759af1f5745b8ff3"
+  "lock_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431"
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "obligation_id": "obl_b3b88d6fd0b3",
+    "source_type": "scenario_sentence",
+    "source_text": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T18:47:01.292985Z"
+  },
+  {
+    "obligation_id": "obl_7c8e49986fe4",
+    "source_type": "scenario_sentence",
+    "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-23T18:47:01.293013Z"
+  }
+]

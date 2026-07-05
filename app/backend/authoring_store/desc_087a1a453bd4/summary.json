@@ -1,0 +1,55 @@
+{
+  "description_id": "desc_087a1a453bd4",
+  "structured_summary": "In a collaborative workspace, a robot provides instructional guidelines to a human. If the human interrupts the robot by speaking, the robot must acknowledge the interruption by saying 'sorry' via speech within 1 second, and then immediately stop speaking within 1 second.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_speaks_guidelines",
+    "human_interrupts_by_speaking",
+    "robot_acknowledges_interruption",
+    "robot_stops_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_4d6b5b77863b",
+      "obligation_type": "conditional_sequence",
+      "trigger": "human_interrupts_by_speaking",
+      "expected": "robot_acknowledges_interruption",
+      "deadline_seconds": 1,
+      "site": "collaborative_workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "human interrupts robot by speaking",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 1 second"
+    },
+    {
+      "obligation_id": "obl_2c396f689eb0",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 1,
+      "site": "collaborative_workspace",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "and then immediately stop speaking within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What happens after the robot stops speaking (e.g., resume guidelines, wait for human input)?",
+    "Is there a maximum number of interruptions allowed?",
+    "What constitutes a valid interruption (e.g., any speech, specific keywords)?",
+    "What if the robot fails to acknowledge or stop within the deadline?"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 1 second' could be interpreted as stopping within 1 second of the interruption or within 1 second of the acknowledgment.",
+    "The term 'interrupts' is not precisely defined (e.g., overlapping speech, any utterance)."
+  ]
+}

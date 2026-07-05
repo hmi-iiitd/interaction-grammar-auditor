@@ -1,0 +1,52 @@
+[
+  {
+    "question_id": "q_5450f687fad2",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_2e041365e9d9",
+    "required": true
+  },
+  {
+    "question_id": "q_d5a87627e862",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_92f75461bad2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'exactly once' means a maximum of two prompts total or one retry after the first failure",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c8956e6b83a1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes acknowledgment of the prompt's intent",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_47f6da450a9f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the user must acknowledge after each prompt or only after the final successful response",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

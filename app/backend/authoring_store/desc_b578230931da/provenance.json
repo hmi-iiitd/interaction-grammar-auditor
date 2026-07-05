@@ -1,0 +1,23 @@
+[
+  {
+    "obligation_id": "obl_e9c68e90f718",
+    "source_type": "scenario_sentence",
+    "source_text": "The robot announces package delivery, the user acknowledges within 8 seconds, and the robot confirms within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:52:56.563918Z"
+  },
+  {
+    "obligation_id": "obl_7a5c9f5515a4",
+    "source_type": "scenario_sentence",
+    "source_text": "The robot announces package delivery, the user acknowledges within 8 seconds, and the robot confirms within 1 second.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:52:56.563945Z"
+  },
+  {
+    "obligation_id": "obl_b3b24358ec54",
+    "source_type": "scenario_sentence",
+    "source_text": "The entire interaction must complete within a global timeout of 5 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:52:56.563951Z"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "question_id": "q_0632ec3400e0",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-06-24T15:46:13.638823Z"
+  },
+  {
+    "question_id": "q_74a7c0f10d67",
+    "answer_text": "within 2 seconds of the acknowledgment",
+    "selected_options": [],
+    "answered_at": "2026-06-24T15:46:13.638832Z"
+  },
+  {
+    "question_id": "q_336c356d8c38",
+    "answer_text": "remain silent for the entire duration of human speech and resume after the human finishes",
+    "selected_options": [],
+    "answered_at": "2026-06-24T15:46:13.638834Z"
+  },
+  {
+    "question_id": "q_4482def64e0f",
+    "answer_text": "separate",
+    "selected_options": [],
+    "answered_at": "2026-06-24T15:46:13.638836Z"
+  }
+]

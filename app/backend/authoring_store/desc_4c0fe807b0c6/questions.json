@@ -1,0 +1,54 @@
+[
+  {
+    "question_id": "q_da5fd79dbe51",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_17ce7b01bade",
+    "required": true
+  },
+  {
+    "question_id": "q_26518821884f",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_finishes_speaking → robot_responds_after_human",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_48d9673687e3",
+    "required": true
+  },
+  {
+    "question_id": "q_4b59e46df972",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the two 2-second windows are sequential or overlapping",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4a8dd66666cd",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether robot must cease speaking immediately after acknowledgement or can finish current utterance",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_dd9b513a656f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What happens if multiple interruptions occur",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

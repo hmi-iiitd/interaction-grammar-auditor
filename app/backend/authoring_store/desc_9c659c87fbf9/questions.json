@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "q_5632bb0fc0f2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether acknowledgment via speech requires a specific phrase or any utterance",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_1ae17eb3d2aa",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether a head nod must be detected with a certain confidence level or by specific sensors",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4050704d0a5d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the time limits are hard deadlines or soft guidelines",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_25fa6de4c568",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_8b4f5d72bb2f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the final confirmation must be spoken immediately after acknowledgment or can be delayed up to 1 second",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

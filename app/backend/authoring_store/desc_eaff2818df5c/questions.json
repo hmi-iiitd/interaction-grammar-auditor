@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_6424c2982f2e",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The modality for acknowledgment (speech vs head nod) and how the robot distinguishes them",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_1d93c537356a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Exact timing reference points for the deadlines",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_7276ab39a709",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

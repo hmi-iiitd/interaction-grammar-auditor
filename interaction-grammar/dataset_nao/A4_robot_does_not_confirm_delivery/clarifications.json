@@ -1,33 +1,25 @@
 {
   "questions": [
     {
-      "question_id": "q_7301446a07b9",
+      "question_id": "q_008885c888da",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the 8\u2011second window starts at the beginning or end of the announcement",
+      "question_text": "Clarification needed: Whether 'acknowledge' requires a specific verbal response or any utterance.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_69973b38bbbd",
+      "question_id": "q_b1b8b036a5ea",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: what specific actions constitute an acknowledgment",
+      "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received.",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_220b752f9f94",
+      "question_id": "q_197e39832210",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: what specific actions constitute a confirmation",
-      "suggested_options": [],
-      "related_obligation_id": "",
-      "required": false
-    },
-    {
-      "question_id": "q_f60af0fc9552",
-      "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the robot should repeat the announcement if no acknowledgment is received",
+      "question_text": "Clarification needed: What the final confirmation entails (e.g., same phrase as announcement or a distinct message).",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -35,28 +27,22 @@
   ],
   "answers": [
     {
-      "question_id": "q_7301446a07b9",
-      "answer_text": "end of announcement",
-      "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085458Z"
-    },
-    {
-      "question_id": "q_69973b38bbbd",
+      "question_id": "q_008885c888da",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085475Z"
+      "answered_at": "2026-06-23T19:40:02.641150Z"
     },
     {
-      "question_id": "q_220b752f9f94",
+      "question_id": "q_b1b8b036a5ea",
+      "answer_text": "no",
+      "selected_options": [],
+      "answered_at": "2026-06-23T19:40:02.641177Z"
+    },
+    {
+      "question_id": "q_197e39832210",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085481Z"
-    },
-    {
-      "question_id": "q_f60af0fc9552",
-      "answer_text": "yes once ",
-      "selected_options": [],
-      "answered_at": "2026-06-18T06:52:05.085486Z"
+      "answered_at": "2026-06-23T19:40:02.641186Z"
     }
   ]
 }

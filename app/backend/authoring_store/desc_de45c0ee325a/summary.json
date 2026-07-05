@@ -1,0 +1,53 @@
+{
+  "description_id": "desc_de45c0ee325a",
+  "structured_summary": "The robot prompts the user via speech. The user must respond within 3 seconds; if they fail to do so, the robot repeats the prompt exactly once. After a successful response (either on the first or retry prompt), the user must acknowledge the prompt's intent.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_prompts_user",
+    "user_responds_to_prompt",
+    "user_acknowledges_intent"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_2487877572ea",
+      "obligation_type": "repair",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds_to_prompt",
+      "deadline_seconds": 3,
+      "site": null,
+      "modalities": [],
+      "repair_event": "robot_prompts_user",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+    },
+    {
+      "obligation_id": "obl_2e041365e9d9",
+      "obligation_type": "sequence",
+      "trigger": "user_responds_to_prompt",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "user_acknowledges_intent",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    }
+  ],
+  "missing_details": [
+    "Modality of user acknowledgment (speech, gesture, etc.)",
+    "Outcome if the user still fails to respond after the retry",
+    "Whether the 3-second deadline applies to each prompt attempt",
+    "Definition of a 'successful response' (e.g., any speech content)",
+    "Obligation obl_2487877572ea: repair missing site label"
+  ],
+  "potential_ambiguities": [
+    "Whether 'exactly once' means a maximum of two prompts total or one retry after the first failure",
+    "What constitutes acknowledgment of the prompt's intent",
+    "Whether the user must acknowledge after each prompt or only after the final successful response"
+  ]
+}

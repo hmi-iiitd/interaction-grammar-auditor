@@ -1,0 +1,18 @@
+[
+  {
+    "question_id": "q_ccfd28d84a43",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'within 1 second' could refer to the time from the start of the human's interruption or from when the robot detects the interruption.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_1bb531757e33",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: It is unclear whether the robot must stop speaking and say sorry sequentially or if saying sorry can overlap with stopping.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

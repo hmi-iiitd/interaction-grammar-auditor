@@ -1,0 +1,59 @@
+{
+  "description_id": "desc_c61cf6799bb8",
+  "structured_summary": "The robot is delivering instructional guidelines to a human. If the human interrupts by speaking, the robot must acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then cease speaking within another 2 seconds.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_start_guidelines[suggested]",
+    "human_interrupts_robot[suggested]",
+    "robot_acknowledges_interruption[suggested]",
+    "robot_stops_speaking[suggested]",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_6f3ea8c243bf",
+      "obligation_type": "sequence",
+      "trigger": "human_interrupts_robot[suggested]",
+      "expected": "robot_acknowledges_interruption[suggested]",
+      "deadline_seconds": 2,
+      "site": "robot_acknowledges_interruption[suggested]",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_539db148e77b",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption[suggested]",
+      "expected": "robot_stops_speaking[suggested]",
+      "deadline_seconds": 2,
+      "site": "robot_stops_speaking[suggested]",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "Definition of 'stop speaking' (complete silence vs pause)",
+    "Consequences if the robot misses either deadline (failure handling)",
+    "Whether the 2‑second window for stopping starts after acknowledgment or after the interruption",
+    "Exact wording required for acknowledgment (must be exactly 'sorry')",
+    "Whether the robot should resume guidelines after stopping"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 2 seconds' is ambiguous about the start time of the 2‑second window",
+    "It is unclear if both acknowledgment and stopping must occur within the same 2‑second period after interruption",
+    "The term 'acknowledge the interruption by saying \"sorry\"' could be interpreted as any apology phrase rather than the exact word 'sorry'"
+  ]
+}

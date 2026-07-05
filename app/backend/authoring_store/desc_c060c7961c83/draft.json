@@ -1,0 +1,64 @@
+{
+  "description_id": "desc_c060c7961c83",
+  "plain_language": "1. The user must acknowledge the delivery via speech within 8 seconds of the robot's announcement.  \n2. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "ig_syntax": "robot_announcement → user_acknowledgment @within(8s)\nuser_acknowledgment → robot_final_confirmation @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_192c43778cdf",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T18:39:36.688401Z"
+    },
+    {
+      "obligation_id": "obl_08061b32c60f",
+      "source_type": "scenario_sentence",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T18:39:36.688420Z"
+    }
+  ],
+  "generated_at": "2026-06-23T18:40:59.769331Z"
+}

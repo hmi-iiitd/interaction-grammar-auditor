@@ -262,12 +262,10 @@ def handle_upload(
 
         # Keep existing legacy dataset save as well for backward compatibility
         target_dir = get_dataset_root() / scenario_id
-        if target_dir.exists():
-            shutil.rmtree(target_dir)
 
-        (target_dir / "traces").mkdir(parents=True)
-        (target_dir / "contracts").mkdir(parents=True)
-        (target_dir / "audits").mkdir(parents=True)
+        (target_dir / "traces").mkdir(parents=True, exist_ok=True)
+        (target_dir / "contracts").mkdir(parents=True, exist_ok=True)
+        (target_dir / "audits").mkdir(parents=True, exist_ok=True)
 
         with open(target_dir / "metadata.yaml", "w", encoding="utf-8") as f:
             f.write(scenario_pkg["metadata.yaml"])

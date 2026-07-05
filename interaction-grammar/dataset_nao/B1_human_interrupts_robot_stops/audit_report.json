@@ -1,0 +1,11 @@
+{
+  "scenario_id": "B1_human_interrupts_robot_stops",
+  "contract_id": "contract.ig.json",
+  "verdict": "SAT",
+  "num_events": 7,
+  "num_violations": 0,
+  "violations": [],
+  "raw_auditor_output": {
+    "verdict": "PASS"
+  }
+}

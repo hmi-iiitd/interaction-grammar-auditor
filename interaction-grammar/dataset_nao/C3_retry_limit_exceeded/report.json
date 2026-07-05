@@ -1,0 +1,41 @@
+{
+  "verdict": "FAIL",
+  "operator": "repair",
+  "clause_path": "$.items[1]",
+  "error_code": "V_REPAIR_EXHAUSTED",
+  "budget": "retries \u2264 1",
+  "observed": {
+    "attempts": 2
+  },
+  "responsible_agent": "human_1",
+  "expected": {},
+  "witness": {
+    "last_failure": {
+      "verdict": "FAIL",
+      "operator": "sequence",
+      "clause_path": "$.items[1].expr",
+      "error_code": "V_SEQ_MISSING_RIGHT",
+      "budget": null,
+      "observed": {
+        "after_left_until": 1783078868.1259236
+      },
+      "responsible_agent": "human_1",
+      "expected": {
+        "right": "Present after left",
+        "object": "user_responds_to_prompt"
+      },
+      "witness": {
+        "left_event": {
+          "idx": 2,
+          "event": {
+            "t": 1783078862.25001,
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          }
+        }
+      }
+    }
+  }
+}

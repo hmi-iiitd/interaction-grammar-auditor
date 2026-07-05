@@ -1,0 +1,66 @@
+[
+  {
+    "question_id": "q_cd748dd97e72",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_prompts_user",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_3774e8a72ed4",
+    "required": true
+  },
+  {
+    "question_id": "q_96a46f3590e8",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_69bc4e72d061",
+    "required": true
+  },
+  {
+    "question_id": "q_fe4fcce53e85",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_384969b38759",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes acknowledging the prompt's intent",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a715180f5442",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 3-second deadline applies to each prompt attempt or only the first",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_be017a24d814",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot's retry is immediate or after some delay",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "question_id": "q_472aefedc296",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_arrives_at_user → robot_announce_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_72c5f3ec427a",
+    "required": true
+  },
+  {
+    "question_id": "q_a922f5f387b7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window starts at the onset or completion of the announcement speech",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_ed77333b6328",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window starts at the onset or completion of the acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_dbc258c83b47",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether speech alone, head nod alone, or either is sufficient for acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_743259584198",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the quiet office environment imposes any constraints on modality choice",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_34f49e2b1536",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a successful final confirmation (e.g., any speech content, specific phrase)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

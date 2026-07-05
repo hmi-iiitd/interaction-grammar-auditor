@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "q_4286ff7fc198",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Start time of the 8‑second window (announcement start vs end)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_883c7e4a07c2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Start time of the 1‑second window (acknowledgment detection vs completion)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_87d2b170faf2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether acknowledgment via speech requires a specific phrase or any utterance",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c4fba8fc966a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether head nod must be detectable by the robot's sensors",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_8bd374f7576f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'quiet office environment' imposes any noise level constraints",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "description_id": "desc_2954d828e4e9",
+  "structured_summary": "In a quiet office, a NAO robot delivers a package to a user. The robot first announces the delivery via speech. The user must acknowledge the delivery (by speaking or nodding) within 8 seconds of the announcement. Upon detecting the acknowledgment, the robot must then confirm the delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot announces delivery via speech",
+    "user acknowledges delivery",
+    "robot provides final confirmation via speech",
+    "speech",
+    "head_nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_a9fc826ec3ed",
+      "obligation_type": "sequence",
+      "trigger": "robot announces delivery via speech",
+      "expected": "user acknowledges delivery",
+      "deadline_seconds": 8,
+      "site": "announcement",
+      "modalities": [
+        "speech",
+        "head_nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_33b1828931b4",
+      "obligation_type": "sequence",
+      "trigger": "user acknowledges delivery",
+      "expected": "robot provides final confirmation via speech",
+      "deadline_seconds": 1,
+      "site": "acknowledgment",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What the robot should do if the user fails to acknowledge within 8 seconds (e.g., retry announcement, abort, or escalate).",
+    "How the robot detects a head‑nod acknowledgment (sensor modality, confidence threshold).",
+    "Whether the robot repeats the announcement if the acknowledgment is not detected.",
+    "Exact start point of the 8‑second and 1‑second deadlines (end of utterance vs. start).",
+    "Any failure handling for the robot’s speech announcement (e.g., if speech synthesis fails)."
+  ],
+  "potential_ambiguities": [
+    "\"within 8 seconds of the announcement\" – does the timer start at the beginning or end of the announcement?",
+    "\"within 1 second\" – measured from the moment acknowledgment is detected or from the end of the user’s acknowledgment signal?",
+    "\"acknowledge via speech or a head nod\" – how does the robot differentiate a head nod from other head movements?",
+    "\"quiet office environment\" – is background noise level relevant to timing or modality reliability?",
+    "Whether the robot should provide any intermediate feedback if acknowledgment is delayed but still within the window."
+  ]
+}

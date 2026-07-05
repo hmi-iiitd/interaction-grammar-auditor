@@ -1,0 +1,68 @@
+[
+  {
+    "question_id": "q_22bfbda1b271",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_prompts_user → user_responds",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_e79e2876f9ff",
+    "required": true
+  },
+  {
+    "question_id": "q_f9db214a9beb",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_fdaf95b21159",
+    "required": true
+  },
+  {
+    "question_id": "q_bd426e9918bd",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_retries_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_a7501c212f9f",
+    "required": true
+  },
+  {
+    "question_id": "q_bb1a656cff9e",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'total time for each prompt attempt is 3 seconds' could mean the robot's prompt duration or the entire attempt cycle.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_31fa3b042a41",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The relationship between the 3-second response window and the 3-second total attempt time is unclear.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_82333fa6a72f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the acknowledgment is required after both initial response and retry response is ambiguous.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

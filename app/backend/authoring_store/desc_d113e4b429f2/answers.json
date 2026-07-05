@@ -1,0 +1,28 @@
+[
+  {
+    "question_id": "q_a46f19c07085",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-06-24T14:13:08.829231Z"
+  },
+  {
+    "question_id": "q_f920120085ee",
+    "answer_text": "end of the robot's announcement",
+    "selected_options": [],
+    "answered_at": "2026-06-24T14:13:08.829264Z"
+  },
+  {
+    "question_id": "q_a2afc64692bd",
+    "answer_text": "end of the user's acknowledgment",
+    "selected_options": [],
+    "answered_at": "2026-06-24T14:13:08.829275Z"
+  },
+  {
+    "question_id": "q_d29af324e95d",
+    "answer_text": "when they finish speaking",
+    "selected_options": [],
+    "answered_at": "2026-06-24T14:13:08.829283Z"
+  }
+]

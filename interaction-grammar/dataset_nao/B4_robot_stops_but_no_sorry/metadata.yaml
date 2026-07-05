@@ -1,16 +1,16 @@
-scenario_id: "B4_robot_stops_but_no_sorry"
-interaction_family: "Interruption and Turn-Taking"
-robot_platform: "NAO"
-participant_role: "interrupter"
-expected_verdict: "UNSAT"
-expected_failure_type: "missing_interrupt_ack"
-expected_trigger_event: "robot speaking end after interruption"
-expected_failed_obligation: "interruption acknowledgment"
-expected_falsification_time: "1s after robot speaking end"
-expected_agent_attribution: "robot_1"
-contract_id: "pending_authoring"
-contract_version: "pending_authoring"
-contract_hash: "pending_authoring"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "Robot yields the floor but does not acknowledge the interruption."
+scenario_id: B4_robot_stops_but_no_sorry
+interaction_family: Interruption and Turn-Taking
+robot_platform: NAO
+participant_role: interrupter
+expected_verdict: UNSAT
+expected_failure_type: missing_interrupt_ack
+expected_trigger_event: robot speaking end after interruption
+expected_failed_obligation: robot says sorry
+expected_falsification_time: 1s after robot speaking end
+expected_agent_attribution: robot_1
+contract_id: contract_4e7baedabb96
+contract_version: '1.0'
+contract_hash: sha256:6956cec6bd6074e5ed6268a3d263f20d875d0c20bee4d2c0e26c640fa9403929
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: Robot yields the floor but does not acknowledge the interruption.

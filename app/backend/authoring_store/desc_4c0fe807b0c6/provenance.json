@@ -1,0 +1,30 @@
+[
+  {
+    "obligation_id": "obl_17ce7b01bade",
+    "source_type": "user_clarification",
+    "source_text": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace. → User clarified: 5.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:03:37.032917Z"
+  },
+  {
+    "obligation_id": "obl_48d9673687e3",
+    "source_type": "user_clarification",
+    "source_text": "The robot must not interrupt the human while they are speaking. → User clarified: 3 sec",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:03:37.032938Z"
+  },
+  {
+    "obligation_id": "obl_c0cd8306f986",
+    "source_type": "scenario_sentence",
+    "source_text": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:01:17.132118Z"
+  },
+  {
+    "obligation_id": "obl_b3cc339695bb",
+    "source_type": "scenario_sentence",
+    "source_text": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:01:17.132124Z"
+  }
+]

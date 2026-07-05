@@ -1,0 +1,67 @@
+{
+  "description_id": "desc_2525c9c8a49b",
+  "structured_summary": "The robot prompts the user via speech in a high-traffic reception area. The user must respond within 3 seconds; if they do not respond within that window, the robot repeats the prompt exactly once. After the user responds (either on the first attempt or after the retry), the user must acknowledge the prompt's intent.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_prompts_user",
+    "user_responds_to_prompt",
+    "user_acknowledges_intent",
+    "start"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_3774e8a72ed4",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_prompts_user",
+      "deadline_seconds": 5.0,
+      "site": "robot_prompts_user",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot prompts the user via speech."
+    },
+    {
+      "obligation_id": "obl_228b39d44bf3",
+      "obligation_type": "repair",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds_to_prompt",
+      "deadline_seconds": 3,
+      "site": null,
+      "modalities": [],
+      "repair_event": "robot_prompts_user",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+    },
+    {
+      "obligation_id": "obl_69bc4e72d061",
+      "obligation_type": "sequence",
+      "trigger": "user_responds_to_prompt",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "user_acknowledges_intent",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    }
+  ],
+  "missing_details": [
+    "Modality of user response (speech, gesture, etc.)",
+    "Definition of a successful response",
+    "Outcome if the user fails to respond after the retry",
+    "Any failure handling or error reporting",
+    "Obligation obl_228b39d44bf3: repair missing site label"
+  ],
+  "potential_ambiguities": [
+    "What constitutes acknowledging the prompt's intent",
+    "Whether the 3-second deadline applies to each prompt attempt or only the first",
+    "Whether the robot's retry is immediate or after some delay"
+  ]
+}

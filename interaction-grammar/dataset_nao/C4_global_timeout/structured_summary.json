@@ -1,0 +1,79 @@
+{
+  "description_id": "desc_7d459c4efa6e",
+  "structured_summary": "The interaction begins with the robot prompting the user via speech. The user must respond within 3 seconds; if they fail to do so, the robot repeats the prompt exactly once. After the user finally responds (either to the initial or repeated prompt), the user must acknowledge the prompt's intent. The whole exchange must finish within 30 seconds from the start.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "start",
+    "robot_prompts_user",
+    "user_responds_to_prompt",
+    "user_acknowledges_intent"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_0aaab5d257f7",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_prompts_user",
+      "deadline_seconds": 5.0,
+      "site": "robot_prompts_user",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot prompts the user via speech."
+    },
+    {
+      "obligation_id": "obl_8e7473a6ded3",
+      "obligation_type": "repair",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds_to_prompt",
+      "deadline_seconds": 3,
+      "site": null,
+      "modalities": [],
+      "repair_event": "robot_prompts_user",
+      "max_retries": 1,
+      "condition": "",
+      "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+    },
+    {
+      "obligation_id": "obl_3359e2cdc8d8",
+      "obligation_type": "sequence",
+      "trigger": "user_responds_to_prompt",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 3.0,
+      "site": "user_acknowledges_intent",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+    },
+    {
+      "obligation_id": "obl_56bbb0354e57",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "user_acknowledges_intent",
+      "deadline_seconds": 30,
+      "site": "user_acknowledges_intent",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The entire interaction must complete within a global timeout of 30 seconds."
+    }
+  ],
+  "missing_details": [
+    "Modality of the robot's prompt (speech) and user's response (speech/gesture) are not explicitly stated.",
+    "Site or location details beyond 'high-traffic reception area' are unspecified.",
+    "What happens if the retry also fails (no second response) is not defined.",
+    "Obligation obl_8e7473a6ded3: repair missing site label"
+  ],
+  "potential_ambiguities": [
+    "Whether the user must acknowledge the intent after each response or only after the final successful response is unclear.",
+    "The start point for the 30‑second global timeout is ambiguous: does it begin at the very first prompt or at the moment the interaction is initiated?",
+    "It is unclear what constitutes a 'successful response' (e.g., any verbal reply vs. a specific confirmation phrase)."
+  ]
+}

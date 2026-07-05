@@ -256,6 +256,8 @@ def _extract_violation(
     raw: Dict, trace_events: List[Dict], t0: float, violation_idx: int
 ) -> TransformedViolation:
     """Extract a single violation from the raw auditor output."""
+    expected_event = None
+    observed_event = None
     error_code = raw.get("error_code", "")
     operator = raw.get("operator", "")
     clause_path = raw.get("clause_path", "$")
@@ -264,7 +266,17 @@ def _extract_violation(
     witness = raw.get("witness", {})
 
     # Extract events from any witness shape
-    w_events = _find_witness_events(witness)
+    if "REPAIR_EXHAUSTED" in error_code:
+        last_fail = witness.get("last_failure", {})
+        w_events = _find_witness_events(last_fail.get("witness", {}))
+
+        # Extract expected event from the nested failure
+        raw_expected = last_fail.get("expected", {})
+        expected_obj = raw_expected.get("object")
+        if expected_obj:
+            expected_event = f"{responsible}_{expected_obj}"
+    else:
+        w_events = _find_witness_events(witness)
     
     trigger_event_id = None
     trigger_time = None
@@ -300,9 +312,6 @@ def _extract_violation(
             falsification_time = round(end_evt["t"] - t0, 2)
 
     # Determine expected and observed events
-    expected_event = None
-    observed_event = None
-    
     if "NEG" in error_code:
         # Negation: the matched pattern IS the violation
         expected_event = "no_interruption"
@@ -321,7 +330,15 @@ def _extract_violation(
         if "MISSING" in error_code:
             observed_event = None
             if not expected_event:
-                expected_event = "expected_response"
+                # Check raw auditor's expected object first
+                raw_expected = raw.get("expected", {})
+                expected_obj = raw_expected.get("object")
+                if expected_obj:
+                    # We don't have the agent here, so we can try to infer or use a generic 'robot'
+                    # In B-family, missing events are usually robot actions.
+                    expected_event = f"{responsible}_{expected_obj}"
+                else:
+                    expected_event = "expected_response"
 
     violated_op = _error_code_to_operator(error_code, operator)
     site = _clause_path_to_site(clause_path, error_code)

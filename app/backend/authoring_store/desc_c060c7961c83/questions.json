@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_e8318aa8e543",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a valid acknowledgment (any utterance vs. specific phrase)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_6962740bd74a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window begins at the end of the robot's announcement or at its start",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_ec8e1dae75c9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot's final confirmation must be a specific phrase or any speech",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "description_id": "desc_0c22278b1e70",
+  "structured_summary": "",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announce_delivery",
+    "user_acknowledge_delivery",
+    "robot_final_confirmation",
+    "speech",
+    "head_nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_1f3e1b0230ff",
+      "obligation_type": "sequence",
+      "trigger": "robot_announce_delivery",
+      "expected": "user_acknowledge_delivery",
+      "deadline_seconds": 8,
+      "site": "user_acknowledge_delivery",
+      "modalities": [
+        "speech",
+        "head_nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_c8a447d1ceb7",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledge_delivery",
+      "expected": "robot_final_confirmation",
+      "deadline_seconds": 1,
+      "site": "robot_final_confirmation",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "Consequences if the user fails to acknowledge within 8 seconds",
+    "Robot's behavior if acknowledgment is not received or is ambiguous",
+    "Consequences if the robot fails to provide final confirmation within 1 second",
+    "Details on how head nod acknowledgment is detected",
+    "Whether timers start at the end of the announcement/acknowledgment or at onset",
+    "Any retry or repair mechanisms for failed acknowledgments or confirmations"
+  ],
+  "potential_ambiguities": [
+    "Start point of the 8‑second window (announcement start vs. end)",
+    "Start point of the 1‑second window (acknowledgment start vs. end)",
+    "How a head nod is recognized as acknowledgment",
+    "Whether speech acknowledgment must be a specific phrase or any utterance",
+    "What constitutes 'final confirmation' (content of speech)"
+  ]
+}

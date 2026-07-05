@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_d8b6677a38c9",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: scenario_start → robot_announce_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_df81aa992525",
+    "required": true
+  },
+  {
+    "question_id": "q_048be1b6ef8c",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the deadline begins at the end of the announcement or its start",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b75293e1fe47",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether a head nod is reliably detectable by the NAO robot in a quiet office",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_37a40069de55",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes 'receipt' of acknowledgment (timing of detection)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_792beea458e3",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: If multiple acknowledgments could reset the timer",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

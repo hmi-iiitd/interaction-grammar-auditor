@@ -1,0 +1,64 @@
+{
+  "description_id": "desc_23a9eb511506",
+  "plain_language": "1. Within 8 seconds of the robot announcing the delivery via speech in the office, the user must acknowledge the delivery via speech.  \n2. Within 1 second after the user acknowledges the delivery via speech, the robot must provide a final confirmation of the delivery via speech in the office.",
+  "ig_syntax": "robot_announce_delivery → user_acknowledge_delivery @within(8s)\nuser_acknowledge_delivery → robot_final_confirmation @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_3a6be0471139",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T18:34:22.721849Z"
+    },
+    {
+      "obligation_id": "obl_6a3092fd2315",
+      "source_type": "scenario_sentence",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-23T18:34:22.721879Z"
+    }
+  ],
+  "generated_at": "2026-06-23T18:36:11.671246Z"
+}

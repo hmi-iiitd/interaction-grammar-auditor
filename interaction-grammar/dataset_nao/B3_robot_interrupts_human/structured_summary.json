@@ -1,0 +1,86 @@
+{
+  "description_id": "desc_b7f1a440994c",
+  "structured_summary": "The robot provides instructional guidelines to a human in a collaborative workspace. The robot must not interrupt the human while they are speaking. If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_provides_guidelines",
+    "user_interrupts_by_speaking",
+    "robot_acknowledges_interruption",
+    "robot_stops_speaking",
+    "start",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_6c29e83f7747",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_provides_guidelines",
+      "deadline_seconds": 5.0,
+      "site": "collaborative workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace."
+    },
+    {
+      "obligation_id": "obl_2cb0c41f8e0c",
+      "obligation_type": "conditional_sequence",
+      "trigger": "user_interrupts_by_speaking",
+      "expected": "robot_acknowledges_interruption",
+      "deadline_seconds": 2,
+      "site": "collaborative workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "if the human interrupts the robot by speaking",
+      "source_sentence": "if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds"
+    },
+    {
+      "obligation_id": "obl_e8c1797196dc",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 2,
+      "site": "collaborative workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "and then immediately stop speaking within 2 seconds."
+    },
+    {
+      "obligation_id": "obl_fbb3b3d98efb",
+      "obligation_type": "failure",
+      "trigger": "user_interrupts_by_speaking",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 4,
+      "site": "collaborative workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "The scenario does not specify what happens after the robot stops speaking (e.g., does the robot wait for the human to finish? Does it resume guidelines?).",
+    "The scenario does not specify if the robot should not interrupt the human while they are speaking is a separate obligation or a general rule."
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 2 seconds' could be interpreted as the robot must stop speaking within 2 seconds after acknowledging, or the total time from interruption to stop is 2 seconds. The description says 'first acknowledge... within 2 seconds, and then immediately stop speaking within 2 seconds', which suggests two separate deadlines: 2 seconds for acknowledgment, then another 2 seconds for stopping. But 'immediately' might imply a shorter time. However, we follow the explicit numbers.",
+    "The obligation 'robot must not interrupt the human while they are speaking' is stated but not triggered by any event; it is a general constraint. It is not modeled as an obligation with a trigger because it is a prohibition."
+  ]
+}

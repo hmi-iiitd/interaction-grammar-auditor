@@ -1,16 +1,16 @@
-scenario_id: "B2_human_interrupts_robot_continues"
-interaction_family: "Interruption and Turn-Taking"
-robot_platform: "NAO"
-participant_role: "interrupter"
-expected_verdict: "UNSAT"
-expected_failure_type: "interruption"
-expected_trigger_event: "human interruption"
-expected_failed_obligation: "robot stop-after-interruption"
-expected_falsification_time: "1s after human interruption"
-expected_agent_attribution: "robot_1"
-contract_id: "contract_a8c2a0618a1b"
-contract_version: "1.0"
-contract_hash: "sha256:ecb5cbbdf990cfb07027b4d4e417327d7b72987c6f88a7172c3213194a1597ef"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "Robot fails to yield the floor after human interruption."
+scenario_id: B2_human_interrupts_robot_continues
+interaction_family: Interruption and Turn-Taking
+robot_platform: NAO
+participant_role: interrupter
+expected_verdict: UNSAT
+expected_failure_type: interruption
+expected_trigger_event: human interruption
+expected_failed_obligation: robot speaking end
+expected_falsification_time: 1s after human interruption
+expected_agent_attribution: robot_1
+contract_id: contract_1a0670c644c0
+contract_version: '1.0'
+contract_hash: sha256:0174ec2295c1a4c0e5e34fe4f25b0a99a0b713c07a33ec6777e2b52105b3c5a3
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: Robot fails to yield the floor after human interruption.

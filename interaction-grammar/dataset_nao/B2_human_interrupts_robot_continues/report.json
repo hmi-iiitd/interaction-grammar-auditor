@@ -1,0 +1,27 @@
+{
+  "verdict": "FAIL",
+  "operator": "sequence",
+  "clause_path": "$.items[2]",
+  "error_code": "V_SEQ_MISSING_RIGHT",
+  "budget": null,
+  "observed": {
+    "after_left_until": 1782216936.483374
+  },
+  "responsible_agent": "robot_1",
+  "expected": {
+    "right": "Present after left",
+    "object": "robot_stops_speaking"
+  },
+  "witness": {
+    "left_event": {
+      "idx": 2,
+      "event": {
+        "t": 1782216935.199846,
+        "prim": "\u03b1",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_interrupts_by_speaking"
+      }
+    }
+  }
+}

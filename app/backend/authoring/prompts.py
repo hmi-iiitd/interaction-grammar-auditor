@@ -15,7 +15,16 @@ SCENARIO_CLARIFY_SYSTEM = """You are an expert in Human-Robot Interaction (HRI) 
 Your job is to rewrite a user's natural-language scenario description into a clearer,
 structured summary while preserving the original meaning exactly.
 
+Required Event Vocabulary:
+{event_labels}
+
 Rules:
+- If the "Required Event Vocabulary" list above contains labels, you MUST use them.
+  - CRITICAL: You MUST use the exact strings provided in the Required Event Vocabulary. Do NOT paraphrase, abbreviate, or modify the event labels in any way. Using a label not found in the provided list is a critical failure.
+- If the "Required Event Vocabulary" list is empty or "No event labels provided", you may suggest a clear and consistent set of event labels that describe the interaction.
+- If you use labels not in the list, mark them as [suggested].
+- When a retry, recovery, or "try again" logic is mentioned, you MUST use the 'repair' obligation type. Do NOT use 'sequence' for these cases.
+- Do NOT assume any prerequisite steps (e.g., arriving at a location, greeting, or initializing) unless they are explicitly mentioned in the text. Only extract obligations and events that are clearly stated in the provided description.
 - Do NOT add events, actors, or obligations that are not stated or clearly implied.
 - Mark any uncertain interpretation with "[uncertain]".
 - Use concise, precise language.
@@ -26,12 +35,12 @@ Rules:
 - Identify potential ambiguities.
 
 Return a JSON object with this exact structure:
-{
+{{
   "structured_summary": "string — rewritten scenario in clear language",
   "actors": ["actor1", "actor2"],
   "events": ["event_name_1", "event_name_2"],
   "obligations": [
-    {
+    {{
       "obligation_type": "sequence|repair|conditional_sequence|alias|failure",
       "trigger": "event_name",
       "expected": "event_name",
@@ -42,11 +51,11 @@ Return a JSON object with this exact structure:
       "max_retries": null or integer,
       "condition": "",
       "source_sentence": "the original sentence from the user"
-    }
+    }}
   ],
   "missing_details": ["what is missing"],
   "potential_ambiguities": ["what is ambiguous"]
-}
+}}
 
 CRITICAL RULES:
 - If a deadline is NOT explicitly stated as a number, set deadline_seconds to null. NEVER invent a numeric deadline.
@@ -74,6 +83,16 @@ Return the structured JSON analysis."""
 OBLIGATION_EXTRACT_SYSTEM = """You are an expert in Human-Robot Interaction (HRI) protocol design.
 Given a structured scenario summary, extract all candidate obligations.
 
+Required Event Vocabulary:
+{event_labels}
+
+Rules:
+- If the "Required Event Vocabulary" list above contains labels, you MUST use them.
+  - CRITICAL: You MUST use the exact strings provided in the Required Event Vocabulary. Do NOT paraphrase, abbreviate, or modify the event labels in any way. Using a label not found in the provided list is a critical failure.
+- If the "Required Event Vocabulary" list is empty or "No event labels provided", you may suggest a clear and consistent set of event labels that describe the interaction.
+- If you use labels not in the list, mark them as [suggested].
+- When a retry or recovery is mentioned, you MUST use the 'repair' obligation type, not 'sequence'.
+
 Each obligation should capture:
 - The type (sequence, repair, conditional_sequence, alias, failure)
 - The trigger event
@@ -86,10 +105,10 @@ Each obligation should capture:
 - The source sentence from the original description
 
 Return a JSON object:
-{
+{{
   "obligations": [ ... ],
   "missing_details": [ ... ]
-}
+}}
 
 CRITICAL: Do NOT invent numeric deadlines. If a deadline is not explicitly stated, set it to null.
 Do NOT output any text before or after the JSON.

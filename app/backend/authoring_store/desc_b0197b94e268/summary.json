@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_b0197b94e268",
+  "structured_summary": "In a quiet office, the robot announces a package delivery via speech. The user must acknowledge the delivery verbally within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must verbally confirm the delivery completion within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announce_delivery",
+    "user_acknowledge_delivery",
+    "robot_final_confirmation",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_b3b88d6fd0b3",
+      "obligation_type": "sequence",
+      "trigger": "robot_announce_delivery",
+      "expected": "user_acknowledge_delivery",
+      "deadline_seconds": 8,
+      "site": "user_acknowledge_delivery",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_7c8e49986fe4",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledge_delivery",
+      "expected": "robot_final_confirmation",
+      "deadline_seconds": 1,
+      "site": "robot_final_confirmation",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What occurs if the user fails to acknowledge within 8 seconds (e.g., retry, timeout, failure handling)",
+    "What occurs if the robot fails to announce or confirm",
+    "Exact speech content or language",
+    "Minimum audible volume or clarity requirements"
+  ],
+  "potential_ambiguities": [
+    "Whether the 8‑second deadline starts at the beginning or end of the robot’s announcement speech",
+    "Whether the 1‑second deadline starts at the beginning or end of the user’s acknowledgment speech",
+    "What constitutes a valid acknowledgment (e.g., any speech vs. specific phrase)"
+  ]
+}

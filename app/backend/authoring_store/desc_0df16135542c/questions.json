@@ -1,0 +1,60 @@
+[
+  {
+    "question_id": "q_a4c28c449037",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_prompts_user → user_responds",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_28922f32cac1",
+    "required": true
+  },
+  {
+    "question_id": "q_81f3c1ba3a32",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_4c4328dc40a1",
+    "required": true
+  },
+  {
+    "question_id": "q_cda708964921",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_retries_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_ff1dcaf2c11e",
+    "required": true
+  },
+  {
+    "question_id": "q_d759f5f35dc0",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'total time for each prompt attempt is 3 seconds' could mean the robot waits 3 seconds for a response, or the entire interaction (prompt + response) must fit within 3 seconds.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e633e7540e5c",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the acknowledgment is required after both initial response and retry response is clear, but the timing for acknowledgment is not specified.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "node": "bind",
+  "items": [
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "start"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_provides_guidelines"
+      },
+      "latency": "5.0s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_finishes_speaking"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_provides_guidelines"
+      },
+      "latency": "5.0s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "human_1",
+        "channel": "speech",
+        "object": "user_interrupts_by_speaking"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_acknowledges_interruption"
+      },
+      "latency": "2s"
+    },
+    {
+      "node": "seq",
+      "left": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_acknowledges_interruption"
+      },
+      "right": {
+        "node": "act",
+        "prim": "α",
+        "agent": "robot_1",
+        "channel": "speech",
+        "object": "robot_stops_speaking"
+      },
+      "latency": "2s"
+    }
+  ],
+  "latency": "≤30s",
+  "_contract_metadata": {
+    "contract_id": "contract_576c7cfec22c",
+    "version": "1.0",
+    "locked": true,
+    "locked_at": "2026-06-24T16:03:38.734992Z",
+    "contract_hash": "sha256:45c17811259c9b2e37a85b2dfc13a3704b33dc1026280757b80134ec44ba0b8a",
+    "source_description_id": "desc_576c7cfec22c",
+    "confirmed_assumptions": 4,
+    "unresolved_assumptions": 0
+  }
+}

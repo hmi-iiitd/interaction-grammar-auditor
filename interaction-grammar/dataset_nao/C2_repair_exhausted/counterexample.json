@@ -1,0 +1,37 @@
+{
+  "scenario_id": "C2_repair_exhausted",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'repair_exhausted' must be satisfied",
+  "trigger": {
+    "event_id": "e003",
+    "time": 6.39,
+    "description": "repair_exhausted at 6.39s"
+  },
+  "expected": {
+    "event": "human_1_user_responds_to_prompt",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No human_1_user_responds_to_prompt observed before deadline"
+  },
+  "falsification": {
+    "time": 6.39,
+    "description": "Violation detected at 6.39s — human_1_user_responds_to_prompt not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "repair",
+  "evidence_window": {
+    "start": 5.89,
+    "end": 7.39,
+    "events": [
+      {
+        "event_id": "e003",
+        "timestamp": 6.39,
+        "event_type": "robot_prompts_user",
+        "agent": "robot_1",
+        "details": "robot_prompts_user"
+      }
+    ]
+  }
+}

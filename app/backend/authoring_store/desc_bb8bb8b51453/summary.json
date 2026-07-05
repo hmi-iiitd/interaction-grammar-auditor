@@ -1,0 +1,67 @@
+{
+  "description_id": "desc_bb8bb8b51453",
+  "structured_summary": "The robot prompts the user. If the user does not respond within 3 seconds, the robot retries prompting the user, with at most one retry allowed. The user must acknowledge the prompt.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_prompts_user",
+    "user_responds",
+    "robot_retries_prompt",
+    "user_acknowledges"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_0d2a38b668c9",
+      "obligation_type": "sequence",
+      "trigger": "robot_prompts_user",
+      "expected": "user_responds",
+      "deadline_seconds": 3.0,
+      "site": "prompt",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot prompts the user."
+    },
+    {
+      "obligation_id": "obl_68fb4f4d6850",
+      "obligation_type": "repair",
+      "trigger": "user_responds",
+      "expected": "user_responds",
+      "deadline_seconds": 3,
+      "site": "prompt",
+      "modalities": [],
+      "repair_event": "robot_retries_prompt",
+      "max_retries": 1,
+      "condition": "user does not respond within 3 seconds",
+      "source_sentence": "If the user does not respond within 3 seconds, the robot should retry prompting the user. At most 1 retry is allowed."
+    },
+    {
+      "obligation_id": "obl_6549fad79e62",
+      "obligation_type": "sequence",
+      "trigger": "robot_prompts_user",
+      "expected": "user_acknowledges",
+      "deadline_seconds": 3.0,
+      "site": "prompt",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user should acknowledge the prompt."
+    }
+  ],
+  "missing_details": [
+    "What constitutes a valid user response (e.g., speech, gesture, button press)?",
+    "What constitutes a valid user acknowledgment (e.g., verbal confirmation, nod)?",
+    "What happens if the user responds but does not acknowledge?",
+    "What happens if the retry also fails (no response within 3 seconds)?",
+    "Obligation obl_0d2a38b668c9: deadline 3s may be invented — source sentence has no numeric value. Setting to null."
+  ],
+  "potential_ambiguities": [
+    "The relationship between 'respond' and 'acknowledge' is unclear: are they the same action or distinct?",
+    "The deadline for the user to acknowledge is not specified.",
+    "Whether the retry obligation applies only to the initial prompt or also to the acknowledgment is ambiguous."
+  ]
+}

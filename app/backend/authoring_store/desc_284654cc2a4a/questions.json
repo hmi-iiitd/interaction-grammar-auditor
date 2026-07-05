@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_008885c888da",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'acknowledge' requires a specific verbal response or any utterance.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b1b8b036a5ea",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_197e39832210",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What the final confirmation entails (e.g., same phrase as announcement or a distinct message).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

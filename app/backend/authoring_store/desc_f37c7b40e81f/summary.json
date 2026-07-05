@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_f37c7b40e81f",
+  "structured_summary": "The robot delivers instructional guidelines to a human. If the human interrupts by speaking, the robot must say 'sorry' within one second and then cease speaking within one second.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_providing_guidelines",
+    "human_interrupts_robot_by_speaking",
+    "robot_acknowledges_interruption_sorry",
+    "robot_stops_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_7b6818f49d71",
+      "obligation_type": "sequence",
+      "trigger": "human_interrupts_robot_by_speaking",
+      "expected": "robot_acknowledges_interruption_sorry",
+      "deadline_seconds": 1,
+      "site": "robot_acknowledges_interruption_sorry",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 1 second, and then immediately stop speaking within 1 second."
+    },
+    {
+      "obligation_id": "obl_0ce8d14b4522",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption_sorry",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 1,
+      "site": "robot_stops_speaking",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 1 second, and then immediately stop speaking within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What constitutes 'stop speaking' (e.g., silence duration, audio cutoff).",
+    "What happens after the robot stops speaking (resume guidelines, wait for human).",
+    "Whether the 1‑second deadline starts at the moment of interruption or after the previous action completes.",
+    "What the robot should do if it is not speaking when interrupted."
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 1 second' could be interpreted as a single 1‑second window for both acknowledgement and stopping, or as two separate 1‑second windows.",
+    "The exact modality for 'stopping speaking' is not specified (e.g., mute audio vs. cease utterance)."
+  ]
+}

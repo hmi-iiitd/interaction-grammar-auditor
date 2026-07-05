@@ -1,0 +1,96 @@
+{
+  "description_id": "desc_bb8bb8b51453",
+  "plain_language": "1. After the robot prompts the user, the user must respond within 3 seconds.\n2. If the user does not respond within 3 seconds, the robot must retry prompting the user. This retry may occur at most 1 time.\n3. After the robot prompts the user, the user must acknowledge the prompt within 3 seconds.",
+  "ig_syntax": "robot_prompts_user → user_responds @within(3s)\nrobot_prompts_user → user_acknowledges @within(3s)\nrepair(site=prompt, max_retries=1) if user_responds fails",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "system_1",
+          "channel": "speech",
+          "object": "user_responds"
+        },
+        "latency": "3.0s"
+      },
+      {
+        "node": "repair",
+        "site": "user_responds",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          },
+          "right": {
+            "node": "act",
+            "prim": "α",
+            "agent": "system_1",
+            "channel": "speech",
+            "object": "user_responds"
+          },
+          "latency": "3.0s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "system_1",
+          "channel": "speech",
+          "object": "user_acknowledges"
+        },
+        "latency": "3.0s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_0d2a38b668c9",
+      "source_type": "user_clarification",
+      "source_text": "The robot prompts the user. → User clarified: 3 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-20T11:07:37.949398Z"
+    },
+    {
+      "obligation_id": "obl_68fb4f4d6850",
+      "source_type": "scenario_sentence",
+      "source_text": "If the user does not respond within 3 seconds, the robot should retry prompting the user. At most 1 retry is allowed.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-20T11:05:55.049639Z"
+    },
+    {
+      "obligation_id": "obl_6549fad79e62",
+      "source_type": "user_clarification",
+      "source_text": "The user should acknowledge the prompt. → User clarified: 3 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-20T11:07:37.949420Z"
+    }
+  ],
+  "generated_at": "2026-06-20T11:07:44.761992Z"
+}

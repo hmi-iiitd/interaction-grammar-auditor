@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_472aefedc296",
+    "answer_text": "1.0 seconds",
+    "selected_options": [
+      "1.0 seconds"
+    ],
+    "answered_at": "2026-06-22T11:31:13.952306Z"
+  },
+  {
+    "question_id": "q_a922f5f387b7",
+    "answer_text": "completion of the annoucement speeach not onset",
+    "selected_options": [],
+    "answered_at": "2026-06-22T11:31:13.952323Z"
+  },
+  {
+    "question_id": "q_ed77333b6328",
+    "answer_text": "completion of acknwledgment not onset",
+    "selected_options": [],
+    "answered_at": "2026-06-22T11:31:13.952328Z"
+  },
+  {
+    "question_id": "q_dbc258c83b47",
+    "answer_text": "speech alone",
+    "selected_options": [],
+    "answered_at": "2026-06-22T11:31:13.952331Z"
+  },
+  {
+    "question_id": "q_743259584198",
+    "answer_text": "no",
+    "selected_options": [],
+    "answered_at": "2026-06-22T11:31:13.952335Z"
+  },
+  {
+    "question_id": "q_34f49e2b1536",
+    "answer_text": "speech",
+    "selected_options": [],
+    "answered_at": "2026-06-22T11:31:13.952338Z"
+  }
+]

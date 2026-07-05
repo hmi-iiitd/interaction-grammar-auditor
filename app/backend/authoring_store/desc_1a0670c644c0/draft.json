@@ -1,0 +1,89 @@
+{
+  "description_id": "desc_1a0670c644c0",
+  "plain_language": "1. When the interaction starts, the robot must provide instructional guidelines within 5 seconds.\n2. If the human interrupts the robot by speaking, the robot must acknowledge the interruption by saying \"sorry\" via speech within 2 seconds.\n3. If the human interrupts the robot by speaking, the robot must stop speaking within 2 seconds.",
+  "ig_syntax": "start → robot_provides_guidelines @within(5s)\nuser_interrupts_by_speaking → robot_acknowledges_interruption @within(2s)\nuser_interrupts_by_speaking → robot_stops_speaking @within(2s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_provides_guidelines"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_interrupts_by_speaking"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_acknowledges_interruption"
+        },
+        "latency": "2s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_interrupts_by_speaking"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_stops_speaking"
+        },
+        "latency": "2s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_f22b70b0fae1",
+      "source_type": "user_clarification",
+      "source_text": "The robot is providing a set of instructional guidelines to a human in a collaborative workspace. → User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-07-04T13:55:44.895595Z"
+    },
+    {
+      "obligation_id": "obl_0c219654edc7",
+      "source_type": "scenario_sentence",
+      "source_text": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-07-04T13:53:15.224140Z"
+    },
+    {
+      "obligation_id": "obl_404d1c1f2795",
+      "source_type": "scenario_sentence",
+      "source_text": "Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-07-04T13:53:15.224149Z"
+    }
+  ],
+  "generated_at": "2026-07-04T13:57:52.801132Z"
+}

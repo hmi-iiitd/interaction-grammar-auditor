@@ -1,79 +1,85 @@
 {
   "scenario_id": "A3_recipient_acknowledges_too_late",
-  "description_id": "desc_12dd7b1fe585",
-  "original_natural_language_description": "The robot announces a package delivery. The recipient should acknowledge the delivery within 8 seconds. Once acknowledged, the robot must confirm the delivery within 1 second.\n",
+  "description_id": "desc_c060c7961c83",
+  "original_natural_language_description": "The robot is delivering a package to a user in a quiet office environment. The robot should announce the delivery via speech. The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
   "structured_system_interpretation": {
-    "description_id": "desc_12dd7b1fe585",
-    "structured_summary": "The robot announces a package delivery; the recipient must acknowledge the delivery within 8 seconds, after which the robot must confirm the delivery within 1 second.",
+    "description_id": "desc_c060c7961c83",
+    "structured_summary": "The robot announces a package delivery via speech. The user must acknowledge the delivery via speech within 8 seconds of the announcement. After receiving the acknowledgment, the robot must confirm the delivery via speech within 1 second.",
     "actors": [
       "robot",
-      "recipient"
+      "user"
     ],
     "events": [
-      "robot_announces_package_delivery",
-      "recipient_acknowledges_delivery",
-      "robot_confirms_delivery"
+      "robot_announcement",
+      "user_acknowledgment",
+      "robot_final_confirmation",
+      "speech"
     ],
     "obligations": [
       {
-        "obligation_id": "obl_c1c239773e97",
+        "obligation_id": "obl_192c43778cdf",
         "obligation_type": "sequence",
-        "trigger": "robot_announces_package_delivery",
-        "expected": "recipient_acknowledges_delivery",
+        "trigger": "robot_announcement",
+        "expected": "user_acknowledgment",
         "deadline_seconds": 8,
-        "site": "acknowledgment",
-        "modalities": [],
+        "site": "speech",
+        "modalities": [
+          "speech"
+        ],
         "repair_event": "",
         "max_retries": null,
         "condition": "",
-        "source_sentence": "The recipient should acknowledge the delivery within 8 seconds."
+        "source_sentence": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement."
       },
       {
-        "obligation_id": "obl_69720169f78c",
+        "obligation_id": "obl_08061b32c60f",
         "obligation_type": "sequence",
-        "trigger": "recipient_acknowledges_delivery",
-        "expected": "robot_confirms_delivery",
+        "trigger": "user_acknowledgment",
+        "expected": "robot_final_confirmation",
         "deadline_seconds": 1,
-        "site": "confirmation",
-        "modalities": [],
+        "site": "speech",
+        "modalities": [
+          "speech"
+        ],
         "repair_event": "",
         "max_retries": null,
         "condition": "",
-        "source_sentence": "Once acknowledged, the robot must confirm the delivery within 1 second."
+        "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
       }
     ],
     "missing_details": [
-      "modality of announcement, acknowledgment, and confirmation (e.g., speech, gesture, button)",
-      "failure behavior if deadlines are exceeded (e.g., retry, abort)",
-      "whether the 8\u2011second and 1\u2011second windows start at the end of the preceding utterance or at its onset"
+      "Specific acknowledgment phrase or criteria",
+      "Robot's behavior if user fails to acknowledge within 8 seconds (e.g., retry, abort)",
+      "Exact start point of the timing windows (end of announcement vs. start)",
+      "Speech characteristics such as language, volume, or tone"
     ],
     "potential_ambiguities": [
-      "whether 'acknowledge' requires a verbal response or any action",
-      "whether 'confirm' is a robot utterance or a signal",
-      "whether the timing windows are inclusive or exclusive of the trigger event"
+      "What constitutes a valid acknowledgment (any utterance vs. specific phrase)",
+      "Whether the 8\u2011second window begins at the end of the robot's announcement or at its start",
+      "Whether the robot's final confirmation must be a specific phrase or any speech"
     ]
   },
   "clarification_questions": [
     {
-      "question_id": "q_3a70ddc63f70",
+      "question_id": "q_e8318aa8e543",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether 'acknowledge' requires a verbal response or any action",
+      "question_text": "Clarification needed: What constitutes a valid acknowledgment (any utterance vs. specific phrase)",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_042476ee376c",
+      "question_id": "q_6962740bd74a",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether 'confirm' is a robot utterance or a signal",
+      "question_text": "Clarification needed: Whether the 8\u2011second window begins at the end of the robot's announcement or at its start",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
     },
     {
-      "question_id": "q_202d76ec2f94",
+      "question_id": "q_ec8e1dae75c9",
       "category": "event_mapping_ambiguous",
-      "question_text": "Clarification needed: whether the timing windows are inclusive or exclusive of the trigger event",
+      "question_text": "Clarification needed: Whether the robot's final confirmation must be a specific phrase or any speech",
       "suggested_options": [],
       "related_obligation_id": "",
       "required": false
@@ -81,26 +87,26 @@
   ],
   "user_answers": [
     {
-      "question_id": "q_3a70ddc63f70",
+      "question_id": "q_e8318aa8e543",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872880Z"
+      "answered_at": "2026-06-23T18:40:43.233369Z"
     },
     {
-      "question_id": "q_042476ee376c",
-      "answer_text": "robot utterance",
+      "question_id": "q_6962740bd74a",
+      "answer_text": "end of the robot's announcement ",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872893Z"
+      "answered_at": "2026-06-23T18:40:43.233398Z"
     },
     {
-      "question_id": "q_202d76ec2f94",
+      "question_id": "q_ec8e1dae75c9",
       "answer_text": "",
       "selected_options": [],
-      "answered_at": "2026-06-18T06:47:46.872897Z"
+      "answered_at": "2026-06-23T18:40:43.233408Z"
     }
   ],
-  "plain_language_contract": "1. The recipient must acknowledge the delivery within 8 seconds after the robot announces the package delivery.  \n2. The robot must confirm the delivery within 1 second after the recipient acknowledges the delivery.",
-  "readable_grammar_notation": "robot_announces_package_delivery \u2192 recipient_acknowledges_delivery @within(8s)\nrecipient_acknowledges_delivery \u2192 robot_confirms_delivery @within(1s)",
+  "plain_language_contract": "1. The user must acknowledge the delivery via speech within 8 seconds of the robot's announcement.  \n2. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "readable_grammar_notation": "robot_announcement \u2192 user_acknowledgment @within(8s)\nuser_acknowledgment \u2192 robot_final_confirmation @within(1s)",
   "contract_json": {
     "node": "bind",
     "items": [
@@ -111,14 +117,14 @@
           "prim": "\u03b1",
           "agent": "robot_1",
           "channel": "speech",
-          "object": "robot_announces_package_delivery"
+          "object": "robot_announces_delivery"
         },
         "right": {
           "node": "act",
           "prim": "\u03b1",
           "agent": "human_1",
           "channel": "speech",
-          "object": "recipient_acknowledges_delivery"
+          "object": "user_acknowledges_delivery"
         },
         "latency": "8s"
       },
@@ -127,36 +133,36 @@
         "left": {
           "node": "act",
           "prim": "\u03b1",
-          "agent": "robot_1",
+          "agent": "human_1",
           "channel": "speech",
-          "object": "recipient_acknowledges_delivery"
+          "object": "user_acknowledges_delivery"
         },
         "right": {
           "node": "act",
           "prim": "\u03b1",
-          "agent": "human_1",
+          "agent": "robot_1",
           "channel": "speech",
           "object": "robot_confirms_delivery"
         },
         "latency": "1s"
       }
     ],
-    "latency": "\u226432s"
+    "latency": "\u226430s"
   },
   "provenance": [
     {
-      "obligation_id": "obl_c1c239773e97",
+      "obligation_id": "obl_192c43778cdf",
       "source_type": "scenario_sentence",
-      "source_text": "The recipient should acknowledge the delivery within 8 seconds.",
+      "source_text": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement.",
       "confirmed_by_user": true,
-      "timestamp": "2026-06-18T06:45:41.012546Z"
+      "timestamp": "2026-06-23T18:39:36.688401Z"
     },
     {
-      "obligation_id": "obl_69720169f78c",
+      "obligation_id": "obl_08061b32c60f",
       "source_type": "scenario_sentence",
-      "source_text": "Once acknowledged, the robot must confirm the delivery within 1 second.",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
       "confirmed_by_user": true,
-      "timestamp": "2026-06-18T06:45:41.012559Z"
+      "timestamp": "2026-06-23T18:39:36.688420Z"
     }
   ],
   "validation_output": {
@@ -167,5 +173,5 @@
     "warnings": [],
     "all_passed": true
   },
-  "lock_hash": "sha256:15a42206b6b4bc44f2ff43d401e61524f2aa82fdc3c9002e3b901fd705ff3b44"
+  "lock_hash": "sha256:4493dba6c596769d20cb9144b5df0535f77318a4e0c04d5cb09590ea63f78431"
 }

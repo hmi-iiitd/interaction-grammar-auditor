@@ -1,0 +1,51 @@
+{
+  "scenario_id": "C3_retry_limit_exceeded",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'repair_exhausted' must be satisfied",
+  "trigger": {
+    "event_id": "e003",
+    "time": 5.52,
+    "description": "repair_exhausted at 5.52s"
+  },
+  "expected": {
+    "event": "human_1_user_responds_to_prompt",
+    "time_window": ""
+  },
+  "observed": {
+    "event": "human_1_user_responds_to_prompt",
+    "description": "human_1_user_responds_to_prompt observed"
+  },
+  "falsification": {
+    "time": 10.52,
+    "description": "Violation detected at 10.52s — human_1_user_responds_to_prompt not satisfied"
+  },
+  "attribution": "robot_1",
+  "site": "repair",
+  "evidence_window": {
+    "start": 5.02,
+    "end": 11.52,
+    "events": [
+      {
+        "event_id": "e003",
+        "timestamp": 5.52,
+        "event_type": "robot_prompts_user",
+        "agent": "robot_1",
+        "details": "robot_prompts_user"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 8.52,
+        "event_type": "robot_prompts_user",
+        "agent": "robot_1",
+        "details": "robot_prompts_user"
+      },
+      {
+        "event_id": "e005",
+        "timestamp": 10.52,
+        "event_type": "user_responds_to_prompt",
+        "agent": "human_1",
+        "details": "user_responds_to_prompt"
+      }
+    ]
+  }
+}

@@ -1,1 +1,1 @@
-The robot starts speaking. If the human interrupts by speaking, the robot must stop speaking within 1 second and acknowledge the interruption by saying sorry within 1 second.
+﻿The robot is providing a set of instructional guidelines to a human in a collaborative workspace. The robot must not interrupt the human while they are speaking. Additionally, if the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.

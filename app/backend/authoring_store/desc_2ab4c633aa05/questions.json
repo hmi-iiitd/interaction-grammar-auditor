@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_c96465c799f6",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: human_speaking_end → robot_speaking",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_2f1eb3beee73",
+    "required": true
+  },
+  {
+    "question_id": "q_0df1fff2c946",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether brief pauses in human speech count as 'finished speaking'",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_25aab5eb408a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether non-verbal robot behavior (e.g., movement) counts as interrupting",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_32280cdcc4c4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: If the robot's initial instructional guidelines count as a separate speaking event that must also follow turn-taking rules",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

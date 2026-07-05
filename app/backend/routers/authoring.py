@@ -39,7 +39,7 @@ from authoring.schemas import (
     ContractMetadata,
 )
 from authoring import scenario_store as store
-from authoring.scenario_clarifier import clarify_scenario
+from authoring.scenario_clarifier import ClarifierError, clarify_scenario
 from authoring.obligation_extractor import enrich_obligations, get_missing_fields
 from authoring.clarification_engine import generate_questions, apply_answers
 from authoring.contract_generator import generate_contract
@@ -196,6 +196,8 @@ def clarify(desc_id: str):
 
     try:
         summary = clarify_scenario(desc, _get_llm())
+    except ClarifierError as e:
+        raise HTTPException(status_code=502, detail=f"Clarification failed: {e}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Clarification failed: {e}")
 
@@ -301,7 +303,7 @@ def submit_answers(desc_id: str, req: AnswersRequest):
     ]
 
     # Apply answers to obligations
-    updated_obligations = apply_answers(summary.obligations, answers, questions)
+    updated_obligations = apply_answers(summary.obligations, answers, questions, _get_llm())
     summary.obligations = updated_obligations
 
     # Update provenance

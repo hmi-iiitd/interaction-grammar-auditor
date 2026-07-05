@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_c26ffdb35811",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase \"immediately stop speaking within 2 seconds\" is ambiguous about the start point of the 2‑second window",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_5655d11fd576",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether overlapping speech (robot and human speaking simultaneously) satisfies the acknowledgment requirement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a7ba0e7f2244",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: How to handle multiple successive interruptions",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

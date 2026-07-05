@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_5b61ebd37944",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_finishes_speaking → robot_responds_after_human",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_3ec072816b12",
+    "required": true
+  },
+  {
+    "question_id": "q_5c3eb3ad5b35",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 2‑second deadline for stopping speaking starts from the interruption onset or after the acknowledgement is completed.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_aacd20652bf1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'must not interrupt the human while they are speaking' requires the robot to cease ongoing speech immediately when the human starts speaking, or merely to avoid initiating new speech while the human is talking.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_60bf6f2cce0d",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot's guidelines are a continuous monologue or segmented utterances that could be paused/resumed.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

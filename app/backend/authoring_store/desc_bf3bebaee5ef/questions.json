@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_6b428ed791a5",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second window starts at the beginning or end of the robot's announcement.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e8496b024c79",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second window starts at the beginning or end of the user's acknowledgment.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_5e7e7bfb324a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'speech or a head nod' means either modality suffices or both are acceptable.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_31931dd606dd",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The relevance of the 'quiet office environment' to timing or modality is not specified.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

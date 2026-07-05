@@ -1,0 +1,92 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 0.5,
+      "agent": "robot_1",
+      "event_type": "start",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "start",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 1.0,
+      "agent": "robot_1",
+      "event_type": "robot_announces_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_announces_delivery",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 1.87,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 4.93,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e006",
+      "timestamp": 4.93,
+      "agent": "human_1",
+      "event_type": "user_acknowledges_delivery",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "user_acknowledges_delivery",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e007",
+      "timestamp": 8.33,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e008",
+      "timestamp": 31.5,
+      "agent": "human_1",
+      "event_type": "speaking_end",
+      "primitive": "ρ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_4a1300ab80bf",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: scenario_start → robot_announce_delivery",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_33097d13750d",
+    "required": true
+  },
+  {
+    "question_id": "q_a088d050489e",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether acknowledgment via speech or head nod is sufficient or both required",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4e4fcca7eae7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the 8-second window starts at the end of the robot's announcement or at its start",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_eb0e40edeef9",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: whether the 1-second window for final confirmation starts after acknowledgment detection or after acknowledgment completion",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b2a8ea19ecc8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: what constitutes 'receipt' of acknowledgment (detecting speech vs head nod)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

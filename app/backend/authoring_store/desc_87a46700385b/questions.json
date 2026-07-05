@@ -1,0 +1,18 @@
+[
+  {
+    "question_id": "q_d294312710d4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' could be interpreted as stopping within 2 seconds of the interruption or within 2 seconds of the acknowledgment.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_9a5d354a2cb2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'immediately' may conflict with the explicit 2-second deadline.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

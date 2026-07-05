@@ -1,0 +1,30 @@
+[
+  {
+    "obligation_id": "obl_0aaab5d257f7",
+    "source_type": "user_clarification",
+    "source_text": "The robot prompts the user via speech. → User clarified: 5.0 seconds",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T19:01:09.037730Z"
+  },
+  {
+    "obligation_id": "obl_8e7473a6ded3",
+    "source_type": "scenario_sentence",
+    "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:59:40.772117Z"
+  },
+  {
+    "obligation_id": "obl_3359e2cdc8d8",
+    "source_type": "user_clarification",
+    "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 sec",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T19:01:09.037752Z"
+  },
+  {
+    "obligation_id": "obl_56bbb0354e57",
+    "source_type": "scenario_sentence",
+    "source_text": "The entire interaction must complete within a global timeout of 30 seconds.",
+    "confirmed_by_user": true,
+    "timestamp": "2026-06-24T18:59:40.772136Z"
+  }
+]

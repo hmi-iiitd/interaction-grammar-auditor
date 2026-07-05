@@ -1,0 +1,65 @@
+{
+  "scenario_id": "B1_human_interrupts_robot_stops",
+  "violation_id": "v001",
+  "violated_obligation": "Contract operator 'missing_action' must be satisfied",
+  "trigger": {
+    "event_id": null,
+    "time": 0,
+    "description": "missing_action at 0s"
+  },
+  "expected": {
+    "event": "expected_response",
+    "time_window": ""
+  },
+  "observed": {
+    "event": null,
+    "description": "No expected_response observed before deadline"
+  },
+  "falsification": {
+    "time": 0,
+    "description": "Violation detected at 0s — expected_response not satisfied"
+  },
+  "attribution": "human_1",
+  "site": "closure",
+  "evidence_window": {
+    "start": 0,
+    "end": 5.0,
+    "events": [
+      {
+        "event_id": "e001",
+        "timestamp": 0.0,
+        "event_type": "start",
+        "agent": "robot_1",
+        "details": "start"
+      },
+      {
+        "event_id": "e002",
+        "timestamp": 0.02,
+        "event_type": "robot_provides_guidelines",
+        "agent": "robot_1",
+        "details": "robot_provides_guidelines"
+      },
+      {
+        "event_id": "e003",
+        "timestamp": 2.57,
+        "event_type": "speaking_start",
+        "agent": "human_1",
+        "details": "speaking_start"
+      },
+      {
+        "event_id": "e004",
+        "timestamp": 2.57,
+        "event_type": "user_interrupts_by_speaking",
+        "agent": "human_1",
+        "details": "user_interrupts_by_speaking"
+      },
+      {
+        "event_id": "e005",
+        "timestamp": 4.08,
+        "event_type": "speaking_end",
+        "agent": "human_1",
+        "details": "speaking_end"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "description": "The robot prompts the user. If the user does not respond within 3 seconds, the robot should retry prompting the user. At most 1 retry is allowed. The user should acknowledge the prompt.\n",
+  "scenario_id": "C1_retry_success",
+  "scenario_title": "C1_retry_success",
+  "robot_platform": "NAO",
+  "interaction_family": "turn-taking",
+  "participant_role": "Recipient",
+  "notes": "",
+  "description_id": "desc_bb8bb8b51453",
+  "created_at": "2026-06-20T11:05:44.854848Z",
+  "created_by": "user"
+}

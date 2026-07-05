@@ -1,0 +1,66 @@
+[
+  {
+    "question_id": "q_8b6a6b480d2a",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_prompts_user",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_7f05e68f6436",
+    "required": true
+  },
+  {
+    "question_id": "q_4bc458ce1428",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt → user_acknowledges_intent",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_ccb354fed1b7",
+    "required": true
+  },
+  {
+    "question_id": "q_8a353e7acd7d",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a56847c03b82",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a 'successful response' (e.g., any utterance vs. specific content)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_6adf917d3567",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the retried prompt is identical or can be modified",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_9eca0bb66247",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 3-second deadline applies to each prompt attempt or only the first",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

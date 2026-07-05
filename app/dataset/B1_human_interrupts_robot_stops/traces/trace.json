@@ -1,0 +1,81 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "start",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "start",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 0.02,
+      "agent": "robot_1",
+      "event_type": "robot_provides_guidelines",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_provides_guidelines",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 2.57,
+      "agent": "human_1",
+      "event_type": "speaking_start",
+      "primitive": "σ",
+      "modality": "speech",
+      "object": null,
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 2.57,
+      "agent": "human_1",
+      "event_type": "user_interrupts_by_speaking",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "user_interrupts_by_speaking",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 3.07,
+      "agent": "robot_1",
+      "event_type": "robot_acknowledges_interruption",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_acknowledges_interruption",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e006",
+      "timestamp": 3.17,
+      "agent": "robot_1",
+      "event_type": "robot_stops_speaking",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_stops_speaking",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e007",
+      "timestamp": 4.08,
+      "agent": "human_1",
+      "event_type": "user_finishes_speaking",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "user_finishes_speaking",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

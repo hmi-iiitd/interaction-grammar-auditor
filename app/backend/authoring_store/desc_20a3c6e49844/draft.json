@@ -1,0 +1,64 @@
+{
+  "description_id": "desc_20a3c6e49844",
+  "plain_language": "1. After the robot announces a delivery, the user must acknowledge the delivery (via speech or a head nod) within 8 seconds. (assumed)\n2. After the user acknowledges the delivery, the robot must confirm the delivery via speech within 1 second.",
+  "ig_syntax": "robot_announces_delivery → user_acknowledges_delivery @within(8s)\nuser_acknowledges_delivery → robot_confirms_delivery @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech, head nod",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "system_1",
+          "channel": "speech, head nod",
+          "object": "user_acknowledges_delivery"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "system_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_confirms_delivery"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_0aef54c0b1e7",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-22T11:05:51.406403Z"
+    },
+    {
+      "obligation_id": "obl_88a386e5aa46",
+      "source_type": "scenario_sentence",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-22T11:05:51.406420Z"
+    }
+  ],
+  "generated_at": "2026-06-22T11:06:35.789327Z"
+}

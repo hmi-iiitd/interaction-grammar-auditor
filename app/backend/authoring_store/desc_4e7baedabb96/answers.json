@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_76bd42c2469b",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-06-24T18:26:06.452017Z"
+  },
+  {
+    "question_id": "q_31fa5f7f7920",
+    "answer_text": "(acknowledgement within 2s, then stop within another 2s)",
+    "selected_options": [],
+    "answered_at": "2026-06-24T18:26:06.452046Z"
+  },
+  {
+    "question_id": "q_adc829bb31ad",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T18:26:06.452057Z"
+  },
+  {
+    "question_id": "q_254b5f836e04",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T18:26:06.452065Z"
+  },
+  {
+    "question_id": "q_efe06b39824c",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T18:26:06.452072Z"
+  }
+]

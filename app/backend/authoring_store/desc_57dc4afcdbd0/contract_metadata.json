@@ -1,0 +1,10 @@
+{
+  "contract_id": "contract_57dc4afcdbd0",
+  "version": "1.0",
+  "locked": true,
+  "locked_at": "2026-06-24T06:56:22.116218Z",
+  "contract_hash": "sha256:231dd5248dbc61e4fa07f54163e6c96aba66b530b761cdc0c1ed9d2cb0be92af",
+  "source_description_id": "desc_57dc4afcdbd0",
+  "confirmed_assumptions": 2,
+  "unresolved_assumptions": 0
+}

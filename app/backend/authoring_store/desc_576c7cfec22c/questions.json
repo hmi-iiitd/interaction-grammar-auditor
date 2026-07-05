@@ -1,0 +1,62 @@
+[
+  {
+    "question_id": "q_1a873e678207",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_79600f173291",
+    "required": true
+  },
+  {
+    "question_id": "q_71e1ed14b89b",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_finishes_speaking → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_0ee3b315d692",
+    "required": true
+  },
+  {
+    "question_id": "q_b134d1866245",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'within 2 seconds' for acknowledgment and stopping are measured from the interruption or sequentially",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_215c4214ca1b",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes 'immediately stop speaking' (e.g., mid‑utterance vs. end of current phrase)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_3ad3deec0fdc",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the prohibition on interrupting the human applies only when the robot is speaking or to any robot speech initiation",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_03a1db84da73",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: How the system determines that the human has finished speaking (reliance on user_finishes_speaking event)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

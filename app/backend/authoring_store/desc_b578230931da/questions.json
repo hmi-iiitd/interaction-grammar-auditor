@@ -1,0 +1,26 @@
+[
+  {
+    "question_id": "q_c5aa0b556a5f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 8‑second and 1‑second deadlines are measured from the start of the preceding event or from its end",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_2094ca9fc542",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the global timeout of 5 seconds starts at the interaction start (start event) or after the robot’s announcement",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_2fde75075c4b",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot’s confirmation must occur strictly after the user acknowledgment or could overlap",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

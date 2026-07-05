@@ -1,0 +1,54 @@
+{
+  "description_id": "desc_87a46700385b",
+  "structured_summary": "The robot provides instructional guidelines to a human in a collaborative workspace. If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds, and then immediately stop speaking within 2 seconds.",
+  "actors": [
+    "robot",
+    "human"
+  ],
+  "events": [
+    "robot_provides_guidelines",
+    "human_interrupts",
+    "robot_acknowledges_interruption",
+    "robot_stops_speaking",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_de9dc355f9cc",
+      "obligation_type": "sequence",
+      "trigger": "human_interrupts",
+      "expected": "robot_acknowledges_interruption",
+      "deadline_seconds": 2,
+      "site": "collaborative_workspace",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "If the human interrupts the robot by speaking, the robot must first acknowledge the interruption by saying 'sorry' via speech within 2 seconds"
+    },
+    {
+      "obligation_id": "obl_285b4b7416bf",
+      "obligation_type": "sequence",
+      "trigger": "robot_acknowledges_interruption",
+      "expected": "robot_stops_speaking",
+      "deadline_seconds": 2,
+      "site": "collaborative_workspace",
+      "modalities": [],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "and then immediately stop speaking within 2 seconds."
+    }
+  ],
+  "missing_details": [
+    "What happens after the robot stops speaking (e.g., does it resume guidelines or wait for human input)?",
+    "Is there a specific modality for the human's interruption (only speech)?",
+    "Are there any failure conditions if the robot does not meet the deadlines?"
+  ],
+  "potential_ambiguities": [
+    "The phrase 'immediately stop speaking within 2 seconds' could be interpreted as stopping within 2 seconds of the interruption or within 2 seconds of the acknowledgment.",
+    "The term 'immediately' may conflict with the explicit 2-second deadline."
+  ]
+}

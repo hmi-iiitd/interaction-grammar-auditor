@@ -1,0 +1,59 @@
+{
+  "scenario_id": "A3_recipient_acknowledges_too_late",
+  "contract_id": "contract.ig.json",
+  "verdict": "UNSAT",
+  "num_events": 18,
+  "num_violations": 1,
+  "violations": [
+    {
+      "violation_id": "v001",
+      "violated_operator": "latency",
+      "agent_attribution": "human_1",
+      "site": "timing",
+      "trigger_event_id": "e005",
+      "expected_event": "human_1_user_acknowledges_delivery",
+      "observed_event": "human_1_user_acknowledges_delivery",
+      "deadline_seconds": 8.0,
+      "trigger_time": 5.44,
+      "falsification_time": 13.44,
+      "error_code": "V_SEQ_LATENCY_EXCEEDED",
+      "clause_path": "$.items[0]"
+    }
+  ],
+  "raw_auditor_output": {
+    "verdict": "FAIL",
+    "operator": "sequence",
+    "clause_path": "$.items[0]",
+    "error_code": "V_SEQ_LATENCY_EXCEEDED",
+    "budget": "≤8.0s",
+    "observed": {
+      "dt": 16.304393768310547
+    },
+    "responsible_agent": "human_1",
+    "expected": {
+      "latency_leq": "8.0s"
+    },
+    "witness": {
+      "left_event": {
+        "idx": 4,
+        "event": {
+          "t": 1782125751.1117563,
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        }
+      },
+      "right_event": {
+        "idx": 14,
+        "event": {
+          "t": 1782125767.41615,
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_delivery"
+        }
+      }
+    }
+  }
+}

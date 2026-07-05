@@ -1,0 +1,296 @@
+{
+  "scenario_id": "C1_retry_success",
+  "description_id": "desc_08f6bcdcf015",
+  "original_natural_language_description": "The robot interacts with a user in a high-traffic reception area to confirm a critical task. The robot prompts the user via speech. The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once. After a successful response or retry, the user must acknowledge the prompt's intent.\n",
+  "structured_system_interpretation": {
+    "description_id": "desc_08f6bcdcf015",
+    "structured_summary": "The interaction begins with the system start. The robot prompts the user via speech. The user must respond to the prompt within 3 seconds. If the user fails to respond within this window, the robot retries the prompt exactly once. After a successful response (either on the first prompt or after the retry), the user must acknowledge the prompt's intent.",
+    "actors": [
+      "robot",
+      "user"
+    ],
+    "events": [
+      "start",
+      "robot_prompts_user",
+      "user_responds_to_prompt",
+      "user_acknowledges_intent"
+    ],
+    "obligations": [
+      {
+        "obligation_id": "obl_7c88582d5b34",
+        "obligation_type": "sequence",
+        "trigger": "start",
+        "expected": "robot_prompts_user",
+        "deadline_seconds": 5.0,
+        "site": "robot_prompts_user",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "The robot prompts the user via speech."
+      },
+      {
+        "obligation_id": "obl_9ac4fe1e92c5",
+        "obligation_type": "repair",
+        "trigger": "robot_prompts_user",
+        "expected": "user_responds_to_prompt",
+        "deadline_seconds": 3,
+        "site": null,
+        "modalities": [],
+        "repair_event": "robot_prompts_user",
+        "max_retries": 1,
+        "condition": "",
+        "source_sentence": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once."
+      },
+      {
+        "obligation_id": "obl_0193a6199dd8",
+        "obligation_type": "sequence",
+        "trigger": "user_responds_to_prompt",
+        "expected": "user_acknowledges_intent",
+        "deadline_seconds": 3.0,
+        "site": "user_acknowledges_intent",
+        "modalities": [],
+        "repair_event": "",
+        "max_retries": null,
+        "condition": "",
+        "source_sentence": "After a successful response or retry, the user must acknowledge the prompt's intent."
+      }
+    ],
+    "missing_details": [
+      "What constitutes a valid user response (content, modality, correctness).",
+      "What happens after the user acknowledges the intent (e.g., task completion, further steps).",
+      "Whether the robot provides any feedback after a successful response or after the retry.",
+      "What occurs if the user fails to respond even after the retry (failure handling).",
+      "Obligation obl_9ac4fe1e92c5: repair missing site label"
+    ],
+    "potential_ambiguities": [
+      "Whether the 3-second timer starts when the robot finishes speaking or when it starts speaking.",
+      "Whether the retry is immediate after the timeout or after some additional delay.",
+      "What counts as a response (any speech, specific keyword, etc.).",
+      "Whether the user's acknowledgment of intent must be verbal or can be non-verbal."
+    ]
+  },
+  "clarification_questions": [
+    {
+      "question_id": "q_f31945bae88c",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_prompts_user",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_7c88582d5b34",
+      "required": true
+    },
+    {
+      "question_id": "q_d86210aa0dfd",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: user_responds_to_prompt \u2192 user_acknowledges_intent",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_0193a6199dd8",
+      "required": true
+    },
+    {
+      "question_id": "q_1fa366d26d80",
+      "category": "failure_condition_missing",
+      "question_text": "What should happen if all retries at site 'None' are exhausted?\nShould the interaction be marked as failed?",
+      "suggested_options": [
+        "Mark interaction as failed",
+        "Continue without acknowledgment",
+        "Escalate to human operator"
+      ],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_955b9c87f474",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the 3-second timer starts when the robot finishes speaking or when it starts speaking.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_2c7c49f94ac2",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the retry is immediate after the timeout or after some additional delay.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_3ef39aac3979",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: What counts as a response (any speech, specific keyword, etc.).",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_dd48d43f3369",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the user's acknowledgment of intent must be verbal or can be non-verbal.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "user_answers": [
+    {
+      "question_id": "q_f31945bae88c",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-06-24T17:50:57.794550Z"
+    },
+    {
+      "question_id": "q_d86210aa0dfd",
+      "answer_text": "3 sec",
+      "selected_options": [],
+      "answered_at": "2026-06-24T17:50:57.794581Z"
+    },
+    {
+      "question_id": "q_1fa366d26d80",
+      "answer_text": "",
+      "selected_options": [
+        "Mark interaction as failed"
+      ],
+      "answered_at": "2026-06-24T17:50:57.794592Z"
+    },
+    {
+      "question_id": "q_955b9c87f474",
+      "answer_text": "finshes ",
+      "selected_options": [],
+      "answered_at": "2026-06-24T17:50:57.794600Z"
+    },
+    {
+      "question_id": "q_2c7c49f94ac2",
+      "answer_text": "immediate after the timeout",
+      "selected_options": [],
+      "answered_at": "2026-06-24T17:50:57.794608Z"
+    },
+    {
+      "question_id": "q_3ef39aac3979",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T17:50:57.794616Z"
+    },
+    {
+      "question_id": "q_dd48d43f3369",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T17:50:57.794623Z"
+    }
+  ],
+  "plain_language_contract": "1. The robot must prompt the user via speech within 5 seconds after the start.  \n2. If the robot has prompted the user, the user must respond to the prompt within 3 seconds; if the user does not respond within that time, the robot may retry the prompt exactly once.  \n3. After the user responds to the prompt (or after a retry), the user must acknowledge the prompt's intent within 3 seconds.",
+  "readable_grammar_notation": "start \u2192 robot_prompts_user @within(5.0s)\nrobot_prompts_user \u2192 user_responds_to_prompt @within(3s) repair(max_retries=1)\nuser_responds_to_prompt \u2192 user_acknowledges_intent @within(3.0s)",
+  "contract_json": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_prompts_user"
+        },
+        "latency": "5.0s"
+      },
+      {
+        "node": "repair",
+        "site": "robot_prompts_user",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "robot_1",
+            "channel": "speech",
+            "object": "robot_prompts_user"
+          },
+          "right": {
+            "node": "act",
+            "prim": "\u03b1",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          },
+          "latency": "3s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "\u03b1",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "3.0s"
+      }
+    ],
+    "latency": "\u226430s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_7c88582d5b34",
+      "source_type": "user_clarification",
+      "source_text": "The robot prompts the user via speech. \u2192 User clarified: 5.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:50:57.795735Z"
+    },
+    {
+      "obligation_id": "obl_9ac4fe1e92c5",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:49:12.007752Z"
+    },
+    {
+      "obligation_id": "obl_0193a6199dd8",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. \u2192 User clarified: 3 sec",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:50:57.795773Z"
+    }
+  ],
+  "validation_output": {
+    "schema_valid": true,
+    "semantic_valid": true,
+    "repair_sites_valid": true,
+    "errors": [],
+    "warnings": [],
+    "all_passed": true
+  },
+  "lock_hash": "sha256:8931ffada0004a04539d66b7a49a1b9c3e7f993ffb7f8fe72d5a9d320f51b7d6"
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "question_id": "q_7f9df14ec0d2",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_prompts_user → user_responds",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_0d2a38b668c9",
+    "required": true
+  },
+  {
+    "question_id": "q_b52ecd168127",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: robot_prompts_user → user_acknowledges",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_6549fad79e62",
+    "required": true
+  },
+  {
+    "question_id": "q_c37d758a3181",
+    "category": "failure_condition_missing",
+    "question_text": "What should happen if all retries at site 'prompt' are exhausted?\nShould the interaction be marked as failed?",
+    "suggested_options": [
+      "Mark interaction as failed",
+      "Continue without acknowledgment",
+      "Escalate to human operator"
+    ],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c39907e6d74f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The relationship between 'respond' and 'acknowledge' is unclear: are they the same action or distinct?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_a3d2d438d54a",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The deadline for the user to acknowledge is not specified.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d11728cca8b2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the retry obligation applies only to the initial prompt or also to the acknowledgment is ambiguous.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

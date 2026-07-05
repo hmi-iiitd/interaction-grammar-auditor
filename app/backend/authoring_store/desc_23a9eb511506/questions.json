@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "q_91c28ed846b7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'within 8 seconds' measures from the start or end of the robot's announcement speech",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_8d4d561bdfb2",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'within 1 second' measures from the start or end of the user's acknowledgment speech",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_1f71722de0d4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a valid acknowledgment (specific words or any speech)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_07264b407fc7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a valid final confirmation",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b991319ec5a0",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot should repeat the announcement if no acknowledgment is received (not specified)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

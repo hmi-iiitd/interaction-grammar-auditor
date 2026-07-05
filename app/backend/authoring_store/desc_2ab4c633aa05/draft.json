@@ -1,0 +1,40 @@
+{
+  "description_id": "desc_2ab4c633aa05",
+  "plain_language": "1. When the human starts speaking, the robot must not speak (i.e., must not interrupt).  \n2. After the human finishes speaking, the robot must start speaking within 3 seconds.",
+  "ig_syntax": "failure(site=collaborative_workspace)\nhuman_speaking_end → robot_speaking @within(3.0s)",
+  "json_contract": {
+    "node": "seq",
+    "left": {
+      "node": "act",
+      "prim": "α",
+      "agent": "human_1",
+      "channel": "speech",
+      "object": "human_speaking_end"
+    },
+    "right": {
+      "node": "act",
+      "prim": "α",
+      "agent": "robot_1",
+      "channel": "speech",
+      "object": "robot_stops_speaking"
+    },
+    "latency": "3.0s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_c0eefe4839ef",
+      "source_type": "scenario_sentence",
+      "source_text": "When the human is speaking, the robot must not interrupt.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T08:20:12.345336Z"
+    },
+    {
+      "obligation_id": "obl_2f1eb3beee73",
+      "source_type": "user_clarification",
+      "source_text": "The robot may respond only after the human has finished speaking. → User clarified: 3 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T08:22:16.558621Z"
+    }
+  ],
+  "generated_at": "2026-06-24T08:22:38.411747Z"
+}

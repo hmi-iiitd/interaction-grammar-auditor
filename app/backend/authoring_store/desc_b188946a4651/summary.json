@@ -1,0 +1,57 @@
+{
+  "description_id": "desc_b188946a4651",
+  "structured_summary": "The robot announces a package delivery via speech. The user must acknowledge the delivery by speaking within 8 seconds of the announcement. After receiving the acknowledgment, the robot must confirm the delivery by speaking within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announce_delivery",
+    "user_acknowledge",
+    "robot_final_confirmation",
+    "speech"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_6c9de45ea660",
+      "obligation_type": "sequence",
+      "trigger": "robot_announce_delivery",
+      "expected": "user_acknowledge",
+      "deadline_seconds": 8,
+      "site": "user_acknowledge",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (via speech) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_a31a83d2b5b5",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledge",
+      "expected": "robot_final_confirmation",
+      "deadline_seconds": 1,
+      "site": "robot_final_confirmation",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What happens if the user fails to acknowledge within 8 seconds?",
+    "What happens if the robot fails to provide final confirmation within 1 second?",
+    "How is the acknowledgment detected (speech recognition threshold)?",
+    "What constitutes the delivery action itself?"
+  ],
+  "potential_ambiguities": [
+    "Whether the 8‑second window starts at the start or end of the robot's announcement speech.",
+    "Whether the 1‑second window starts at the start or end of the user's acknowledgment utterance.",
+    "What qualifies as a valid acknowledgment (any speech vs specific phrase)."
+  ]
+}

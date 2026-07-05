@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_13ba1e5ab4f1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether acknowledgment via head nod is reliably detectable by the robot",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d296a5cef98f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes a valid speech acknowledgment (specific keywords, tone)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_e23891d988a8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Exact wording of the final confirmation message",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_c4d0259c6ff4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the quiet office environment imposes any noise constraints on speech recognition",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

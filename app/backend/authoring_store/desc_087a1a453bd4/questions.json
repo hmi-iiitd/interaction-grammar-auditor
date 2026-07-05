@@ -1,0 +1,18 @@
+[
+  {
+    "question_id": "q_0559cbff5ff7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 1 second' could be interpreted as stopping within 1 second of the interruption or within 1 second of the acknowledgment.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d403d1122e8c",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The term 'interrupts' is not precisely defined (e.g., overlapping speech, any utterance).",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

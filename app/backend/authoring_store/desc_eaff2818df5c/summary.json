@@ -1,0 +1,59 @@
+{
+  "description_id": "desc_eaff2818df5c",
+  "structured_summary": "In a quiet office, the robot announces a package delivery via speech. The user must acknowledge the delivery (by speech or head nod) within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must give a final confirmation via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "user_acknowledges_delivery",
+    "robot_final_confirmation",
+    "speech",
+    "head_nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_a6570d6ecf2b",
+      "obligation_type": "sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "user_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech",
+        "head_nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_f89ad9195a84",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledges_delivery",
+      "expected": "robot_final_confirmation",
+      "deadline_seconds": 1,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What occurs if the user fails to acknowledge within 8 seconds (e.g., robot retry, abort, or error handling)",
+    "How the robot detects a head nod acknowledgment",
+    "Whether the 8‑second deadline starts at the start or end of the announcement",
+    "Whether the 1‑second deadline starts at the start or end of the acknowledgment"
+  ],
+  "potential_ambiguities": [
+    "The modality for acknowledgment (speech vs head nod) and how the robot distinguishes them",
+    "Exact timing reference points for the deadlines",
+    "Whether the robot should repeat the announcement if no acknowledgment is received"
+  ]
+}

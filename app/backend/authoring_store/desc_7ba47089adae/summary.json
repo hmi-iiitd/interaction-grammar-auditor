@@ -1,0 +1,74 @@
+{
+  "description_id": "desc_7ba47089adae",
+  "structured_summary": "In a quiet office environment, a robot delivers a package to a user. The robot must announce the delivery via speech. The user is expected to acknowledge the delivery (via speech or head nod) within 8 seconds of the announcement. Upon receiving the acknowledgment, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "actors": [
+    "robot",
+    "user"
+  ],
+  "events": [
+    "robot_announces_delivery",
+    "user_acknowledges_delivery",
+    "robot_confirms_delivery",
+    "start",
+    "speech",
+    "head nod"
+  ],
+  "obligations": [
+    {
+      "obligation_id": "obl_a5cfee40a7a8",
+      "obligation_type": "sequence",
+      "trigger": "start",
+      "expected": "robot_announces_delivery",
+      "deadline_seconds": 8.0,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The robot should announce the delivery via speech."
+    },
+    {
+      "obligation_id": "obl_57d5015e40b0",
+      "obligation_type": "conditional_sequence",
+      "trigger": "robot_announces_delivery",
+      "expected": "user_acknowledges_delivery",
+      "deadline_seconds": 8,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech",
+        "head nod"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement."
+    },
+    {
+      "obligation_id": "obl_5c16044bd391",
+      "obligation_type": "sequence",
+      "trigger": "user_acknowledges_delivery",
+      "expected": "robot_confirms_delivery",
+      "deadline_seconds": 1,
+      "site": "quiet office environment",
+      "modalities": [
+        "speech"
+      ],
+      "repair_event": "",
+      "max_retries": null,
+      "condition": "",
+      "source_sentence": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second."
+    }
+  ],
+  "missing_details": [
+    "What happens if the user does not acknowledge within 8 seconds (failure condition)?",
+    "Whether the robot should repeat the announcement or take other action on non-acknowledgment.",
+    "Explicit modality for robot's announcement (speech is stated, but no other modalities)."
+  ],
+  "potential_ambiguities": [
+    "The phrase 'expected to acknowledge' could be interpreted as an obligation or a suggestion.",
+    "The acknowledgment modality 'head nod' may be difficult for the robot to detect reliably.",
+    "The scenario title suggests a failure case (user does not acknowledge), but the description only covers the success path."
+  ]
+}

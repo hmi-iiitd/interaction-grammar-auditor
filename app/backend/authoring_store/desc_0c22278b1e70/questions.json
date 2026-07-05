@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "q_0e0281eb33cf",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Start point of the 8‑second window (announcement start vs. end)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_d11dad9831d1",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Start point of the 1‑second window (acknowledgment start vs. end)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_42b7251f6579",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: How a head nod is recognized as acknowledgment",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_dbb15ce1e3d4",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether speech acknowledgment must be a specific phrase or any utterance",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b43e00fec128",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What constitutes 'final confirmation' (content of speech)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

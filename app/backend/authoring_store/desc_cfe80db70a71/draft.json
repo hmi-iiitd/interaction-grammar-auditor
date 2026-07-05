@@ -1,0 +1,89 @@
+{
+  "description_id": "desc_cfe80db70a71",
+  "plain_language": "1. The robot must announce the delivery via speech within 1.0 seconds of the scenario start.  \n2. The user must acknowledge the delivery via speech or a head nod within 8 seconds of the robot's announcement.  \n3. Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+  "ig_syntax": "scenario_start → robot_announce_delivery @within(1.0s)\nrobot_announce_delivery → user_acknowledge_delivery @within(8s)\nuser_acknowledge_delivery → robot_final_confirmation @within(1s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "start"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_announces_delivery"
+        },
+        "latency": "1.0s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech, head_nod",
+          "object": "robot_announces_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech, head_nod",
+          "object": "recipient_acknowledges_delivery"
+        },
+        "latency": "8s"
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "recipient_acknowledges_delivery"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "robot_1",
+          "channel": "speech",
+          "object": "robot_final_confirmation"
+        },
+        "latency": "1s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_df81aa992525",
+      "source_type": "user_clarification",
+      "source_text": "The robot should announce the delivery via speech. → User clarified: 1.0 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-22T17:22:03.878447Z"
+    },
+    {
+      "obligation_id": "obl_002000554d76",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to acknowledge the delivery (e.g., via speech or a head nod) within 8 seconds of the announcement.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-22T17:21:02.557799Z"
+    },
+    {
+      "obligation_id": "obl_395973b08182",
+      "source_type": "scenario_sentence",
+      "source_text": "Once the acknowledgment is received, the robot must provide a final confirmation of delivery via speech within 1 second.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-22T17:21:02.557811Z"
+    }
+  ],
+  "generated_at": "2026-06-22T17:22:42.994871Z"
+}

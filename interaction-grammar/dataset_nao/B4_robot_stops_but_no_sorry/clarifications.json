@@ -1,0 +1,84 @@
+{
+  "questions": [
+    {
+      "question_id": "q_76bd42c2469b",
+      "category": "deadline_missing",
+      "question_text": "How long should the system wait for the expected response?\nContext: start \u2192 robot_provides_guidelines",
+      "suggested_options": [
+        "0.5 seconds",
+        "1.0 seconds",
+        "2.0 seconds",
+        "5.0 seconds",
+        "10.0 seconds"
+      ],
+      "related_obligation_id": "obl_a3bb2ae011ca",
+      "required": true
+    },
+    {
+      "question_id": "q_31fa5f7f7920",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the two 2\u2011second limits apply sequentially (acknowledgement within 2s, then stop within another 2s) or both must occur within 2s of the interruption.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_adc829bb31ad",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether any human speech over the robot counts as an interruption, or only sustained speech.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_254b5f836e04",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the robot must cease all speech immediately after acknowledgement or finish the current utterance before stopping.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    },
+    {
+      "question_id": "q_efe06b39824c",
+      "category": "event_mapping_ambiguous",
+      "question_text": "Clarification needed: Whether the robot's obligation to not interrupt the human while they are speaking is distinct from the interruption handling described, or if it is covered by the same rules.",
+      "suggested_options": [],
+      "related_obligation_id": "",
+      "required": false
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "q_76bd42c2469b",
+      "answer_text": "5.0 seconds",
+      "selected_options": [
+        "5.0 seconds"
+      ],
+      "answered_at": "2026-06-24T18:26:06.452017Z"
+    },
+    {
+      "question_id": "q_31fa5f7f7920",
+      "answer_text": "(acknowledgement within 2s, then stop within another 2s)",
+      "selected_options": [],
+      "answered_at": "2026-06-24T18:26:06.452046Z"
+    },
+    {
+      "question_id": "q_adc829bb31ad",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T18:26:06.452057Z"
+    },
+    {
+      "question_id": "q_254b5f836e04",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T18:26:06.452065Z"
+    },
+    {
+      "question_id": "q_efe06b39824c",
+      "answer_text": "",
+      "selected_options": [],
+      "answered_at": "2026-06-24T18:26:06.452072Z"
+    }
+  ]
+}

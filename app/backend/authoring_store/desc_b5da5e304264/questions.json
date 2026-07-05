@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_999b140cb887",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext:  → announcement",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_121920fed27f",
+    "required": true
+  },
+  {
+    "question_id": "q_84b287c2050f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Acknowledgment modality: speech or head nod – either acceptable or required?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_b8c5c3155582",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Deadline measurement: does the 8‑second window begin at the completion of the announcement utterance?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_7d9db8635056",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Deadline measurement: does the 1‑second window begin at the completion of the acknowledgment signal?",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

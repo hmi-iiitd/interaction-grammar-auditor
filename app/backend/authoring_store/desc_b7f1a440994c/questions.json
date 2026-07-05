@@ -1,0 +1,32 @@
+[
+  {
+    "question_id": "q_bb17d3d79081",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_6c29e83f7747",
+    "required": true
+  },
+  {
+    "question_id": "q_d88b257f017f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The phrase 'immediately stop speaking within 2 seconds' could be interpreted as the robot must stop speaking within 2 seconds after acknowledging, or the total time from interruption to stop is 2 seconds. The description says 'first acknowledge... within 2 seconds, and then immediately stop speaking within 2 seconds', which suggests two separate deadlines: 2 seconds for acknowledgment, then another 2 seconds for stopping. But 'immediately' might imply a shorter time. However, we follow the explicit numbers.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_ef60ad460346",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: The obligation 'robot must not interrupt the human while they are speaking' is stated but not triggered by any event; it is a general constraint. It is not modeled as an obligation with a trigger because it is a prohibition.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

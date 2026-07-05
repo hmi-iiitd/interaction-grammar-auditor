@@ -1,0 +1,48 @@
+[
+  {
+    "question_id": "q_76bd42c2469b",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: start → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_a3bb2ae011ca",
+    "required": true
+  },
+  {
+    "question_id": "q_31fa5f7f7920",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the two 2‑second limits apply sequentially (acknowledgement within 2s, then stop within another 2s) or both must occur within 2s of the interruption.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_adc829bb31ad",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether any human speech over the robot counts as an interruption, or only sustained speech.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_254b5f836e04",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot must cease all speech immediately after acknowledgement or finish the current utterance before stopping.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_efe06b39824c",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot's obligation to not interrupt the human while they are speaking is distinct from the interruption handling described, or if it is covered by the same rules.",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

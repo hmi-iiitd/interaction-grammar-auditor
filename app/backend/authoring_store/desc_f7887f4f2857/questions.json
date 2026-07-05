@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_3ed3210a5931",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 1‑second deadline for stopping starts after acknowledgement completion or after the interruption",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_7abaefa54e58",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Meaning of 'immediately' in conjunction with the 1‑second limit",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_8939ae8b04d8",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot must halt mid‑utterance or finish the current word/phrase",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_6a72bbaf95c7",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: What counts as 'speaking' for the robot (ongoing utterance vs. any audio output)",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

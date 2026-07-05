@@ -1,16 +1,16 @@
-scenario_id: "C4_global_timeout"
-interaction_family: "Repair and Timeout"
-robot_platform: "NAO"
-participant_role: "partner"
-expected_verdict: "UNSAT"
-expected_failure_type: "global_timeout"
-expected_trigger_event: "interaction start"
-expected_failed_obligation: "global duration"
-expected_falsification_time: "5s after interaction start"
-expected_agent_attribution: "interaction-site"
-contract_id: "pending_authoring"
-contract_version: "pending_authoring"
-contract_hash: "pending_authoring"
-trace_file: "trace.jsonl"
-rosbag_file: "pending_recording"
-notes: "Local steps succeed but total interaction duration is too long."
+scenario_id: C4_global_timeout
+interaction_family: Repair and Timeout
+robot_platform: NAO
+participant_role: partner
+expected_verdict: UNSAT
+expected_failure_type: global_timeout
+expected_trigger_event: interaction start
+expected_failed_obligation: complete interaction within 5 seconds
+expected_falsification_time: 5s after interaction start
+expected_agent_attribution: interaction-site
+contract_id: contract_7d459c4efa6e
+contract_version: '1.0'
+contract_hash: sha256:97244b2ecd006d5cbd183b2369459ce550377f7f373df6717cf96b9ca7b5f004
+trace_file: trace.jsonl
+rosbag_file: pending_recording
+notes: Local steps succeed but total interaction duration is too long.

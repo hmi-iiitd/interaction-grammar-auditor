@@ -1,0 +1,40 @@
+{
+  "robot": {
+    "announce_delivery": "robot_announces_delivery",
+    "announces_delivery": "robot_announces_delivery",
+    "announcement": "robot_announces_delivery",
+    "confirm_delivery": "robot_confirms_delivery",
+    "confirms_delivery": "robot_confirms_delivery",
+    "final_confirmation": "robot_confirms_delivery",
+    "prompt_user": "robot_prompts_user",
+    "prompts_user": "robot_prompts_user",
+    "prompts": "robot_prompts_user",
+    "acknowledges_interruption": "robot_acknowledges_interruption",
+    "sorry": "robot_acknowledges_interruption",
+    "stops_speaking": "robot_stops_speaking",
+    "stops": "robot_stops_speaking",
+    "provides_guidelines": "robot_provides_guidelines",
+    "guidelines": "robot_provides_guidelines"
+  },
+  "human": {
+    "acknowledge_delivery": "user_acknowledges_delivery",
+    "acknowledges_delivery": "user_acknowledges_delivery",
+    "acknowledgment": "user_acknowledges_delivery",
+    "user_acknowledge": "user_acknowledges_delivery",
+    "user_acknowledges": "user_acknowledges_delivery",
+    "responds_to_prompt": "user_responds_to_prompt",
+    "responds": "user_responds_to_prompt",
+    "response": "user_responds_to_prompt",
+    "acknowledges_intent": "user_acknowledges_intent",
+    "acknowledges_prompt": "user_acknowledges_intent",
+    "confirms_intent": "user_acknowledges_intent",
+    "interrupts": "user_interrupts_by_speaking",
+    "interrupts_by_speaking": "user_interrupts_by_speaking",
+    "human_interrupts": "user_interrupts_by_speaking",
+    "finishes_speaking": "user_finishes_speaking",
+    "stops_speaking": "user_finishes_speaking"
+  },
+  "system": {
+    "start": "start"
+  }
+}

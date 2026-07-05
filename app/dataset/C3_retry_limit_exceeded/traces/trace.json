@@ -1,0 +1,59 @@
+{
+  "events": [
+    {
+      "event_id": "e001",
+      "timestamp": 0.0,
+      "agent": "robot_1",
+      "event_type": "start",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "start",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e002",
+      "timestamp": 2.52,
+      "agent": "robot_1",
+      "event_type": "robot_prompts_user",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_prompts_user",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e003",
+      "timestamp": 5.52,
+      "agent": "robot_1",
+      "event_type": "robot_prompts_user",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_prompts_user",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e004",
+      "timestamp": 8.52,
+      "agent": "robot_1",
+      "event_type": "robot_prompts_user",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "robot_prompts_user",
+      "source_topic": "/interaction/robot_event",
+      "confidence": null
+    },
+    {
+      "event_id": "e005",
+      "timestamp": 10.52,
+      "agent": "human_1",
+      "event_type": "user_responds_to_prompt",
+      "primitive": "α",
+      "modality": "speech",
+      "object": "user_responds_to_prompt",
+      "source_topic": "/interaction/human_event",
+      "confidence": null
+    }
+  ]
+}

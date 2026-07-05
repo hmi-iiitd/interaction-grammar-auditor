@@ -1,0 +1,34 @@
+[
+  {
+    "question_id": "q_2a15f88cffcf",
+    "answer_text": "5.0 seconds",
+    "selected_options": [
+      "5.0 seconds"
+    ],
+    "answered_at": "2026-06-22T18:28:38.087530Z"
+  },
+  {
+    "question_id": "q_357f174d2c1e",
+    "answer_text": "end of annocument",
+    "selected_options": [],
+    "answered_at": "2026-06-22T18:28:38.087559Z"
+  },
+  {
+    "question_id": "q_c884b31fc5b4",
+    "answer_text": "after it completes",
+    "selected_options": [],
+    "answered_at": "2026-06-22T18:28:38.087570Z"
+  },
+  {
+    "question_id": "q_3e659db11213",
+    "answer_text": "alone is enough",
+    "selected_options": [],
+    "answered_at": "2026-06-22T18:28:38.087578Z"
+  },
+  {
+    "question_id": "q_f446e7a216e3",
+    "answer_text": "no",
+    "selected_options": [],
+    "answered_at": "2026-06-22T18:28:38.087586Z"
+  }
+]

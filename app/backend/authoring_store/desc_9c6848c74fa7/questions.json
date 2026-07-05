@@ -1,0 +1,40 @@
+[
+  {
+    "question_id": "q_0632ec3400e0",
+    "category": "deadline_missing",
+    "question_text": "How long should the system wait for the expected response?\nContext: user_finishes_speaking → robot_provides_guidelines",
+    "suggested_options": [
+      "0.5 seconds",
+      "1.0 seconds",
+      "2.0 seconds",
+      "5.0 seconds",
+      "10.0 seconds"
+    ],
+    "related_obligation_id": "obl_5dda229c88de",
+    "required": true
+  },
+  {
+    "question_id": "q_74a7c0f10d67",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether 'immediately stop speaking within 2 seconds' means the stop must occur within 2 seconds of the acknowledgment or immediately (zero delay) but with a 2‑second upper bound",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_336c356d8c38",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the robot must remain silent for the entire duration of human speech or merely pause and resume after the human finishes",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  },
+  {
+    "question_id": "q_4482def64e0f",
+    "category": "event_mapping_ambiguous",
+    "question_text": "Clarification needed: Whether the 2‑second deadlines are separate timers or cumulative",
+    "suggested_options": [],
+    "related_obligation_id": "",
+    "required": false
+  }
+]

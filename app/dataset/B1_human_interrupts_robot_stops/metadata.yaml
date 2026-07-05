@@ -1,0 +1,6 @@
+scenario_id: B1_human_interrupts_robot_stops
+interaction_type: Turn-taking / acknowledgment
+robot_platform: NAO
+source_bag: synthetic
+contract_name: contract.ig.json
+version: '1.0'

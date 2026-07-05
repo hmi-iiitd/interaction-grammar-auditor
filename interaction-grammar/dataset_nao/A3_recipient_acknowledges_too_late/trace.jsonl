@@ -1,0 +1,18 @@
+{"t": 1782125745.6759088, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125746.1759088, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "start"}
+{"t": 1782125747.516907, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125750.6117563, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125751.1117563, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "robot_announces_delivery"}
+{"t": 1782125752.4431105, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125752.645831, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125754.492927, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125754.6971781, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125756.5373504, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125756.7463233, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125758.5779166, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125758.7901347, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}
+{"t": 1782125762.7471793, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125767.41615, "prim": "\u03b1", "agent": "human_1", "channel": "speech", "object": "user_acknowledges_delivery"}
+{"t": 1782125767.91615, "prim": "\u03b1", "agent": "robot_1", "channel": "speech", "object": "robot_confirms_delivery"}
+{"t": 1782125768.41615, "prim": "\u03c1", "agent": "human_1", "channel": "speech"}
+{"t": 1782125771.6109853, "prim": "\u03c3", "agent": "human_1", "channel": "speech"}

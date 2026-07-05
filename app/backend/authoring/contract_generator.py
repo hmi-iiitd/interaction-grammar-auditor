@@ -18,6 +18,7 @@ Pass conditions (from PRD):
 import json
 import logging
 from typing import List, Optional
+from pathlib import Path
 
 from authoring.schemas import (
     Obligation, ContractDraft, ProvenanceRecord, ScenarioSummary,
@@ -28,6 +29,56 @@ from authoring.prompts import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Load the global event registry for name normalization
+REGISTRY_PATH = Path(__file__).parent / "event_registry.json"
+try:
+    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
+        EVENT_REGISTRY = json.load(f)
+except Exception as e:
+    logger.warning(f"Could not load event registry: {e}")
+    EVENT_REGISTRY = {}
+
+def normalize_event_name(name: Optional[str]) -> str:
+    """
+    Maps a guessed event name from the LLM to the official registry name.
+    Example: 'user acknowledges delivery' -> 'recipient_acknowledges_delivery'
+    """
+    if not name:
+        return "unknown"
+
+    name_lower = name.lower().replace(" ", "_")
+
+    # Flatten registry for easy searching
+    all_official_names = []
+    for category in EVENT_REGISTRY.values():
+        all_official_names.extend(category.values())
+
+    # 1. Exact match
+    if name_lower in all_official_names:
+        return name_lower
+
+    # 2. Try matching against registry keys (aliases)
+    for category in EVENT_REGISTRY.values():
+        for alias, official in category.items():
+            if alias in name_lower or name_lower in alias:
+                return official
+
+    # 3. Keyword overlap match
+    name_words = set(name_lower.split("_"))
+    best_match = None
+    max_overlap = 0
+    for official in all_official_names:
+        official_words = set(official.split("_"))
+        overlap = len(name_words.intersection(official_words))
+        if overlap > max_overlap:
+            max_overlap = overlap
+            best_match = official
+
+    if best_match and max_overlap >= 2:
+        return best_match
+
+    return name # Fallback to original guess
 
 
 class GeneratorError(Exception):
@@ -78,35 +129,49 @@ def _infer_agent(event_name: str, actors: List[str]) -> str:
     if not event_name:
         return "unknown_1"
     event_lower = event_name.lower()
-    
+
+    # 1. Prefix-based priority (Highest accuracy)
+    # If the event name starts with a specific agent prefix, use that immediately.
+    if event_lower.startswith(("human_", "user_", "recipient_", "participant_")):
+        return "human_1"
+    if event_lower.startswith("robot_"):
+        return "robot_1"
+    if event_lower.startswith("system_"):
+        return "system_1"
+    if event_lower.startswith("env_"):
+        return "env_1"
+
+    # 2. Keyword match (Fallback)
     inferred_actor = None
     for actor in actors:
         actor_base = actor.split("_")[0].lower()
-        if actor_base in event_lower:
+        # Only match if the actor_base is a distinct word or at the start
+        if actor_base == event_lower or event_lower.startswith(actor_base + "_"):
             inferred_actor = actor
             break
-            
+
     if not inferred_actor:
-        if "robot" in event_lower: 
+        if "robot" in event_lower:
             inferred_actor = "robot_1"
-        elif "human" in event_lower or "recipient" in event_lower or "participant" in event_lower: 
+        elif any(k in event_lower for k in ["human", "user", "recipient", "participant"]):
             inferred_actor = "human_1"
         elif actors:
             inferred_actor = actors[0]
         else:
             inferred_actor = "unknown_1"
-            
-    if "_" not in inferred_actor:
-        # Some fallback logic since the validator requires type_index
-        # Validate type is one of human, robot, system, env
-        base = inferred_actor.lower()
-        if base in ["participant", "recipient"]:
-            base = "human"
-        elif base not in ["human", "robot", "system", "env"]:
-            base = "system" # fallback valid type
-        return f"{base}_1"
-        
-    return inferred_actor
+
+    # Normalize inferred actor to a valid type
+    base = inferred_actor.split("_")[0].lower()
+    if base in ["participant", "recipient", "user", "human"]:
+        return "human_1"
+    elif base in ["robot"]:
+        return "robot_1"
+    elif base in ["system"]:
+        return "system_1"
+    elif base in ["env"]:
+        return "env_1"
+    else:
+        return "system_1" # Final fallback
 
 
 def _build_contract_json(obligations: List[Obligation], actors: List[str]) -> dict:
@@ -157,13 +222,8 @@ def _build_contract_json(obligations: List[Obligation], actors: List[str]) -> di
         return nodes[0]
 
     # Wrap multiple in a Bind
-    # Calculate total span latency: max of all deadlines * 3 for safety
-    max_deadline = 0
-    for obl in obligations:
-        if obl.deadline_seconds is not None:
-            max_deadline = max(max_deadline, obl.deadline_seconds)
-
-    bind_latency = f"≤{int(max(max_deadline * 4, 30))}s"
+    # Global interaction time limit of 30 seconds
+    bind_latency = "≤30s"
 
     return {
         "node": "bind",
@@ -172,16 +232,28 @@ def _build_contract_json(obligations: List[Obligation], actors: List[str]) -> di
     }
 
 
+def _resolve_channel(obl: Obligation) -> str:
+    """Resolve the communication channel from obligation modalities."""
+    if obl.modalities and len(obl.modalities) > 0:
+        return ", ".join(obl.modalities)
+    return "speech" # Default fallback
+
+
 def _build_seq_node(obl: Obligation, actors: List[str]) -> Optional[dict]:
     """Build a Seq AST node from a sequence obligation."""
     if not obl.trigger or not obl.expected:
         return None
 
-    trigger_agent = _infer_agent(obl.trigger, actors)
-    expected_agent = _infer_agent(obl.expected, actors)
+    # Normalize names before inferring agents to improve attribution accuracy
+    trigger_name = normalize_event_name(obl.trigger)
+    expected_name = normalize_event_name(obl.expected)
 
-    left_act = _build_act("α", trigger_agent, "speech", obl.trigger)
-    right_act = _build_act("α", expected_agent, "speech", obl.expected)
+    trigger_agent = _infer_agent(trigger_name, actors)
+    expected_agent = _infer_agent(expected_name, actors)
+    channel = _resolve_channel(obl)
+
+    left_act = _build_act("α", trigger_agent, channel, trigger_name)
+    right_act = _build_act("α", expected_agent, channel, expected_name)
 
     node = {
         "node": "seq",
@@ -242,20 +314,45 @@ def _find_sequence_for_repair(
 
 def _build_repair_node(obl: Obligation, all_obligations: List[Obligation], actors: List[str]) -> Optional[dict]:
     """Build a Repair AST node from a repair obligation."""
-    site_seq = _find_sequence_for_repair(obl, all_obligations)
 
-    if site_seq is None:
-        trigger_agent = _infer_agent(obl.repair_event or obl.trigger, actors)
-        expected_agent = _infer_agent(obl.expected or "response", actors)
+    # Priority: If a repair_event is explicitly provided, use it as the trigger for the retry
+    if obl.repair_event:
+        repair_event_name = normalize_event_name(obl.repair_event)
+        expected_event_name = normalize_event_name(obl.expected or "response")
+
+        trigger_agent = _infer_agent(repair_event_name, actors)
+        expected_agent = _infer_agent(expected_event_name, actors)
+        channel = _resolve_channel(obl)
+
         inner = {
             "node": "seq",
-            "left": _build_act("α", trigger_agent, "speech", obl.repair_event or obl.trigger),
-            "right": _build_act("α", expected_agent, "speech", obl.expected or "response"),
+            "left": _build_act("α", trigger_agent, channel, repair_event_name),
+            "right": _build_act("α", expected_agent, channel, expected_event_name),
         }
+        if obl.deadline_seconds is not None:
+            inner["latency"] = f"{obl.deadline_seconds}s"
     else:
-        inner = _build_seq_node(site_seq, actors)
-        if inner is None:
-            return None
+        # Fallback: Try to find an existing sequence to wrap in a repair
+        site_seq = _find_sequence_for_repair(obl, all_obligations)
+        if site_seq is None:
+            # Create a generic sequence if no match found
+            repair_event_name = normalize_event_name(obl.trigger)
+            expected_event_name = normalize_event_name(obl.expected or "response")
+
+            trigger_agent = _infer_agent(repair_event_name, actors)
+            expected_agent = _infer_agent(expected_event_name, actors)
+            channel = _resolve_channel(obl)
+            inner = {
+                "node": "seq",
+                "left": _build_act("α", trigger_agent, channel, repair_event_name),
+                "right": _build_act("α", expected_agent, channel, expected_event_name),
+            }
+            if obl.deadline_seconds is not None:
+                inner["latency"] = f"{obl.deadline_seconds}s"
+        else:
+            inner = _build_seq_node(site_seq, actors)
+            if inner is None:
+                return None
 
     node = {
         "node": "repair",
@@ -274,7 +371,7 @@ def _build_repair_node(obl: Obligation, all_obligations: List[Obligation], actor
 def _build_neg_node(obl: Obligation, actors: List[str]) -> Optional[dict]:
     """
     Build a node for a conditional_sequence (e.g. interruption).
-    Instead of a fixed hardcoded Neg pattern, we map the actual trigger 
+    Instead of a fixed hardcoded Neg pattern, we map the actual trigger
     and expected events to a Seq node, preserving the obligation semantics.
     """
     if not obl.trigger or not obl.expected:
@@ -282,9 +379,10 @@ def _build_neg_node(obl: Obligation, actors: List[str]) -> Optional[dict]:
 
     trigger_agent = _infer_agent(obl.trigger, actors)
     expected_agent = _infer_agent(obl.expected, actors)
+    channel = _resolve_channel(obl)
 
-    left_act = _build_act("α", trigger_agent, "speech", obl.trigger)
-    right_act = _build_act("α", expected_agent, "speech", obl.expected)
+    left_act = _build_act("α", trigger_agent, channel, obl.trigger)
+    right_act = _build_act("α", expected_agent, channel, obl.expected)
 
     node = {
         "node": "seq",
@@ -307,7 +405,7 @@ def _build_act(prim: str, agent: str, channel: str, obj: Optional[str] = None) -
         "channel": channel,
     }
     if obj:
-        node["object"] = obj
+        node["object"] = normalize_event_name(obj)
     return node
 
 

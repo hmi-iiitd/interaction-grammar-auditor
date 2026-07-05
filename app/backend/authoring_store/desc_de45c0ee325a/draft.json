@@ -1,0 +1,71 @@
+{
+  "description_id": "desc_de45c0ee325a",
+  "plain_language": "1. When the robot prompts the user, the user must respond within 3 seconds. If the user does not respond within that time, the robot may retry the prompt exactly once.  \n2. After the user responds to the prompt (or after a retry), the user must acknowledge the prompt's intent within 3 seconds.",
+  "ig_syntax": "robot_prompts_user → user_responds_to_prompt @within(3s) repair(site=robot_prompts_user, max_retries=1)\nuser_responds_to_prompt → user_acknowledges_intent @within(3.0s)",
+  "json_contract": {
+    "node": "bind",
+    "items": [
+      {
+        "node": "repair",
+        "site": "user_responds_to_prompt",
+        "expr": {
+          "node": "seq",
+          "left": {
+            "node": "act",
+            "prim": "α",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_responds_to_prompt"
+          },
+          "right": {
+            "node": "act",
+            "prim": "α",
+            "agent": "human_1",
+            "channel": "speech",
+            "object": "user_acknowledges_intent"
+          },
+          "latency": "3.0s"
+        },
+        "retry": {
+          "N_leq": 1
+        }
+      },
+      {
+        "node": "seq",
+        "left": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_responds_to_prompt"
+        },
+        "right": {
+          "node": "act",
+          "prim": "α",
+          "agent": "human_1",
+          "channel": "speech",
+          "object": "user_acknowledges_intent"
+        },
+        "latency": "3.0s"
+      }
+    ],
+    "latency": "≤30s"
+  },
+  "provenance": [
+    {
+      "obligation_id": "obl_2487877572ea",
+      "source_type": "scenario_sentence",
+      "source_text": "The user is expected to respond to the prompt within 3 seconds. If the user does not respond within the 3-second window, the robot should retry the prompt exactly once.",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T16:53:20.782506Z"
+    },
+    {
+      "obligation_id": "obl_2e041365e9d9",
+      "source_type": "user_clarification",
+      "source_text": "After a successful response or retry, the user must acknowledge the prompt's intent. → User clarified: 3 seconds",
+      "confirmed_by_user": true,
+      "timestamp": "2026-06-24T17:01:24.525305Z"
+    }
+  ],
+  "generated_at": "2026-06-24T17:02:04.173615Z"
+}

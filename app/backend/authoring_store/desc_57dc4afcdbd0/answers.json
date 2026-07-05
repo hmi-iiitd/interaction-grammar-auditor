@@ -1,0 +1,20 @@
+[
+  {
+    "question_id": "q_01baa6ee41d5",
+    "answer_text": "stop within 2 seconds after the apology",
+    "selected_options": [],
+    "answered_at": "2026-06-24T06:56:01.864284Z"
+  },
+  {
+    "question_id": "q_7ec77641fd25",
+    "answer_text": "u are allowed 2 sec",
+    "selected_options": [],
+    "answered_at": "2026-06-24T06:56:01.864315Z"
+  },
+  {
+    "question_id": "q_daa8634e30d8",
+    "answer_text": "",
+    "selected_options": [],
+    "answered_at": "2026-06-24T06:56:01.864325Z"
+  }
+]
