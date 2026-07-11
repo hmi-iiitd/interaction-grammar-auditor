@@ -1,0 +1,196 @@
+\documentclass[10pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+
+\geometry{margin=1in}
+
+\title{NAO Interaction Contract Auditor: Experimental Results Report}
+\author{Interaction Grammar Project Team}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This report presents the evaluation of the Interaction Contract Auditor on a dataset of 12 interaction scenarios involving a NAO robot and a human participant. The scenarios span three primary families: Delivery and Acknowledgment, Interruption and Turn-Taking, and Repair and Timeout.
+
+The objective is to verify the auditor's ability to detect contract violations, accurately attribute the failure to the responsible agent, and provide high-fidelity counterexamples.
+
+\section{Dataset Overview}
+The dataset consists of 12 curated scenarios designed to test edge cases of interaction grammar.
+\begin{itemize}
+    \item \textbf{Delivery Family (A1--A4)}: Tests for missing or late acknowledgments and confirmations.
+    \item \textbf{Interruption Family (B1--B4)}: Tests for floor-yielding and interruption acknowledgment.
+    \item \textbf{Repair Family (C1--C4)}: Tests for retry limits, repair exhaustion, and global timeouts.
+\end{itemize}
+
+The complete dataset, including ROS db3 files, extracted traces, and locked contracts, is available at: \\
+\url{https://github.com/[username]/[repo]/tree/main/interaction-grammar/dataset_nao}
+
+\section{System Evaluation Results}
+
+\subsection{Scenario-wise Detailed Results}
+The following table summarizes the results for all 12 test cases.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l l l l l l l l l}
+\toprule
+\textbf{Scenario} & \textbf{Exp.} & \textbf{Act.} & \textbf{Fail Type} & \textbf{Trigger} & \textbf{Expected} & \textbf{Time} & \textbf{Site} & \textbf{Attr.} \\
+\midrule
+A1\_success & SAT & PASS & none & N/A & N/A & N/A & N/A & N/A \\
+A2\_no\_ack & UNSAT & FAIL & missing\_ack & 5.45s & H1\_Ack\_Deliv & 31.66s & closure & human\_1 \\
+A3\_late\_ack & UNSAT & FAIL & late\_ack & 5.44s & H1\_Ack\_Deliv & 13.44s & timing & human\_1 \\
+A4\_no\_conf & UNSAT & FAIL & missing\_conf & 4.93s & R1\_Conf\_Deliv & 31.5s & closure & robot\_1 \\
+B1\_int\_stop & SAT & PASS & none & N/A & N/A & N/A & N/A & N/A \\
+B2\_int\_cont & UNSAT & FAIL & interruption & 3.11s & R1\_Stop\_Speak & 5.61s & sequence & robot\_1 \\
+B3\_rob\_int & UNSAT & FAIL & rob\_int & 0.01s & R1\_Ack\_Int & 3.08s & closure & robot\_1 \\
+	B4\_no\_sorry & UNSAT & FAIL & missing\_int\_ack & 3.09s & R1\_Ack\_Int & 4.09s & closure & robot\_1 \\
+C1\_rep\_succ & SAT & PASS & none & N/A & N/A & N/A & N/A & N/A \\
+C2\_rep\_exh & UNSAT & FAIL & repair\_exh & 6.39s & H1\_Resp\_Prom & 6.39s & repair & human\_1 \\
+C3\_retry\_lim & UNSAT & FAIL & retry\_lim & 5.52s & H1\_Resp\_Prom & 10.52s & repair & robot\_1 \\
+C4\_glob\_tou & UNSAT & FAIL & glob\_tou & 6.69s & H1\_Ack\_Intent & 9.69s & timing & human\_1 \\
+\bottomrule
+\end{tabular}
+\caption{Comprehensive audit results for all 12 NAO scenarios. (Exp: Expected, Act: Actual, Attr: Attribution).}\\
+\vspace{2pt} \small \textit{Event Legend: H1\_Ack\_Deliv: human\_1\_user\_acknowledges\_delivery, R1\_Conf\_Deliv: robot\_1\_robot\_confirms\_delivery, R1\_Stop\_Speak: robot\_stops\_speaking, R1\_Ack\_Int: robot\_1\_robot\_acknowledges\_interruption, H1\_Resp\_Prom: human\_1\_user\_responds\_to\_prompt, H1\_Ack\_Intent: human\_1\_user\_acknowledges\_intent.}
+\end{table}
+
+\subsection{Metrics Summary}
+The Interaction Contract Auditor was evaluated on its ability to detect failures and localize them in time and agent.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Definition} \\
+\midrule
+Verdict Accuracy & 100.0\% & SAT/UNSAT matches ground truth \\
+Precision & 1.000 & True detected violations / all detected violations \\
+Recall & 1.000 & True detected violations / all ground-truth violations \\
+F1 Score & 1.000 & Harmonic mean of precision and recall \\
+Attribution Accuracy & 100.0\% & Correct identification of responsible agent \\
+Failure-type Accuracy & 100.0\% & Correct classification of violation type \\
+CX Completeness & 100.0\% & All CX include trigger, expected, observed, and site \\
+Avg. Timestamp Error & 9.652s & Absolute difference in falsification time \\
+Avg. Runtime & 12ms & Average processing time per trace \\
+Reproducibility & 100\% & Identical outputs across 3 independent runs \\
+\bottomrule
+\end{tabular}
+\caption{Aggregated performance metrics for the auditor.}
+\end{table}
+
+\subsection{Baseline Comparison}
+The Auditor's performance was compared against three baseline monitoring strategies: (1) Task Outcome (checking if the goal state was reached), (2) Rule-based monitors (hardcoded if-then triggers), and (3) FSM monitors (state-transition checking).
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{l c c c c}
+\toprule
+\textbf{Scenario} & \textbf{Auditor} & \textbf{Task Outcome} & \textbf{Rule Monitor} & \textbf{FSM Monitor} \\
+\midrule
+A1\_delivery\_success & PASS & SAT & SAT & SAT \\
+A2\_no\_ack & FAIL & UNSAT & UNSAT & UNSAT \\
+A3\_late\_ack & FAIL & SAT & UNSAT & SAT \\
+A4\_no\_conf & FAIL & UNSAT & UNSAT & UNSAT \\
+B1\_int\_stop & PASS & SAT & SAT & UNSAT \\
+B2\_int\_cont & FAIL & UNSAT & SAT & UNSAT \\
+B3\_rob\_int & FAIL & UNSAT & UNSAT & UNSAT \\
+B4\_no\_sorry & FAIL & SAT & SAT & SAT \\
+C1\_rep\_succ & PASS & SAT & SAT & SAT \\
+C2\_rep\_exh & FAIL & UNSAT & SAT & UNSAT \\
+C3\_retry\_lim & FAIL & SAT & UNSAT & SAT \\
+C4\_glob\_tou & FAIL & SAT & SAT & SAT \\
+\bottomrule
+\end{tabularx}
+\caption{Comparison of the Interaction Contract Auditor against baseline monitors.}
+\end{table}
+
+\section{Detailed UNSAT Analysis}
+For each failing scenario, the auditor generates a counterexample (CX) and a structured explanation.
+
+\subsection{Scenario A2 Recipient Does Not Acknowledge}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} missing\_ack \\
+\textbf{Attribution:} human\_1 \\
+\textbf{Falsification Time:} 31.66s \\
+\textbf{Counterexample:}\ Triggered by acknowledgment at 5.45s. Expected H1\_Ack\_Deliv, but it was missing. \\
+\textbf{Trace Window:} [5.45s, 31.66s]
+
+\subsection{Scenario A3 Recipient Acknowledges Too Late}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} late\_ack \\
+\textbf{Attribution:} human\_1 \\
+\textbf{Falsification Time:} 13.44s \\
+\textbf{Counterexample:}\ Triggered by latency at 5.44s. Expected H1\_Ack\_Deliv, but it was late. \\
+\textbf{Trace Window:} [5.44s, 13.44s]
+
+\subsection{Scenario A4 Robot Does Not Confirm Delivery}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} missing\_robot\_confirm \\
+\textbf{Attribution:} robot\_1 \\
+\textbf{Falsification Time:} 31.5s \\
+\textbf{Counterexample:}\ Triggered by acknowledgment at 4.93s. Expected R1\_Conf\_Deliv, but it was missing. \\
+\textbf{Trace Window:} [4.93s, 31.5s]
+
+\subsection{Scenario B2 Human Interrupts Robot Continues}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} interruption \\
+\textbf{Attribution:} robot\_1 \\
+\textbf{Falsification Time:} 5.61s \\
+\textbf{Counterexample:}\ Triggered by the human interruption event at 3.11s. The robot failed to stop speaking within the 2s deadline, as observed by the trace ending at 5.61s. \\
+\textbf{Trace Window:} [3.11s, 5.61s]
+
+\subsection{Scenario B3 Robot Interrupts Human}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} robot\_interruption \\
+\textbf{Attribution:} robot\_1 \\
+\textbf{Falsification Time:} 3.08s \\
+\textbf{Counterexample:}\ Triggered by acknowledgment at 0.01s. Expected R1\_Ack\_Int, but it was missing. \\
+\textbf{Trace Window:} [0.01s, 3.08s]
+
+\subsection{Scenario B4 Robot Stops But No Sorry}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} missing\_interrupt\_ack \\
+\textbf{Attribution:} robot\_1 \\
+\textbf{Falsification Time:} 4.09s \\
+\textbf{Counterexample:}\ Triggered by acknowledgment at 3.09s. Expected R1\_Ack\_Int, but it was missing. \\
+\textbf{Trace Window:} [3.09s, 4.09s]
+
+\subsection{Scenario C2 Repair Exhausted}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} repair\_exhausted \\
+\textbf{Attribution:} human\_1 \\
+\textbf{Falsification Time:} 6.39s \\
+\textbf{Counterexample:}\ Triggered by repair\_exhausted at 6.39s. Expected H1\_Resp\_Prom, but it was missing. \\
+\textbf{Trace Window:} [6.39s, 6.39s]
+
+\subsection{Scenario C3 Retry Limit Exceeded}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} retry\_limit\_exceeded \\
+\textbf{Attribution:} robot\_1 \\
+\textbf{Falsification Time:} 10.52s \\
+\textbf{Counterexample:}\ The robot performed more than the allowed 1 retry attempt. Violation detected at the moment of the second retry prompt. \\
+\textbf{Trace Window:} [5.52s, 10.52s]
+
+\subsection{Scenario C4 Global Timeout}
+\textbf{Audit Verdict:} FAIL \\
+\textbf{Failure Type:} global\_timeout \\
+\textbf{Attribution:} human\_1 \\
+\textbf{Falsification Time:} 9.69s \\
+\textbf{Counterexample:}\ Triggered by latency at 6.69s. Expected H1\_Ack\_Intent, but it was late. \\
+\textbf{Trace Window:} [6.69s, 9.69s]
+
+
+\end{document}
